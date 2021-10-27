@@ -18,4 +18,9 @@ public class Constants {
     public static final String QUACK_SPINNER_NAME = "qs";
     public static final String ELEVATOR_MOTOR_NAME = "em";
 
- }
+    public static final String CAPSTONE_DETECTION_CAMERA_NAME_LEFT = "Webcam 1";
+    public static final String CAPSTONE_DETECTION_CAMERA_NAME_RIGHT = "Webcam 2";
+    public static int CAMERA_RESOLUTION_WIDTH = 1280;
+    public static int CAMERA_RESOLUTION_HEIGHT = 720;
+
+}
