@@ -10,7 +10,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvSwitchableWebcam;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.openftc.easyopencv.OpenCvPipeline;
-import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.*;
+
 
 
 
