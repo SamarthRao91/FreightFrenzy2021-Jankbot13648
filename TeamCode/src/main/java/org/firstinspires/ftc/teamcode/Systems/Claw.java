@@ -7,18 +7,16 @@ import org.firstinspires.ftc.teamcode.Constants;
 
 public class Claw {
     public Servo claw;
+
     public Claw(HardwareMap hardwareMap)
     {
         claw = hardwareMap.get(Servo.class, Constants.CLAW_SERVO_NAME);
 
     }
-    public void openClaw()
+    public void setClaw(double position)
     {
-        claw.setPosition(1);
+        claw.setPosition(position);
     }
-    public void closeClaw()
-    {
-        claw.setPosition(0.5);
-    }
+
 }
 
