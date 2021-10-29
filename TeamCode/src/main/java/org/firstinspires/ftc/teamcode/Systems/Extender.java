@@ -22,7 +22,8 @@ public class Extender {
     }
     public void setExtenderPosition(double position)
     {
-        if(Constants.elevator_postion < Constants.elevator_safepos && Constants.turret_position < Constants.turret_right_safepos && Constants.turret_position > Constants.turret_left_safepos)
+        if(Constants.elevator_postion < Constants.elevator_safepos && Constants.turret_position <
+                Constants.turret_right_safepos && Constants.turret_position > Constants.turret_left_safepos)
         {
            return;
         }

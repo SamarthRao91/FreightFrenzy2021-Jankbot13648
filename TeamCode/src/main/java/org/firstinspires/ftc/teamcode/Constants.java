@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.control.PIDFController;
+import com.qualcomm.robotcore.hardware.PIDCoefficients;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @Config
@@ -23,6 +25,7 @@ public class Constants {
     public static final String CAPSTONE_DETECTION_CAMERA_NAME_RIGHT = "Webcam 2";
     public static int CAMERA_RESOLUTION_WIDTH = 1280;
     public static int CAMERA_RESOLUTION_HEIGHT = 720;
+    //elevator pid stuff
 
     //turret constants
     public static double turret_position; //stores angle of turret
@@ -40,6 +43,10 @@ public class Constants {
     public static double ex_maxpos; //maximum rotation of extender
     public static double ex_minpos; //minimum rotation of extender
     public static double ex_capstoneextension; //stores position of capstone
+
+    public static double extenderPosition1;
+    public static double extenderPosition2;
+
     //claw constants
     public static double claw_open=0.47;
     public static double claw_close=0.35;
