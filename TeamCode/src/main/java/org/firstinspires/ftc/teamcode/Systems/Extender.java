@@ -20,23 +20,24 @@ public class Extender {
         extender = hardwareMap.get(Servo.class, Constants.EXTENDER_SERVO_NAME);
 
     }
-    public  void setExtenderPosition(double position)
+    public void setExtenderPosition(double position)
     {
         if(Constants.elevator_postion < Constants.elevator_safepos && Constants.turret_position < Constants.turret_right_safepos && Constants.turret_position > Constants.turret_left_safepos)
         {
-            if(position > Constants.ex_maxpos)
-            {
-                extender.setPosition(Constants.ex_maxpos);
-                Constants.ex_position = Constants.ex_maxpos;
-            }
-            else if(position< Constants.ex_minpos)
-            {
-                extender.setPosition(Constants.ex_minpos);
-                Constants.ex_position = Constants.ex_minpos;
-            }
-            extender.setPosition(position);
-            Constants.ex_position = position;
+           return;
         }
+        if(position > Constants.ex_maxpos)
+        {
+            extender.setPosition(Constants.ex_maxpos);
+            Constants.ex_position = Constants.ex_maxpos;
+        }
+        else if(position< Constants.ex_minpos)
+        {
+            extender.setPosition(Constants.ex_minpos);
+            Constants.ex_position = Constants.ex_minpos;
+        }
+        extender.setPosition(position);
+        Constants.ex_position = position;
     }
     public void extenderMove(double ammount)
     {
