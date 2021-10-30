@@ -33,11 +33,15 @@ public class Constants {
     public static double turret_left_safepos =0.9; //stores angle to not hit duck spinner
     public static double turret_zeropos = 0.495;
     //elevator constants
-    public static double  elevator_postion; //stores current position in inches
+    public static double elevator_postion; //stores current position in inches
     public static double elevator_minpos = .25; //minimum position of elevator to stop movement @Todo - this one needs to be checked
     public static double elevator_maxpos = 26.5; //maximum position of elevator
     public static double elevator_minimumsafepos = 4.5; //position in which turret clears the bottom if extender is retracted
     public static double elevator_safepos = 14; //position in which everything clears duck spinner if extender is extended
+    public static double elevator_pcoeff = 1;
+    public static double elevator_icoeff = 0;
+    public static double elevator_dcoeff = 0;
+
     //extender constants
     public static double ex_position; //stores current position of extender in servo rotaton
     public static double ex_maxpos; //maximum rotation of extender
