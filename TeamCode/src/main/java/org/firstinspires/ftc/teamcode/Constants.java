@@ -38,6 +38,7 @@ public class Constants {
     public static double elevator_maxpos = 26.5; //maximum position of elevator
     public static double elevator_minimumsafepos = 4.5; //position in which turret clears the bottom if extender is retracted
     public static double elevator_safepos = 14; //position in which everything clears duck spinner if extender is extended
+    public static double elevator_tolerance = 1;
     public static double elevator_pcoeff = 1;
     public static double elevator_icoeff = 0;
     public static double elevator_dcoeff = 0;

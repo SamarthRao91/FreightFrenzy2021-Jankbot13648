@@ -1,17 +1,30 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
+import com.acmerobotics.roadrunner.control.PIDCoefficients;
+import com.acmerobotics.roadrunner.control.PIDFController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class Elevator {
 
         DcMotorEx elevatorMotor;
 
+        PIDFController positionController;
+
         public Elevator(HardwareMap hardwareMap)
         {
+            positionController = new PIDFController(
+                    new PIDCoefficients(
+                            Constants.elevator_pcoeff,
+                            Constants.elevator_icoeff,
+                            Constants.elevator_dcoeff
+                    )
+            );
+
             elevatorMotor = hardwareMap.get(DcMotorEx.class, Constants.ELEVATOR_MOTOR_NAME);
             elevatorMotor.setDirection(DcMotorEx.Direction.REVERSE);
             elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -21,10 +34,14 @@ public class Elevator {
 
         public void toPosition(int position)
         {
-            elevatorMotor.setTargetPosition(position);
-            elevatorMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-            while (elevatorMotor.isBusy());
-            elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            positionController.setTargetPosition(position);
+
+            while(positionController.getLastError() > Constants.elevator_tolerance)
+            {
+                elevatorMotor.setPower(positionController.update(elevatorMotor.getCurrentPosition()));
+            }
+
+            elevatorMotor.setPower(0);
         }
 
         public void setSpeed(double speed)
