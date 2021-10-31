@@ -38,13 +38,13 @@ public class Extender {
             Constants.ex_position = Constants.ex_minpos;
         }
         extender.setPosition(position);
-        Constants.ex_position = position;
+        Constants.ex_position = extender.getPosition();
     }
     public void extenderMove(double ammount)
     {
         double newpos = Constants.ex_position + ammount;
         extender.setPosition(newpos);
-        Constants.ex_position = newpos;
+        Constants.ex_position = extender.getPosition();
     }
     public double getPosition()
     {

@@ -67,9 +67,7 @@ public class TeleOpBlue extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive())
         {
-            Constants.turret_position = turret.getPosition();
-            Constants.elevator_postion = elevator.getPosition();
-            Constants.ex_position = extender.getPosition();
+
             // Tele-Op Drive
             Pose2d poseEstimate = drive.getPoseEstimate();
 

@@ -39,7 +39,7 @@ public class Turret {
             Constants.turret_position = Constants.turret_left_safepos;
         }
         turret.setPosition(position);
-        Constants.turret_position = position;
+        Constants.turret_position = turret.getPosition();
 
     }
 
@@ -47,7 +47,7 @@ public class Turret {
     {
         double newpos = Constants.turret_position + ammount;
         turret.setPosition(newpos);
-        Constants.turret_position = newpos;
+        Constants.turret_position = turret.getPosition();
     }
     public double getPosition()
     {
