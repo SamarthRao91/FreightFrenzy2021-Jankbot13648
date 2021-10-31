@@ -45,8 +45,8 @@ public class Constants {
 
     //extender constants
     public static double ex_position; //stores current position of extender in servo rotaton
-    public static double ex_maxpos; //maximum rotation of extender
-    public static double ex_minpos; //minimum rotation of extender
+    public static double ex_maxpos =0; //maximum rotation of extender
+    public static double ex_minpos=1; //minimum rotation of extender
     public static double ex_capstoneextension; //stores position of capstone
 
     public static double extenderPosition1;
