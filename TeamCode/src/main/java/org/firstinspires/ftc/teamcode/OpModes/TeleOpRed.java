@@ -17,6 +17,9 @@ public class TeleOpRed extends LinearOpMode {
      Extender extender;
      Intake intake;
      Turret turret;
+     Elevator elevator;
+
+
 
      public void resetMechanisms()
      {
@@ -61,6 +64,7 @@ public class TeleOpRed extends LinearOpMode {
        extender = new Extender(hardwareMap);
        intake = new Intake(hardwareMap);
        turret = new Turret(hardwareMap);
+       elevator = new Elevator(hardwareMap);
 
          waitForStart();
 
@@ -84,8 +88,86 @@ public class TeleOpRed extends LinearOpMode {
                      )
              );
 
+             //driver 1 controls
+             if(gamepad1.right_trigger == 1)
+             {
+                 intake.setIntake(1,0);
+             }
+             else if(gamepad1.left_trigger == 1)
+             {
+                 intake.setIntake(0,1);
+             }
+             if(gamepad1.a)
+             {
+                 resetMechanisms();
+             }
+             if(gamepad1.b)
+             {   //low preset
+                 elevator.toPosition(300);
+                 turret.turretPresets(Constants.turret_left_safepos);
+                 extender.setExtenderPosition(Constants.ex_maxpos);
+             }
+             if(gamepad1.y)
+             {   //high preset
+                 elevator.toPosition(600);
+                 turret.turretPresets(Constants.turret_left_safepos);
+                 extender.setExtenderPosition(Constants.ex_maxpos);
+             }
+             if(gamepad1.x)
+             {
+                 //score gamepiece
+             }
+             if(gamepad1.start)
+             {
+                 //high reverse preset
+                 elevator.toPosition(600);
+                 turret.turretPresets(Constants.turret_right_safepos);
+                 extender.setExtenderPosition(Constants.ex_maxpos);
+             }
 
-
+             //driver 2 controls
+             if(gamepad2.a)
+             {
+                 resetMechanisms();
+             }
+             if(gamepad2.b)
+             {   //low preset
+                 elevator.toPosition(300);
+                 turret.turretPresets(Constants.turret_left_safepos);
+                 extender.setExtenderPosition(Constants.ex_maxpos);
+             }
+             if(gamepad2.y)
+             {   //high preset
+                 elevator.toPosition(600);
+                 turret.turretPresets(Constants.turret_left_safepos);
+                 extender.setExtenderPosition(Constants.ex_maxpos);
+             }
+             if(gamepad2.x)
+             {
+                 //score gamepiece
+             }
+             if(gamepad2.start)
+             {
+                 //high reverse preset
+                 elevator.toPosition(600);
+                 turret.turretPresets(Constants.turret_right_safepos);
+                 extender.setExtenderPosition(Constants.ex_maxpos);
+             }
+             elevator.setSpeed(gamepad2.right_stick_y);
+             turret.turretPresets(gamepad2.left_stick_x);
+             extender.setExtenderPosition(gamepad2.left_stick_y);
+             if(gamepad2.dpad_down)
+             {
+                 claw.setClaw(Constants.claw_close);
+             }
+             if(gamepad2.dpad_up)
+             {
+                 claw.setClaw(Constants.claw_open);
+             }
+             if(gamepad2.dpad_right)
+             {
+                 claw.setClaw(Constants.openClawFully);
+             }
 
          }
      }
