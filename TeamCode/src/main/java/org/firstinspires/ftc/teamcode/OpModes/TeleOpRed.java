@@ -21,6 +21,7 @@ public class TeleOpRed extends LinearOpMode {
 
 
 
+
      public void resetMechanisms()
      {
          claw.setClaw(Constants.claw_close);
@@ -144,7 +145,9 @@ public class TeleOpRed extends LinearOpMode {
              }
              if(gamepad2.x)
              {
-                 //score gamepiece
+                 claw.setClaw(Constants.claw_open);
+                 extender.setExtenderPosition(Constants.ex_minpos);
+                 resetMechanisms();
              }
              if(gamepad2.start)
              {
@@ -153,9 +156,26 @@ public class TeleOpRed extends LinearOpMode {
                  turret.turretPresets(Constants.turret_right_safepos);
                  extender.setExtenderPosition(Constants.ex_maxpos);
              }
-             elevator.setSpeed(gamepad2.right_stick_y);
-             turret.turretPresets(gamepad2.left_stick_x);
-             extender.setExtenderPosition(gamepad2.left_stick_y);
+             elevator.setSpeed(gamepad2.right_stick_y/2);
+             if(gamepad2.left_stick_x > 0)
+             {
+                 turret.moveTurret(0.1);
+             }
+            else  if(gamepad2.left_stick_x < 0)
+             {
+                 turret.moveTurret(-0.1);
+             }
+
+             if(gamepad2.left_stick_y > 0)
+             {
+                 extender.extenderMove(0.1);
+             }
+             else  if(gamepad2.left_stick_y < 0)
+             {
+                 extender.extenderMove(-0.1);
+             }
+
+            // extender.setExtenderPosition(gamepad2.left_stick_y);
              if(gamepad2.dpad_down)
              {
                  claw.setClaw(Constants.claw_close);

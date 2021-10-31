@@ -25,6 +25,8 @@ public class Constants {
     public static final String CAPSTONE_DETECTION_CAMERA_NAME_RIGHT = "Webcam 2";
     public static int CAMERA_RESOLUTION_WIDTH = 1280;
     public static int CAMERA_RESOLUTION_HEIGHT = 720;
+    //more other stuff
+    public static String DISTANCE_SENSOR_NAME = "sdc";
     //elevator pid stuff
 
     //turret constants
@@ -42,6 +44,7 @@ public class Constants {
     public static double elevator_pcoeff = 1;
     public static double elevator_icoeff = 0;
     public static double elevator_dcoeff = 0;
+    //public static int elevator_postion_changeable;
 
     //extender constants
     public static double ex_position; //stores current position of extender in servo rotaton
@@ -49,7 +52,7 @@ public class Constants {
     public static double ex_minpos=1; //minimum rotation of extender
     public static double ex_capstoneextension; //stores position of capstone
 
-    public static double extenderPosition1;
+    public static int elevatorStuff;
     public static double extenderPosition2;
 
     //claw constants

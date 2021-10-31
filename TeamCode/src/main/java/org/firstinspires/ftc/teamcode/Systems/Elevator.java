@@ -26,7 +26,6 @@ public class Elevator {
             );
 
             elevatorMotor = hardwareMap.get(DcMotorEx.class, Constants.ELEVATOR_MOTOR_NAME);
-            elevatorMotor.setDirection(DcMotorEx.Direction.REVERSE);
             elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
             elevatorMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
             elevatorMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
@@ -35,21 +34,25 @@ public class Elevator {
         public void toPosition(int position)
         {
             positionController.setTargetPosition(position);
-
-            while(positionController.getLastError() > Constants.elevator_tolerance)
+            elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            elevatorMotor.setPower(0.5);
+            while(elevatorMotor.isBusy())
             {
-                elevatorMotor.setPower(positionController.update(elevatorMotor.getCurrentPosition()));
+
             }
 
             elevatorMotor.setPower(0);
+            elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             Constants.elevator_postion = elevatorMotor.getCurrentPosition();
         }
 
         public void setSpeed(double speed)
         {
             elevatorMotor.setPower(speed);
+
             Constants.elevator_postion = elevatorMotor.getCurrentPosition();
         }
+
         public double getPosition()
         {
             return elevatorMotor.getCurrentPosition();

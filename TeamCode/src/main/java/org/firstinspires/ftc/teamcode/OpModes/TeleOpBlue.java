@@ -4,6 +4,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Constants;
@@ -19,6 +20,8 @@ public class TeleOpBlue extends LinearOpMode {
     Intake intake;
     Turret turret;
     Elevator elevator;
+
+   // private DistanceSensor sensorRange;
     public void resetMechanisms()
     {
         claw.setClaw(Constants.claw_close);
@@ -53,6 +56,7 @@ public class TeleOpBlue extends LinearOpMode {
     }
     @Override
     public void runOpMode() {
+
         drive = new MecanumDrive(hardwareMap);
         claw = new Claw(hardwareMap);
         spinner = new DuckSpinner(hardwareMap);
@@ -60,6 +64,7 @@ public class TeleOpBlue extends LinearOpMode {
         intake = new Intake(hardwareMap);
         turret = new Turret(hardwareMap);
         elevator = new Elevator(hardwareMap);
+       // sensorRange= hardwareMap.get(DistanceSensor.class, Constants.DISTANCE_SENSOR_NAME);
 
         waitForStart();
 
@@ -111,6 +116,9 @@ public class TeleOpBlue extends LinearOpMode {
             if(gamepad1.x)
             {
                 //score gamepiece
+                claw.setClaw(Constants.claw_open);
+                extender.setExtenderPosition(Constants.ex_minpos);
+                resetMechanisms();
             }
             if(gamepad1.start)
             {
