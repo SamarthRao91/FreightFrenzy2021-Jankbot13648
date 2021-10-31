@@ -42,11 +42,13 @@ public class Elevator {
             }
 
             elevatorMotor.setPower(0);
+            Constants.elevator_postion = position;
         }
 
         public void setSpeed(double speed)
         {
             elevatorMotor.setPower(speed);
+            Constants.elevator_postion = elevatorMotor.getCurrentPosition();
         }
 }
 

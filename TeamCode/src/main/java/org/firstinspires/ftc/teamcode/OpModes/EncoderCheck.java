@@ -8,13 +8,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.*;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
-@TeleOp(name = "Extenderererer Check")
+@TeleOp(name = "Elevator Check")
 public class EncoderCheck extends LinearOpMode {
     //different subsystems
     //MecanumDrive drive;
     //Claw claw;
     //DuckSpinner spinner;
-    Extender extender;
+   // Extender extender;
+    Elevator elevator;
     //Intake intake;
    // Turret turret;
 
@@ -23,7 +24,7 @@ public class EncoderCheck extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        extender = new Extender(hardwareMap);
+        elevator = new Elevator(hardwareMap);
 
         waitForStart();
 
@@ -31,14 +32,10 @@ public class EncoderCheck extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive())
         {
-            if(gamepad1.a) {
-                extender.setExtenderPosition(Constants.extenderPosition1);
+            if(gamepad1.x) {
+                elevator.toPosition(1200);
             }
-            if(gamepad1.b)
-            {
-                extender.setExtenderPosition(Constants.extenderPosition2);
 
-            }
 
 
 
