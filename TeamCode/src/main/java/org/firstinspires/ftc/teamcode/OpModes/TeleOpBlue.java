@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.*;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -66,6 +67,9 @@ public class TeleOpBlue extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive())
         {
+            Constants.turret_position = turret.getPosition();
+            Constants.elevator_postion = elevator.getPosition();
+            Constants.ex_position = extender.getPosition();
             // Tele-Op Drive
             Pose2d poseEstimate = drive.getPoseEstimate();
 

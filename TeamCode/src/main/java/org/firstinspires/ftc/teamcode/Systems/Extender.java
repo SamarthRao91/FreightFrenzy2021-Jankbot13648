@@ -46,6 +46,10 @@ public class Extender {
         extender.setPosition(newpos);
         Constants.ex_position = newpos;
     }
+    public double getPosition()
+    {
+        return extender.getPosition();
+    }
 
 }
 

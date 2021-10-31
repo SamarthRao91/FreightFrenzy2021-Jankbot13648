@@ -49,5 +49,9 @@ public class Turret {
         turret.setPosition(newpos);
         Constants.turret_position = newpos;
     }
+    public double getPosition()
+    {
+       return turret.getPosition();
+    }
 }
 

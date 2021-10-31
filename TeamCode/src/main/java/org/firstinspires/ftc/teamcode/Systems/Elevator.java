@@ -50,5 +50,9 @@ public class Elevator {
             elevatorMotor.setPower(speed);
             Constants.elevator_postion = elevatorMotor.getCurrentPosition();
         }
+        public double getPosition()
+        {
+            return elevatorMotor.getCurrentPosition();
+        }
 }
 
