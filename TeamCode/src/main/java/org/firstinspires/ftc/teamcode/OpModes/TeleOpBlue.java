@@ -4,67 +4,41 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 
-import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.*;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 @TeleOp(name = "TeleOp - Blue")
 public class TeleOpBlue extends LinearOpMode {
+
     //different subsystems
     MecanumDrive drive;
-    Claw claw;
-    DuckSpinner spinner;
-    Extender extender;
-    Intake intake;
-    Turret turret;
     Elevator elevator;
+    Manipulator manipulator;
+    DuckSpinner spinner;
+    Intake intake;
 
-   // private DistanceSensor sensorRange;
     public void resetMechanisms()
     {
-        claw.setClaw(Constants.claw_close);
-        if (Constants.elevator_postion < .5 && Constants.turret_position == Constants.turret_zeropos) { //skips function if already reset
-            return;
+        if(elevator.getPosition() != Constants.Elevator.MINIMUM_POSITION
+                && manipulator.getExtenderPosition() != Constants.Manipulator.Extender.MIN_POS
+                && manipulator.getTurretPosition() != Constants.Manipulator.Turret.ZERO_POSITION)
+        {
+            elevator.setPosition(Constants.Elevator.SAFE_EXTENDER_POSITION);
+            manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+            manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
+            elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
         }
-        if(Constants.elevator_postion < Constants.elevator_minimumsafepos) { //raises elevator if turret needs to spin or if extender needs to retract
-            if (Constants.turret_position == Constants.turret_zeropos) { //lowers elevator if turret is almost in intaking position, extender should never be extended here
-                //elevator.setpos(0); @todo here
-                return; //superstructure should be reset
-            }
-            // elevator.setpos(Constants.elevator_minimumsafepos + .5); //otherwise raise the elevator @todo here
-        }
-        if (Constants.turret_position > Constants.turret_left_safepos && Constants.turret_position < Constants.turret_right_safepos) turret.turretPresets(Constants.turret_zeropos); //sets turret to zero if its between safe zones,
-        { //do these in paralell
-            if(Constants.elevator_postion < Constants.elevator_minimumsafepos) // @todo elevator.setpos(Constants.elevator_mimimumsafepos + .5); //lowers the elevator, do not wait for this to finish to continue
-                extender.setExtenderPosition(Constants.ex_minpos); //retract extender to minimum
-            if(Constants.turret_position> Constants.turret_right_safepos) turret.turretPresets(Constants.turret_right_safepos); //move turret as close to center if outside assuming worst-case scenario which extender is extended
-            else if(Constants.turret_position < Constants.turret_left_safepos) turret.turretPresets(Constants.turret_left_safepos); //same as above but for the other side
-            else if(Constants.turret_position == Constants.turret_zeropos );//this only happens if turret is at zero
-
-        }
-        //extender should now be retracted and turret is close to center, elevator should now be lower than it started
-        { //do these in paralell
-            // @todo elevator.setpos(Constants.elevator_minimumsafepos + .5);
-            turret.turretPresets(Constants.turret_zeropos);
-        }
-        //turret should be centered now and is above zero position
-        //elevator.setposition(0);
-        claw.setClaw(Constants.claw_open);
-        return;
     }
+
     @Override
     public void runOpMode() {
 
         drive = new MecanumDrive(hardwareMap);
-        claw = new Claw(hardwareMap);
-        spinner = new DuckSpinner(hardwareMap);
-        extender = new Extender(hardwareMap);
-        intake = new Intake(hardwareMap);
-        turret = new Turret(hardwareMap);
         elevator = new Elevator(hardwareMap);
-       // sensorRange= hardwareMap.get(DistanceSensor.class, Constants.DISTANCE_SENSOR_NAME);
+        manipulator = new Manipulator(hardwareMap, elevator);
+        spinner = new DuckSpinner(hardwareMap);
+        intake = new Intake(hardwareMap);
 
         waitForStart();
 
@@ -72,10 +46,6 @@ public class TeleOpBlue extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive())
         {
-
-            // Tele-Op Drive
-            Pose2d poseEstimate = drive.getPoseEstimate();
-
             Vector2d input = new Vector2d(
                     -gamepad1.left_stick_y,
                     -gamepad1.left_stick_x
@@ -88,94 +58,98 @@ public class TeleOpBlue extends LinearOpMode {
                             -gamepad1.right_stick_x
                     )
             );
-            //driver 1 controls
-            if(gamepad1.right_trigger == 1)
-            {
-                intake.setIntake(1,0);
-            }
-            else if(gamepad1.left_trigger == 1)
-            {
-                intake.setIntake(0,1);
-            }
+
+            intake.setIntake(gamepad1.right_trigger, gamepad1.left_trigger);
+
             if(gamepad1.a)
             {
                 resetMechanisms();
             }
-            if(gamepad1.b)
+
+            else if(gamepad1.b)
             {   //low preset
-                elevator.toPosition(300);
-                turret.turretPresets(Constants.turret_right_safepos);
-                extender.setExtenderPosition(Constants.ex_maxpos);
+                elevator.setPosition(300);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
-            if(gamepad1.y)
+
+            else if(gamepad1.y)
             {   //high preset
-                elevator.toPosition(600);
-                turret.turretPresets(Constants.turret_right_safepos);
-                extender.setExtenderPosition(Constants.ex_maxpos);
+                elevator.setPosition(600);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
-            if(gamepad1.x)
+
+            else if(gamepad1.x)
             {
-                //score gamepiece
-                claw.setClaw(Constants.claw_open);
-                extender.setExtenderPosition(Constants.ex_minpos);
+                //score game piece
+                manipulator.openClaw();
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
                 resetMechanisms();
             }
-            if(gamepad1.start)
+
+            else if(gamepad1.start)
             {
                 //high reverse preset
-                elevator.toPosition(600);
-                turret.turretPresets(Constants.turret_left_safepos);
-                extender.setExtenderPosition(Constants.ex_maxpos);
+                elevator.setPosition(600);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
 
             //driver 2 controls
+
+            elevator.setSpeed(gamepad2.right_stick_y/2);
+            manipulator.moveTurret(gamepad2.left_stick_x/2);
+            manipulator.moveExtender(gamepad2.left_stick_y/2);
+
             if(gamepad2.a)
             {
                 resetMechanisms();
             }
-            if(gamepad2.b)
+
+            else if(gamepad2.b)
             {   //low preset
-                elevator.toPosition(300);
-                turret.turretPresets(Constants.turret_right_safepos);
-                extender.setExtenderPosition(Constants.ex_maxpos);
+                elevator.setPosition(300);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
-            if(gamepad2.y)
+
+            else if(gamepad2.y)
             {   //high preset
-                elevator.toPosition(600);
-                turret.turretPresets(Constants.turret_right_safepos);
-                extender.setExtenderPosition(Constants.ex_maxpos);
+                elevator.setPosition(600);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
-            if(gamepad2.x)
-            {
-                //score gamepiece
-            }
-            if(gamepad2.start)
+
+            else if(gamepad2.start)
             {
                 //high reverse preset
-                elevator.toPosition(600);
-                turret.turretPresets(Constants.turret_left_safepos);
-                extender.setExtenderPosition(Constants.ex_maxpos);
+                elevator.setPosition(600);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
-            elevator.setSpeed(gamepad2.right_stick_y);
-            turret.turretPresets(gamepad2.left_stick_x);
-            extender.setExtenderPosition(gamepad2.left_stick_y);
+
+            if(gamepad2.x)
+            {
+                manipulator.openClaw();
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+                resetMechanisms();
+            }
+
             if(gamepad2.dpad_down)
             {
-                claw.setClaw(Constants.claw_close);
+                manipulator.closeClaw();
             }
-            if(gamepad2.dpad_up)
+
+            else if(gamepad2.dpad_up)
             {
-                claw.setClaw(Constants.claw_open);
+                manipulator.openClaw();
             }
-            if(gamepad2.dpad_right)
+
+            else if(gamepad2.dpad_right)
             {
-                claw.setClaw(Constants.openClawFully);
+                manipulator.capstoneOpenClaw();
             }
-
-
-
-
-
         }
     }
 }

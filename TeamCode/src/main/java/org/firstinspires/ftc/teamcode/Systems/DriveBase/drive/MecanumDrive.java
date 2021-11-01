@@ -26,6 +26,7 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -36,7 +37,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.*;
-import static org.firstinspires.ftc.teamcode.Constants.*;
 
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
@@ -89,10 +89,10 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         // upward (normal to the floor) using a command like the following:
         // BNO055IMUUtil.remapAxes(imu, AxesOrder.XYZ, AxesSigns.NPN);
 
-        leftFront = hardwareMap.get(DcMotorEx.class, FRONT_LEFT_DRIVE_NAME);
-        leftRear = hardwareMap.get(DcMotorEx.class, REAR_LEFT_DRIVE_NAME);
-        rightRear = hardwareMap.get(DcMotorEx.class, REAR_RIGHT_DRIVE_NAME);
-        rightFront = hardwareMap.get(DcMotorEx.class, FRONT_RIGHT_DRIVE_NAME);
+        leftFront = hardwareMap.get(DcMotorEx.class, Constants.DriveBase.FRONT_LEFT_DRIVE_MOTOR_NAME);
+        leftRear = hardwareMap.get(DcMotorEx.class, Constants.DriveBase.REAR_LEFT_DRIVE_MOTOR_NAME);
+        rightRear = hardwareMap.get(DcMotorEx.class, Constants.DriveBase.REAR_RIGHT_DRIVE_MOTOR_NAME);
+        rightFront = hardwareMap.get(DcMotorEx.class, Constants.DriveBase.FRONT_RIGHT_DRIVE_MOTOR_NAME);
 
         motors = Arrays.asList(leftFront, leftRear, rightRear, rightFront);
 
