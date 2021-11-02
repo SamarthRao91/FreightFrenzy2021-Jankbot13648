@@ -19,7 +19,7 @@ public class Intake {
         intake.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         intake.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
 
-        intakeDeployer = hardwareMap.get(Servo.class, INTAKE_DEPLOYER_SERVO_NAME);
+       // intakeDeployer = hardwareMap.get(Servo.class, INTAKE_DEPLOYER_SERVO_NAME);
     }
 
     public void setIntake(double intakeSpeed, double reverseIntakeSpeed) {

@@ -3,16 +3,19 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.*;
 
-@TeleOp(name = "TeleOp-Encoder Check")
+@TeleOp(name = "TeleOp-Encoder Check 3434343434343434343434343434")
 public class EncoderCheck extends LinearOpMode {
     //different subsystems
    Elevator elevator;
+    Manipulator manipulator;
     @Override
     public void runOpMode() {
 
         elevator = new Elevator(hardwareMap);
+        manipulator = new Manipulator(hardwareMap, elevator);
 
         waitForStart();
 
@@ -20,21 +23,8 @@ public class EncoderCheck extends LinearOpMode {
 
         while (!isStopRequested() && opModeIsActive())
         {
-            telemetry.addData("Elevator Position" , elevator.getPosition());
-            telemetry.update();
+            manipulator.setTurretPosition(0.5);
 
-            if(gamepad1.x)
-            {
-                elevator.setPosition(1200);
-            }
-
-            if(gamepad1.y) {
-
-                elevator.setSpeed(0.5);
-            }
-            else{
-                elevator.setSpeed(0);
-            }
         }
     }
 }
