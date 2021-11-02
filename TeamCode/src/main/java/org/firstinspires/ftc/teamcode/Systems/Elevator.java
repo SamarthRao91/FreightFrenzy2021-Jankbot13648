@@ -8,6 +8,9 @@ import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.internal.android.dx.rop.code.ConservativeTranslationAdvice;
+import org.firstinspires.ftc.teamcode.Constants;
+
 public class Elevator {
 
         private DcMotorEx elevatorMotor;
@@ -15,7 +18,7 @@ public class Elevator {
     public Elevator(HardwareMap hardwareMap)
         {
             elevatorMotor = hardwareMap.get(DcMotorEx.class, ELEVATOR_MOTOR_NAME);
-            ls  = hardwareMap.get(DigitalChannel.class, "ls");
+            ls  = hardwareMap.get(DigitalChannel.class, Constants.AutomationStuff.LIMIT_SWITCH_NAME);
             elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
             elevatorMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
             elevatorMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
@@ -25,7 +28,7 @@ public class Elevator {
         {
             elevatorMotor.setTargetPosition(position);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            elevatorMotor.setPower(0.5);
+            elevatorMotor.setPower(0.8);
 
             while(elevatorMotor.isBusy());
 

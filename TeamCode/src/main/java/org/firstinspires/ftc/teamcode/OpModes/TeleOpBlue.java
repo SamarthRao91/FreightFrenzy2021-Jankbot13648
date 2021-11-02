@@ -2,12 +2,18 @@ package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.*;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
+
+import java.util.Timer;
+
 @TeleOp(name = "TeleOp - Blue")
 public class TeleOpBlue extends LinearOpMode {
 
@@ -31,7 +37,7 @@ public class TeleOpBlue extends LinearOpMode {
             }
 
     }
-
+    private DistanceSensor scoringAutomation;
     @Override
     public void runOpMode() {
 
@@ -40,7 +46,9 @@ public class TeleOpBlue extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap, elevator);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
+        scoringAutomation = hardwareMap.get(DistanceSensor.class, Constants.AutomationStuff.DISTANCE_SENSOR_NAME);
 
+        Rev2mDistanceSensor sensorTimeOffFlight = (Rev2mDistanceSensor) scoringAutomation;
         waitForStart();
 
         if (isStopRequested()) return;
@@ -60,7 +68,15 @@ public class TeleOpBlue extends LinearOpMode {
                     )
             );
 
-            intake.setIntake(gamepad1.right_trigger, gamepad1.left_trigger);
+            //distance sensor automation
+           if( scoringAutomation.getDistance(DistanceUnit.INCH) <= 2)
+           {
+               manipulator.closeClaw();
+               elevator.setPosition(300);
+           }
+
+            intake.setIntake(gamepad1.right_trigger);
+            intake.setIntake(-gamepad1.left_trigger);
 
             if(gamepad1.a)
             {
@@ -71,6 +87,7 @@ public class TeleOpBlue extends LinearOpMode {
             {   //low preset
                 elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION);
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
 
@@ -78,6 +95,7 @@ public class TeleOpBlue extends LinearOpMode {
             {   //high preset
                 elevator.setPosition(1400);
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
 
@@ -94,6 +112,7 @@ public class TeleOpBlue extends LinearOpMode {
                 //high reverse preset
                 elevator.setPosition(1400);
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
 
@@ -123,6 +142,7 @@ public class TeleOpBlue extends LinearOpMode {
             {   //high preset
                 elevator.setPosition(1400);
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
 
@@ -131,6 +151,7 @@ public class TeleOpBlue extends LinearOpMode {
                 //high reverse preset
                 elevator.setPosition(1400);
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
 
@@ -161,6 +182,9 @@ public class TeleOpBlue extends LinearOpMode {
             {
                 manipulator.setTurretPosition(0.5);
             }
+            telemetry.addData("ID", String.format("%x", sensorTimeOffFlight.getModelID()));
+            telemetry.addData("did time out", Boolean.toString(sensorTimeOffFlight.didTimeoutOccur()));
+            telemetry.update();
         }
     }
 }

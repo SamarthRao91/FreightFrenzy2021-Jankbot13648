@@ -7,7 +7,13 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @Config
 public class Constants {
-    public static  double Turret_pos = 0.5;
+
+    public static final class AutomationStuff {
+        //automation stuff -
+        public static final String DISTANCE_SENSOR_NAME = "ds";
+        public static final String LIMIT_SWITCH_NAME = "ls";
+    }
+
     public static final class DriveBase {
         public static final String FRONT_LEFT_DRIVE_MOTOR_NAME = "fl";
         public static final String FRONT_RIGHT_DRIVE_MOTOR_NAME = "fr";
