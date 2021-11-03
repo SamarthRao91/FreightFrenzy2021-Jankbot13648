@@ -26,9 +26,8 @@ public class TeleOpBlue extends LinearOpMode {
 
     public void resetMechanisms()
     {
-
-            elevator.setPosition(Constants.Elevator.SAFE_EXTENDER_POSITION);
             manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+            sleep(500);
             manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
             elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
             if(elevator.islimitPressed())

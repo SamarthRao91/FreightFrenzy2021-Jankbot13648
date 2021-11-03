@@ -7,6 +7,7 @@ import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Claw.*;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class Manipulator {
@@ -26,30 +27,22 @@ public class Manipulator {
         elevatorInstance = elevator;
     }
 
-    public boolean safeToTurret()
+    public boolean safeToTurret(double newpos)
     {
-        if(getExtenderPosition() <= MIN_POS
-                && elevatorInstance.getPosition() >= Constants.Elevator.SAFE_TURRET_POSITION)
-        {
-            return true;
-        }
-
-        else {
-            return getExtenderPosition() > MIN_POS
-                    && elevatorInstance.getPosition() >= Constants.Elevator.SAFE_EXTENDER_POSITION;
-        }
+        //safe turret position is min safe
+       return elevatorInstance.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION && (turret.getPosition() != ZERO_POSITION) || //blocks turret from extending in intake position
+            (extender.getPosition() < 0 || elevatorInstance.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION) && elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION &&
+                    ((newpos < RIGHT_MAXIMUM_POSITION && turret.getPosition() > RIGHT_MAXIMUM_POSITION) || (newpos > LEFT_MAXIMUM_POSITION && turret.getPosition() < RIGHT_MAXIMUM_POSITION));
     }
 
     public boolean safeToExtender()
     {
-        return elevatorInstance.getPosition() < Constants.Elevator.SAFE_EXTENDER_POSITION
-                && getTurretPosition() < RIGHT_MAXIMUM_POSITION
-                && getTurretPosition() > LEFT_MAXIMUM_POSITION;
+        return elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION && turret.getPosition() > RIGHT_MAXIMUM_POSITION && turret.getPosition() < LEFT_MAXIMUM_POSITION;
     }
 
     public void setTurretPosition(double newPos)
     {
-        if(safeToTurret())
+        if(safeToTurret(newPos))
         {
             if(newPos > RIGHT_MAXIMUM_POSITION)
             {

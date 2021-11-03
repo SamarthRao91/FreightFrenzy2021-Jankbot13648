@@ -31,12 +31,12 @@ public class Constants {
 
         // Minimum position of elevator to stop movement
         // TODO: Check Value
-        public static final int MINIMUM_POSITION = 2350;
+        public static final int MINIMUM_POSITION = 0;
 
         // Maximum position of elevator
-        public static final int MAXIMUM_POSITION = 53;
+        public static final int MAXIMUM_POSITION = 2350;
 
-        // Position in which turret clears the bottom if extender is retracted
+        // Position in which turret clears the bottom if extender is retracted //min safe pos
         public static final int SAFE_TURRET_POSITION = 450;
 
         // Position in which everything clears duck spinner if extender is extended
