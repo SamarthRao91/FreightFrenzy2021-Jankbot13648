@@ -28,7 +28,7 @@ public class Elevator {
         {
             elevatorMotor.setTargetPosition(position);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            elevatorMotor.setPower(0.8);
+            elevatorMotor.setPower(0.5 );
 
             while(elevatorMotor.isBusy());
 

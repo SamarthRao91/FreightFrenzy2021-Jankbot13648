@@ -37,21 +37,15 @@ public class Manipulator {
 
     public boolean safeToExtender()
     {
-        return elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION && turret.getPosition() > RIGHT_MAXIMUM_POSITION && turret.getPosition() < LEFT_MAXIMUM_POSITION;
+
+        return elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION || turret.getPosition() > 0.6 || turret.getPosition() < 0.4;
     }
 
     public void setTurretPosition(double newPos)
     {
         if(safeToTurret(newPos))
         {
-            if(newPos > RIGHT_MAXIMUM_POSITION)
-            {
-                turret.setPosition(RIGHT_MAXIMUM_POSITION);
-            }
-
-            else {
-                turret.setPosition(Math.max(newPos, LEFT_MAXIMUM_POSITION));
-            }
+            turret.setPosition(newPos);
         }
     }
 
@@ -62,16 +56,9 @@ public class Manipulator {
 
     public void setExtenderPosition(double newPos)
     {
-        if(safeToExtender())
+        if (safeToExtender())
         {
-            if(newPos > MAX_POS)
-            {
-                extender.setPosition(MAX_POS);
-            }
-
-            else {
-                extender.setPosition(Math.max(newPos, MIN_POS));
-            }
+            extender.setPosition(newPos);
         }
     }
 

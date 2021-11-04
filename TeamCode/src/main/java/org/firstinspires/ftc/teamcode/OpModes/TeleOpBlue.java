@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 
 import java.util.Timer;
 
-@TeleOp(name = "TeleOp - Blue")
+@TeleOp(name = "TeleOp - Blue - Built")
 public class TeleOpBlue extends LinearOpMode {
 
     //different subsystems
@@ -27,8 +27,10 @@ public class TeleOpBlue extends LinearOpMode {
     public void resetMechanisms()
     {
             manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-            sleep(500);
+            elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
             manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
+            sleep(1250);
+       // manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
             elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
             if(elevator.islimitPressed())
             {
@@ -55,8 +57,8 @@ public class TeleOpBlue extends LinearOpMode {
         while (!isStopRequested() && opModeIsActive())
         {
             Vector2d input = new Vector2d(
-                    -gamepad1.left_stick_y,
-                    -gamepad1.left_stick_x
+                    gamepad1.left_bumper?-gamepad1.left_stick_y/2:-gamepad1.left_stick_y,
+                    gamepad1.left_bumper?-gamepad1.left_stick_x/2:-gamepad1.left_stick_x
             ).rotated(-drive.getRawExternalHeading());
 
             drive.setWeightedDrivePower(
@@ -67,15 +69,30 @@ public class TeleOpBlue extends LinearOpMode {
                     )
             );
 
+            if(gamepad1.dpad_up)
+            {
+                drive.resetHeading();
+            }
+
             //distance sensor automation
-           if( scoringAutomation.getDistance(DistanceUnit.INCH) <= 2)
+           if( scoringAutomation.getDistance(DistanceUnit.INCH) <= 0.5)
            {
+               sleep(1);
                manipulator.closeClaw();
                elevator.setPosition(300);
            }
-
-            intake.setIntake(gamepad1.right_trigger);
-            intake.setIntake(-gamepad1.left_trigger);
+           if(gamepad1.right_trigger ==1 )
+           {
+               intake.setIntake(1);
+           }
+           else if(gamepad1.left_trigger ==1)
+           {
+               intake.setIntake(-1);
+           }
+           else
+           {
+               intake.setIntake(0);
+           }
 
             if(gamepad1.a)
             {
@@ -84,16 +101,16 @@ public class TeleOpBlue extends LinearOpMode {
 
             else if(gamepad1.b)
             {   //low preset
-                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION);
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
-                sleep(500);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
+                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                sleep(700);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.1);
             }
 
             else if(gamepad1.y)
             {   //high preset
-                elevator.setPosition(1400);
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                elevator.setPosition(1400+200);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
@@ -103,14 +120,14 @@ public class TeleOpBlue extends LinearOpMode {
                 //score game piece
                 manipulator.openClaw();
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-                resetMechanisms();
+               // resetMechanisms();
             }
 
             else if(gamepad1.start)
             {
                 //high reverse preset
-                elevator.setPosition(1400);
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                elevator.setPosition(1400+200);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
@@ -122,8 +139,8 @@ public class TeleOpBlue extends LinearOpMode {
             {
                 elevator.setPosition(0);
             }
-            manipulator.moveTurret(-gamepad2.left_stick_x/150);
-            manipulator.moveExtender(-gamepad2.left_stick_y/100);
+            manipulator.moveTurret(-gamepad2.left_stick_x/100);
+            manipulator.moveExtender(-gamepad2.left_stick_y/80);
 
             if(gamepad2.a)
             {
@@ -132,15 +149,17 @@ public class TeleOpBlue extends LinearOpMode {
 
             else if(gamepad2.b)
             {   //low preset
-                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION);
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
+                //elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION);
+                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                sleep(700);
+                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS+0.1);
             }
 
             else if(gamepad2.y)
             {   //high preset
-                elevator.setPosition(1400);
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
+                elevator.setPosition(1400+200);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
@@ -148,8 +167,8 @@ public class TeleOpBlue extends LinearOpMode {
             else if(gamepad2.start)
             {
                 //high reverse preset
-                elevator.setPosition(1400);
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+                elevator.setPosition(1400+200);
+                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
             }
@@ -157,8 +176,10 @@ public class TeleOpBlue extends LinearOpMode {
             if(gamepad2.x)
             {
                 manipulator.openClaw();
+                sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-                resetMechanisms();
+                sleep(500);
+                //resetMechanisms();
             }
 
             if(gamepad2.dpad_down)

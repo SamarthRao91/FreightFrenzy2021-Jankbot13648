@@ -7,7 +7,8 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @Config
 public class Constants {
-
+       public static double ExtenderA = 0.5;
+       public static double ExtenderB =0.5;
     public static final class AutomationStuff {
         //automation stuff -
         public static final String DISTANCE_SENSOR_NAME = "ds";
@@ -62,10 +63,10 @@ public class Constants {
             public static final String EXTENDER_SERVO_NAME ="es";
 
             // Maximum rotation of extender
-            public static final double MAX_POS = 0.3;
+            public static double MAX_POS = 0.31  ;
 
             // Minimum rotation of extender
-            public static final double MIN_POS = 8;
+            public static double MIN_POS = 0.685;
 
             // Stores position of capstone
             public static final double CAPSTONE_POSITION = 0;
@@ -75,8 +76,8 @@ public class Constants {
             public static final String CLAW_SERVO_NAME ="cs";
             public static final String DISTANCE_SENSOR_NAME = "sdc";
 
-            public static final double OPEN_POSITION = 0.47;
-            public static final double CLOSE_POSITION = 0.35;
+            public static double OPEN_POSITION = 0.47;
+            public static double CLOSE_POSITION = 0.35;
             public static final double CAPSTONE_OPEN_FULLY = 0.7;
         }
     }
