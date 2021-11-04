@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
-import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Claw.*;
-import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Extender.*;
-import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Turret.*;
-
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -19,9 +15,9 @@ public class Manipulator {
 
     public Manipulator(HardwareMap hardwareMap, Elevator elevator)
     {
-        turret = hardwareMap.get(Servo.class, TURRET_SERVO_NAME);
-        extender = hardwareMap.get(Servo.class, EXTENDER_SERVO_NAME);
-        claw = hardwareMap.get(Servo.class, CLAW_SERVO_NAME);
+        turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
+        extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
+        claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
 
         elevatorInstance = elevator;
     }
@@ -29,12 +25,11 @@ public class Manipulator {
     public boolean safeToTurret(double newPos)
     {
         //safe turret position is min safe
-       return elevatorInstance.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION && (turret.getPosition() != ZERO_POSITION) || //blocks turret from extending in intake position
+       return elevatorInstance.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION && (turret.getPosition() != Constants.Manipulator.Turret.ZERO_POSITION) || //blocks turret from extending in intake position
             (extender.getPosition() < 0 || elevatorInstance.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION) && elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION &&
-                    ((newPos < RIGHT_MAXIMUM_POSITION && turret.getPosition() > RIGHT_MAXIMUM_POSITION) || (newPos > LEFT_MAXIMUM_POSITION && turret.getPosition() < RIGHT_MAXIMUM_POSITION));
+                    ((newPos < Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION && turret.getPosition() > Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION) || (newPos > Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION && turret.getPosition() < Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION));
     }
 
-    // TODO: Add Safe To Extender Checks To Everything
     public boolean safeToExtender(double turretPos)
     {
         return elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION ||
@@ -43,12 +38,35 @@ public class Manipulator {
 
     public void setTurretPosition(double newPos)
     {
+        double lastExtenderPosition = extender.getPosition();
+        extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
+
         turret.setPosition(newPos);
+
+        if(safeToExtender(newPos))
+        {
+            extender.setPosition(lastExtenderPosition);
+        }
     }
 
+    // TODO: Test With Hardware
     public void moveTurretPosition(double amount)
     {
-        turret.setPosition(getTurretPosition() + amount);
+        double lastExtenderPosition = Constants.Manipulator.Extender.MIN_POS;
+
+        if(amount > 0.2)
+        {
+            lastExtenderPosition = getExtenderPosition();
+            extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
+
+            turret.setPosition(getTurretPosition() + amount/500);
+
+        }
+
+        else if (amount <= 0.2 && safeToExtender(getTurretPosition()))
+        {
+            extender.setPosition(lastExtenderPosition);
+        }
     }
 
     public void setExtenderPosition(double newPos)
@@ -58,7 +76,7 @@ public class Manipulator {
 
     public void moveExtenderPosition(double amount)
     {
-        extender.setPosition(getExtenderPosition() + amount);
+        extender.setPosition(getExtenderPosition() + (amount/500));
     }
 
     public double getTurretPosition()
@@ -78,16 +96,16 @@ public class Manipulator {
 
     public void openClaw()
     {
-        clawToPosition(OPEN_POSITION);
+        clawToPosition(Constants.Manipulator.Claw.OPEN_POSITION);
     }
 
    public void capstoneOpenClaw()
    {
-       clawToPosition(CAPSTONE_OPEN_FULLY);
+       clawToPosition(Constants.Manipulator.Claw.CAPSTONE_OPEN_FULLY);
    }
 
    public void closeClaw()
    {
-       clawToPosition(CLOSE_POSITION);
+       clawToPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
    }
 }

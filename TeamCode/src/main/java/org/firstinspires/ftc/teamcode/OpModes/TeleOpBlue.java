@@ -140,8 +140,8 @@ public class TeleOpBlue extends LinearOpMode {
             {
                 elevator.setPosition(0);
             }
-            manipulator.moveTurretPosition(-gamepad2.left_stick_x/500);
-            manipulator.moveExtenderPosition(-gamepad2.left_stick_y/500);
+            manipulator.moveTurretPosition(-gamepad2.left_stick_x);
+            manipulator.moveExtenderPosition(-gamepad2.left_stick_y);
 
             if(gamepad2.a)
             {
