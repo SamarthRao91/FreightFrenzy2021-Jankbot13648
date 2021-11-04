@@ -9,10 +9,11 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.Systems.*;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
-
-import java.util.Timer;
+import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
+import org.firstinspires.ftc.teamcode.Systems.Elevator;
+import org.firstinspires.ftc.teamcode.Systems.Intake;
+import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
 @TeleOp(name = "TeleOp - Blue - Built")
 public class TeleOpBlue extends LinearOpMode {
@@ -57,8 +58,8 @@ public class TeleOpBlue extends LinearOpMode {
         while (!isStopRequested() && opModeIsActive())
         {
             Vector2d input = new Vector2d(
-                    gamepad1.left_bumper?-gamepad1.left_stick_y/2:-gamepad1.left_stick_y,
-                    gamepad1.left_bumper?-gamepad1.left_stick_x/2:-gamepad1.left_stick_x
+                    gamepad1.left_bumper?-gamepad1.left_stick_y/4:-gamepad1.left_stick_y,
+                    gamepad1.left_bumper?-gamepad1.left_stick_x/4:-gamepad1.left_stick_x
             ).rotated(-drive.getRawExternalHeading());
 
             drive.setWeightedDrivePower(
@@ -139,8 +140,8 @@ public class TeleOpBlue extends LinearOpMode {
             {
                 elevator.setPosition(0);
             }
-            manipulator.moveTurret(-gamepad2.left_stick_x/100);
-            manipulator.moveExtender(-gamepad2.left_stick_y/80);
+            manipulator.moveTurretPosition(-gamepad2.left_stick_x/500);
+            manipulator.moveExtenderPosition(-gamepad2.left_stick_y/500);
 
             if(gamepad2.a)
             {

@@ -1,14 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.roadrunner.control.PIDFController;
-import com.qualcomm.robotcore.hardware.PIDCoefficients;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 @Config
 public class Constants {
-       public static double ExtenderA = 0.5;
-       public static double ExtenderB =0.5;
     public static final class AutomationStuff {
         //automation stuff -
         public static final String DISTANCE_SENSOR_NAME = "ds";
