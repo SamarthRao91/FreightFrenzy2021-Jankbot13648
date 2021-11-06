@@ -31,7 +31,7 @@ public class Constants {
         // Maximum position of elevator
         public static final int MAXIMUM_POSITION = 2350;
 
-        // Position in which turret clears the bottom if extender is retracted //min safe pos
+        // Position in which turret clears the bottom if extender is retracted // min safe pos
         public static final int SAFE_TURRET_POSITION = 450;
 
         // Position in which everything clears duck spinner if extender is extended

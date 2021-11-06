@@ -11,7 +11,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class Elevator {
-
     private DcMotorEx elevatorMotor;
     DigitalChannel ls;
 
@@ -24,13 +23,13 @@ public class Elevator {
             elevatorMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         }
 
-        public void setPosition(int position, boolean[] opMode)
+        public void setPosition(int position, boolean[] isOpModeActive)
         {
             elevatorMotor.setTargetPosition(position);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            elevatorMotor.setPower(0.5 );
+            elevatorMotor.setPower(0.5);
 
-            while(elevatorMotor.isBusy() && opMode[0]);
+            while(elevatorMotor.isBusy() && isOpModeActive[0]);
 
             elevatorMotor.setPower(0);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -50,6 +49,11 @@ public class Elevator {
         public int getPosition()
         {
             return elevatorMotor.getCurrentPosition();
+        }
+
+        public DcMotorEx[] getElevatorMotor()
+        {
+            return new DcMotorEx[]{elevatorMotor};
         }
 }
 

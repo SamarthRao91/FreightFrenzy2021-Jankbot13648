@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -34,6 +35,39 @@ public class Manipulator {
     {
         return elevatorInstance.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION ||
                 (turretPos > 0.68 || turretPos < 0.517);
+    }
+
+    public void setSuperStructure(int elevatorPos, int turretPos, int extenderPos, boolean isOpModeActive[])
+    {
+        elevatorInstance.getElevatorMotor()[0].setTargetPosition(elevatorPos);
+        elevatorInstance.getElevatorMotor()[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        elevatorInstance.getElevatorMotor()[0].setPower(0.5);
+
+        while(elevatorInstance.getElevatorMotor()[0].isBusy() && isOpModeActive[0])
+        {
+            if(elevatorInstance.getPosition() >= Constants.Elevator.SAFE_TURRET_POSITION)
+            {
+                turret.setPosition(turretPos);
+            }
+
+            if(elevatorInstance.getPosition() >= Constants.Elevator.SAFE_EXTENDER_POSITION)
+            {
+                extender.setPosition(extenderPos);
+            }
+        }
+
+        if(getTurretPosition() != turretPos && safeToTurret(turretPos))
+        {
+            setTurretPosition(turretPos);
+        }
+
+        if(getExtenderPosition() != extenderPos && safeToExtender(turretPos))
+        {
+            setExtenderPosition(extenderPos);
+        }
+
+        elevatorInstance.getElevatorMotor()[0].setPower(0);
+        elevatorInstance.getElevatorMotor()[0].setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setTurretPosition(double newPos)
