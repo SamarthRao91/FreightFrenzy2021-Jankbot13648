@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Util.StopWatch;
 
 public class Manipulator {
 
@@ -17,6 +18,8 @@ public class Manipulator {
 
     private final Elevator elevatorInstance;
 
+    private StopWatch timer;
+
     public Manipulator(HardwareMap hardwareMap, Elevator[] elevator) {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
@@ -25,6 +28,8 @@ public class Manipulator {
         scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
 
         elevatorInstance = elevator[0];
+
+        timer = new StopWatch();
     }
 
     // TODO: TEST
@@ -56,10 +61,16 @@ public class Manipulator {
 
         if (getTurretPosition() != turretPos && safeToTurret(turretPos)) {
             setTurretPosition(turretPos);
+
+            timer.setTime(100);
+            while (!timer.isExpired());
         }
 
         if (getExtenderPosition() != extenderPos && safeToExtender(turretPos)) {
             setExtenderPosition(extenderPos);
+
+            timer.setTime(100);
+            while (!timer.isExpired());
         }
 
         elevatorInstance.getElevatorMotor()[0].setPower(0);
@@ -112,6 +123,9 @@ public class Manipulator {
 
     public void openClaw() {
         clawToPosition(Constants.Manipulator.Claw.OPEN_POSITION);
+
+        timer.setTime(100);
+        while (!timer.isExpired());
     }
 
     public void capstoneOpenClaw() {

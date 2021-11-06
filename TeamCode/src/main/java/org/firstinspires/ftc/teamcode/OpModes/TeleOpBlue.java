@@ -23,15 +23,14 @@ public class TeleOpBlue extends LinearOpMode {
     Intake intake;
 
     public void resetMechanisms() {
-        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100, new boolean[]{opModeIsActive()});
-        manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
-        sleep(1250);
-        // manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+        manipulator.setSuperStructure(
+                Constants.Elevator.SAFE_TURRET_POSITION,
+                Constants.Manipulator.Turret.ZERO_POSITION,
+                Constants.Manipulator.Extender.MIN_POS,
+                new boolean[]{opModeIsActive()}
+                );
+
         elevator.setPosition(Constants.Elevator.MINIMUM_POSITION, new boolean[]{opModeIsActive()});
-        if (elevator.isLimitPressed()) {
-            elevator.setPosition(0, new boolean[]{opModeIsActive()});
-        }
 
     }
 
@@ -137,7 +136,6 @@ public class TeleOpBlue extends LinearOpMode {
     public void scoreGamePiecePreset() {
 
         manipulator.openClaw();
-        //sleep(500);
         manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
         //sleep(500);
         //resetMechanisms();
