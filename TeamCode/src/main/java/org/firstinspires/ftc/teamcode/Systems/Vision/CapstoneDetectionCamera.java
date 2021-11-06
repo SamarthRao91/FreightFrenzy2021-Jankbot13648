@@ -1,18 +1,16 @@
 package org.firstinspires.ftc.teamcode.Systems.Vision;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import static org.firstinspires.ftc.teamcode.Constants.Vision.*;
+import static org.firstinspires.ftc.teamcode.Constants.Vision.CAPSTONE_DETECTION_CAMERA_NAME_LEFT;
 import static org.firstinspires.ftc.teamcode.Constants.Vision.CAPSTONE_DETECTION_CAMERA_NAME_RIGHT;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvSwitchableWebcam;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
-
 
 
 public class CapstoneDetectionCamera {
@@ -30,16 +28,18 @@ public class CapstoneDetectionCamera {
         switchableWebcam = OpenCvCameraFactory.getInstance().createSwitchableWebcam(cameraMonitorViewId, webcam1, webcam2);
 
         switchableWebcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
-            @Override
-            public void onOpened() {
-                //switchableWebcam.setPipeline();
-                switchableWebcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-            }
-            @Override public void onError(int errorCode) {
-                System.out.println("error" + errorCode);
-                telemetry.addData("Error has occured. Error code - " , errorCode);
-            }
-        }
+                                                   @Override
+                                                   public void onOpened() {
+                                                       //switchableWebcam.setPipeline();
+                                                       switchableWebcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+                                                   }
+
+                                                   @Override
+                                                   public void onError(int errorCode) {
+                                                       System.out.println("error" + errorCode);
+                                                       telemetry.addData("Error has occured. Error code - ", errorCode);
+                                                   }
+                                               }
         );
 
     }

@@ -45,7 +45,7 @@ public class Constants {
 
         @Config
         public static final class Turret {
-            public static final String TURRET_SERVO_NAME ="ts";
+            public static final String TURRET_SERVO_NAME = "ts";
 
             // Storage angle to not hit capstone
             public static final double RIGHT_MAXIMUM_POSITION = 0.09;
@@ -58,7 +58,7 @@ public class Constants {
 
         @Config
         public static final class Extender {
-            public static final String EXTENDER_SERVO_NAME ="es";
+            public static final String EXTENDER_SERVO_NAME = "es";
 
             // Maximum rotation of extender
             public static double MAX_POS = 0.31;
@@ -72,7 +72,7 @@ public class Constants {
 
         @Config
         public static final class Claw {
-            public static final String CLAW_SERVO_NAME ="cs";
+            public static final String CLAW_SERVO_NAME = "cs";
             public static final String DISTANCE_SENSOR_NAME = "sdc";
 
             public static double OPEN_POSITION = 0.47;

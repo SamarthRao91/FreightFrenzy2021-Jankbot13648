@@ -9,8 +9,9 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 @TeleOp(name = "TeleOp-Encoder Check")
 public class EncoderCheck extends LinearOpMode {
     //different subsystems
-   Elevator elevator;
+    Elevator elevator;
     Manipulator manipulator;
+
     @Override
     public void runOpMode() {
 
@@ -21,10 +22,9 @@ public class EncoderCheck extends LinearOpMode {
 
         if (isStopRequested()) return;
 
-        while (!isStopRequested() && opModeIsActive())
-        {
-            manipulator.moveTurretPosition(gamepad1.left_stick_x/250);
-            manipulator.moveExtenderPosition(gamepad1.left_stick_y/200);
+        while (!isStopRequested() && opModeIsActive()) {
+            manipulator.moveTurretPosition(gamepad1.left_stick_x / 250);
+            manipulator.moveExtenderPosition(gamepad1.left_stick_y / 200);
         }
     }
 }

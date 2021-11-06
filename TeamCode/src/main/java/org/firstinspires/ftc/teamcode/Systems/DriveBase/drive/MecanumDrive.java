@@ -1,5 +1,17 @@
 package org.firstinspires.ftc.teamcode.Systems.DriveBase.drive;
 
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MOTOR_VELO_PID;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.encoderTicksToInches;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.kV;
+
 import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.config.Config;
@@ -27,16 +39,14 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Systems.DriveBase.util.LynxModuleUtil;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
-import org.firstinspires.ftc.teamcode.Systems.DriveBase.util.LynxModuleUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.*;
 
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
@@ -123,8 +133,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
 
-    public void resetHeading()
-    {
+    public void resetHeading() {
         imuOffset = imu.getAngularOrientation().firstAngle;
     }
 
