@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class Manipulator {
@@ -11,6 +13,7 @@ public class Manipulator {
     private Servo turret;
     private Servo extender;
     private Servo claw;
+    private DistanceSensor scoringDetectionDS;
 
     private final Elevator elevatorInstance;
 
@@ -19,6 +22,8 @@ public class Manipulator {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
+
+        scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
 
         elevatorInstance = elevator[0];
     }
@@ -146,5 +151,15 @@ public class Manipulator {
    public void closeClaw()
    {
        clawToPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
+   }
+
+   public void checkDistanceSensor(boolean[] isOpModeActive)
+   {
+       if( scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 0.2)
+       {
+           closeClaw();
+           // TODO: Add Time Wait For Servo
+           elevatorInstance.setPosition(300, isOpModeActive);
+       }
    }
 }
