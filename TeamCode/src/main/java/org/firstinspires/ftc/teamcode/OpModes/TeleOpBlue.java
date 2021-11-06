@@ -62,81 +62,35 @@ public class TeleOpBlue extends LinearOpMode {
                     )
             );
 
+            elevator.setSpeed(-gamepad2.right_stick_y);
+            manipulator.checkDistanceSensor(new boolean[]{opModeIsActive()});
+            manipulator.moveTurretPosition(gamepad2.left_stick_x / 250);
+            manipulator.moveExtenderPosition(-gamepad2.left_stick_y / 200);
+
+            intake.setIntake(Math.min(gamepad1.right_trigger * -gamepad1.left_trigger, 1));
+
+            if (gamepad1.a || gamepad2.a) {
+                resetMechanisms();
+            }
+
+            if (gamepad1.b || gamepad2.b) {
+                lowPreset();
+            }
+
+            if (gamepad1.y || gamepad2.y) {
+                highPreset();
+            }
+
+            if (gamepad1.x || gamepad2.x) {
+                scoreGamePiecePreset();
+            }
+
+            if (gamepad1.start || gamepad2.start) {
+                highReversePreset();
+            }
+
             if (gamepad1.dpad_up) {
                 drive.resetHeading();
-            }
-
-            manipulator.checkDistanceSensor(new boolean[]{opModeIsActive()});
-
-            if (gamepad1.right_trigger == 1) {
-                intake.setIntake(1);
-            } else if (gamepad1.left_trigger == 1) {
-                intake.setIntake(-1);
-            } else {
-                intake.setIntake(0);
-            }
-
-            if (gamepad1.a) {
-                resetMechanisms();
-            } else if (gamepad1.b) {   //low preset
-                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300, new boolean[]{opModeIsActive()});
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
-                sleep(700);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.1);
-            } else if (gamepad1.y) {   //high preset
-                elevator.setPosition(1400 + 200, new boolean[]{opModeIsActive()});
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
-                sleep(500);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
-            } else if (gamepad1.x) {
-                //score game piece
-                manipulator.openClaw();
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-                // resetMechanisms();
-            } else if (gamepad1.start) {
-                //high reverse preset
-                elevator.setPosition(1400 + 200, new boolean[]{opModeIsActive()});
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
-                sleep(500);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
-            }
-
-            //driver 2 controls
-
-            elevator.setSpeed(-gamepad2.right_stick_y);
-            if (elevator.isLimitPressed() && -gamepad2.right_stick_y / 2 < 0) {
-                elevator.setPosition(0, new boolean[]{opModeIsActive()});
-            }
-            manipulator.moveTurretPosition(gamepad1.left_stick_x / 250);
-            manipulator.moveExtenderPosition(-gamepad1.left_stick_y / 200);
-
-            if (gamepad2.a) {
-                resetMechanisms();
-            } else if (gamepad2.b) {   //low preset
-                //elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION);
-                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300, new boolean[]{opModeIsActive()});
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
-                sleep(700);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.1);
-            } else if (gamepad2.y) {   //high preset
-                elevator.setPosition(1400 + 200, new boolean[]{opModeIsActive()});
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
-                sleep(500);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
-            } else if (gamepad2.start) {
-                //high reverse preset
-                elevator.setPosition(1400 + 200, new boolean[]{opModeIsActive()});
-                manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
-                sleep(500);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
-            }
-
-            if (gamepad2.x) {
-                manipulator.openClaw();
-                sleep(500);
-                manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-                sleep(500);
-                //resetMechanisms();
             }
 
             if (gamepad2.dpad_down) {
@@ -147,10 +101,45 @@ public class TeleOpBlue extends LinearOpMode {
                 manipulator.capstoneOpenClaw();
             }
 
-
-            if (gamepad2.right_trigger == 1) {
+            if (gamepad2.right_bumper) {
                 manipulator.setTurretPosition(0.5);
             }
         }
+    }
+
+    public void lowPreset() {
+        manipulator.setSuperStructure(
+                Constants.Elevator.SAFE_TURRET_POSITION + 300,
+                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS,
+                new boolean[]{opModeIsActive()}
+        );
+    }
+
+    public void highPreset() {
+        manipulator.setSuperStructure(
+                1400 + 200,
+                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS,
+                new boolean[]{opModeIsActive()}
+        );
+    }
+
+    public void highReversePreset() {
+        manipulator.setSuperStructure(
+                1400 + 200,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS,
+                new boolean[]{opModeIsActive()}
+        );
+    }
+
+    public void scoreGamePiecePreset() {
+
+        manipulator.openClaw();
+        //sleep(500);
+        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+        //sleep(500);
+        //resetMechanisms();
     }
 }

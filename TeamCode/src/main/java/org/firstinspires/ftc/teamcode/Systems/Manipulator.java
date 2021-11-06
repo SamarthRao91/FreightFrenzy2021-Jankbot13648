@@ -39,7 +39,7 @@ public class Manipulator {
                 || (turretPos > 0.68 || turretPos < 0.517);
     }
 
-    public void setSuperStructure(int elevatorPos, int turretPos, int extenderPos, boolean[] isOpModeActive) {
+    public void setSuperStructure(int elevatorPos, double turretPos, double extenderPos, boolean[] isOpModeActive) {
         elevatorInstance.getElevatorMotor()[0].setTargetPosition(elevatorPos);
         elevatorInstance.getElevatorMotor()[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
         elevatorInstance.getElevatorMotor()[0].setPower(0.5);
