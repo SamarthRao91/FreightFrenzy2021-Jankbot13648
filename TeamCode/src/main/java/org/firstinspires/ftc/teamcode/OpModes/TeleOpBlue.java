@@ -28,14 +28,14 @@ public class TeleOpBlue extends LinearOpMode {
     public void resetMechanisms()
     {
             manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-            elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
+            elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100, new boolean[]{opModeIsActive()});
             manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
             sleep(1250);
        // manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-            elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
+            elevator.setPosition(Constants.Elevator.MINIMUM_POSITION, new boolean[]{opModeIsActive()});
             if(elevator.isLimitPressed())
             {
-                elevator.setPosition(0);
+                elevator.setPosition(0, new boolean[]{opModeIsActive()});
             }
 
     }
@@ -48,7 +48,7 @@ public class TeleOpBlue extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator});
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
-        scoringAutomation = hardwareMap.get(DistanceSensor.class, Constants.AutomationStuff.DISTANCE_SENSOR_NAME);
+        scoringAutomation = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
 
         Rev2mDistanceSensor sensorTimeOffFlight = (Rev2mDistanceSensor) scoringAutomation;
         waitForStart();
@@ -80,7 +80,7 @@ public class TeleOpBlue extends LinearOpMode {
            {
                sleep(1);
                manipulator.closeClaw();
-               elevator.setPosition(300);
+               elevator.setPosition(300, new boolean[]{opModeIsActive()});
            }
            if(gamepad1.right_trigger ==1 )
            {
@@ -102,7 +102,7 @@ public class TeleOpBlue extends LinearOpMode {
 
             else if(gamepad1.b)
             {   //low preset
-                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300);
+                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300, new boolean[]{opModeIsActive()});
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
                 sleep(700);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.1);
@@ -110,7 +110,7 @@ public class TeleOpBlue extends LinearOpMode {
 
             else if(gamepad1.y)
             {   //high preset
-                elevator.setPosition(1400+200);
+                elevator.setPosition(1400+200, new boolean[]{opModeIsActive()});
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
@@ -127,7 +127,7 @@ public class TeleOpBlue extends LinearOpMode {
             else if(gamepad1.start)
             {
                 //high reverse preset
-                elevator.setPosition(1400+200);
+                elevator.setPosition(1400+200, new boolean[]{opModeIsActive()});
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
@@ -138,7 +138,7 @@ public class TeleOpBlue extends LinearOpMode {
             elevator.setSpeed(-gamepad2.right_stick_y);
             if(elevator.isLimitPressed() && -gamepad2.right_stick_y/2 < 0)
             {
-                elevator.setPosition(0);
+                elevator.setPosition(0, new boolean[]{opModeIsActive()});
             }
             manipulator.moveTurretPosition(gamepad1.left_stick_x/250);
             manipulator.moveExtenderPosition(-gamepad1.left_stick_y/200);
@@ -151,7 +151,7 @@ public class TeleOpBlue extends LinearOpMode {
             else if(gamepad2.b)
             {   //low preset
                 //elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION);
-                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300);
+                elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 300, new boolean[]{opModeIsActive()});
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
                 sleep(700);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS+0.1);
@@ -159,7 +159,7 @@ public class TeleOpBlue extends LinearOpMode {
 
             else if(gamepad2.y)
             {   //high preset
-                elevator.setPosition(1400+200);
+                elevator.setPosition(1400+200, new boolean[]{opModeIsActive()});
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);
@@ -168,7 +168,7 @@ public class TeleOpBlue extends LinearOpMode {
             else if(gamepad2.start)
             {
                 //high reverse preset
-                elevator.setPosition(1400+200);
+                elevator.setPosition(1400+200, new boolean[]{opModeIsActive()});
                 manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION);
                 sleep(500);
                 manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS);

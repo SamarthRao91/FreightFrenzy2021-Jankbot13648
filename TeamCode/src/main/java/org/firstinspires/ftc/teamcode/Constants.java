@@ -4,12 +4,8 @@ import com.acmerobotics.dashboard.config.Config;
 
 @Config
 public class Constants {
-    public static final class AutomationStuff {
-        //automation stuff -
-        public static final String DISTANCE_SENSOR_NAME = "ds";
-        public static final String LIMIT_SWITCH_NAME = "ls";
-    }
 
+    @Config
     public static final class DriveBase {
         public static final String FRONT_LEFT_DRIVE_MOTOR_NAME = "fl";
         public static final String FRONT_RIGHT_DRIVE_MOTOR_NAME = "fr";
@@ -17,11 +13,14 @@ public class Constants {
         public static final String REAR_RIGHT_DRIVE_MOTOR_NAME = "rr";
     }
 
+    @Config
     public static final class Intake {
         public static final String INTAKE_MOTOR_NAME = "im";
         //public static final String INTAKE_DEPLOYER_SERVO_NAME = "id";
+        public static final String DISTANCE_SENSOR_NAME = "ds";
     }
 
+    @Config
     public static final class Elevator {
         public static final String ELEVATOR_MOTOR_NAME = "em";
 
@@ -37,9 +36,14 @@ public class Constants {
 
         // Position in which everything clears duck spinner if extender is extended
         public static final int SAFE_EXTENDER_POSITION = 1090;
+
+        public static final String LIMIT_SWITCH_NAME = "ls";
     }
 
+    @Config
     public static final class Manipulator {
+
+        @Config
         public static final class Turret {
             public static final String TURRET_SERVO_NAME ="ts";
 
@@ -50,10 +54,9 @@ public class Constants {
             public static final double LEFT_MAXIMUM_POSITION = 0.9;
 
             public static final double ZERO_POSITION = 0.495;
-
-
         }
 
+        @Config
         public static final class Extender {
             public static final String EXTENDER_SERVO_NAME ="es";
 
@@ -67,6 +70,7 @@ public class Constants {
             public static final double CAPSTONE_POSITION = 0;
         }
 
+        @Config
         public static final class Claw {
             public static final String CLAW_SERVO_NAME ="cs";
             public static final String DISTANCE_SENSOR_NAME = "sdc";
@@ -77,10 +81,12 @@ public class Constants {
         }
     }
 
+    @Config
     public static final class DuckSpinner {
         public static final String DUCK_SPINNER_MOTOR_NAME = "qs";
     }
 
+    @Config
     public static final class Vision {
         public static final String CAPSTONE_DETECTION_CAMERA_NAME_LEFT = "Webcam 1";
         public static final String CAPSTONE_DETECTION_CAMERA_NAME_RIGHT = "Webcam 2";

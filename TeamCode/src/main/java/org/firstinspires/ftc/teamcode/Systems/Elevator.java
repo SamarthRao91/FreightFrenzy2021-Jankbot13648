@@ -15,24 +15,22 @@ public class Elevator {
     private DcMotorEx elevatorMotor;
     DigitalChannel ls;
 
-    Manipulator manipulatorInstance;
-
     public Elevator(HardwareMap hardwareMap)
         {
             elevatorMotor = hardwareMap.get(DcMotorEx.class, ELEVATOR_MOTOR_NAME);
-            ls  = hardwareMap.get(DigitalChannel.class, Constants.AutomationStuff.LIMIT_SWITCH_NAME);
+            ls  = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
             elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
             elevatorMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
             elevatorMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         }
 
-        public void setPosition(int position)
+        public void setPosition(int position, boolean[] opMode)
         {
             elevatorMotor.setTargetPosition(position);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             elevatorMotor.setPower(0.5 );
 
-            while(elevatorMotor.isBusy());
+            while(elevatorMotor.isBusy() && opMode[0]);
 
             elevatorMotor.setPower(0);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
