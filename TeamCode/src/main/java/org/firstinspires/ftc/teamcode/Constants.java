@@ -44,7 +44,7 @@ public class Constants {
             public static final String TURRET_SERVO_NAME ="ts";
 
             // Storage angle to not hit capstone
-            public static final double RIGHT_MAXIMUM_POSITION = 0.11;
+            public static final double RIGHT_MAXIMUM_POSITION = 0.09;
 
             // Stores angle to not hit duck spinner
             public static final double LEFT_MAXIMUM_POSITION = 0.9;

@@ -38,34 +38,21 @@ public class Manipulator {
 
     public void setTurretPosition(double newPos)
     {
-        double lastExtenderPosition = extender.getPosition();
-        extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
-
         turret.setPosition(newPos);
-
-        if(safeToExtender(newPos))
-        {
-            extender.setPosition(lastExtenderPosition);
-        }
     }
 
     // TODO: Test With Hardware
     public void moveTurretPosition(double amount)
     {
-        double lastExtenderPosition = Constants.Manipulator.Extender.MIN_POS;
-
-        if(amount > 0.2)
+        if(amount != 0)
         {
-            lastExtenderPosition = getExtenderPosition();
-            extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
+            if(amount + getTurretPosition() > Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION)
+            {
+                turret.setPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
+            }
 
-            turret.setPosition(getTurretPosition() + amount/500);
-
-        }
-
-        else if (amount <= 0.2 && safeToExtender(getTurretPosition()))
-        {
-            extender.setPosition(lastExtenderPosition);
+            else
+                turret.setPosition(Math.max(amount + getTurretPosition(), Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION));
         }
     }
 
@@ -76,7 +63,15 @@ public class Manipulator {
 
     public void moveExtenderPosition(double amount)
     {
-        extender.setPosition(getExtenderPosition() + (amount/500));
+        if(amount != 0)
+        {
+            if(getExtenderPosition() + amount < Constants.Manipulator.Extender.MIN_POS)
+            {
+                extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
+            }
+            else
+                extender.setPosition(Math.min(getExtenderPosition() + amount, Constants.Manipulator.Extender.MAX_POS));
+        }
     }
 
     public double getTurretPosition()
