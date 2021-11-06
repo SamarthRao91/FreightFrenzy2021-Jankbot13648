@@ -17,7 +17,6 @@ public class CapstonePipeline extends OpenCvPipeline {
         RIGHT
     }
 
-    final Scalar RED = new Scalar(255, 0, 0);
     final Scalar BLUE = new Scalar(0, 0, 255);
 
     final Point LEFT_TOPLEFT_ANCHOR_POINT = new Point(100, 100);
@@ -44,17 +43,17 @@ public class CapstonePipeline extends OpenCvPipeline {
 
     Mat leftRegionCb;
     Mat leftYCrCb = new Mat();
-    Mat leftCb = new Mat();
+    Mat leftCr = new Mat();
     int leftAvg;
 
     Mat centerRegionCb;
     Mat centerYCrCb = new Mat();
-    Mat centerCb = new Mat();
+    Mat centerCr = new Mat();
     int centerAvg;
 
     Mat rightRegionCb;
     Mat rightYCrCb = new Mat();
-    Mat rightCb = new Mat();
+    Mat rightCr = new Mat();
     int rightAvg;
 
     public volatile CapstonePosition position = CapstonePosition.LEFT;
@@ -62,13 +61,13 @@ public class CapstonePipeline extends OpenCvPipeline {
     void inputToCb(Mat input)
     {
         Imgproc.cvtColor(input, leftYCrCb, Imgproc.COLOR_RGB2YCrCb);
-        Core.extractChannel(leftYCrCb, leftCb, 1);
+        Core.extractChannel(leftYCrCb, leftCr, 1);
 
         Imgproc.cvtColor(input, centerYCrCb, Imgproc.COLOR_RGB2YCrCb);
-        Core.extractChannel(centerYCrCb, centerCb, 1);
+        Core.extractChannel(centerYCrCb, centerCr, 1);
 
         Imgproc.cvtColor(input, rightYCrCb, Imgproc.COLOR_RGB2YCrCb);
-        Core.extractChannel(rightYCrCb, rightCb, 1);
+        Core.extractChannel(rightYCrCb, rightCr, 1);
     }
 
     @Override
@@ -76,9 +75,9 @@ public class CapstonePipeline extends OpenCvPipeline {
     {
         inputToCb(firstFrame);
 
-        leftRegionCb = leftCb.submat(new Rect(LEFT_TOPLEFT_ANCHOR_POINT, LEFT_BOTTOMRIGHT_ANCHOR_POINT));
-        centerRegionCb = leftCb.submat(new Rect(CENTER_TOPLEFT_ANCHOR_POINT, CENTER_BOTTOMRIGHT_ANCHOR_POINT));
-        rightRegionCb = leftCb.submat(new Rect(RIGHT_TOPLEFT_ANCHOR_POINT, RIGHT_BOTTOMRIGHT_ANCHOR_POINT));
+        leftRegionCb = leftCr.submat(new Rect(LEFT_TOPLEFT_ANCHOR_POINT, LEFT_BOTTOMRIGHT_ANCHOR_POINT));
+        centerRegionCb = leftCr.submat(new Rect(CENTER_TOPLEFT_ANCHOR_POINT, CENTER_BOTTOMRIGHT_ANCHOR_POINT));
+        rightRegionCb = leftCr.submat(new Rect(RIGHT_TOPLEFT_ANCHOR_POINT, RIGHT_BOTTOMRIGHT_ANCHOR_POINT));
     }
 
     @Override
