@@ -28,10 +28,9 @@ public class TeleOpBlue extends LinearOpMode {
                 Constants.Manipulator.Turret.ZERO_POSITION,
                 Constants.Manipulator.Extender.MIN_POS,
                 new boolean[]{opModeIsActive()}
-                );
+        );
 
-        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION, new boolean[]{opModeIsActive()});
-
+        elevator.resetElevator(new boolean[]{opModeIsActive()});
     }
 
     @Override
@@ -39,7 +38,7 @@ public class TeleOpBlue extends LinearOpMode {
 
         drive = new MecanumDrive(hardwareMap);
         elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator});
+        manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator}, new Intake[]{intake});
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
 
@@ -101,8 +100,9 @@ public class TeleOpBlue extends LinearOpMode {
             }
 
             if (gamepad2.right_bumper) {
-                manipulator.setTurretPosition(0.5);
+                manipulator.manualPickup(new boolean[]{opModeIsActive()});
             }
+
         }
     }
 
@@ -110,7 +110,7 @@ public class TeleOpBlue extends LinearOpMode {
         manipulator.setSuperStructure(
                 Constants.Elevator.SAFE_TURRET_POSITION + 300,
                 Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
+                (Constants.Manipulator.Extender.MIN_POS + Constants.Manipulator.Extender.MAX_POS) / 2,
                 new boolean[]{opModeIsActive()}
         );
     }
@@ -138,6 +138,6 @@ public class TeleOpBlue extends LinearOpMode {
         manipulator.openClaw();
         manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
         //sleep(500);
-        //resetMechanisms();
+        resetMechanisms();
     }
 }

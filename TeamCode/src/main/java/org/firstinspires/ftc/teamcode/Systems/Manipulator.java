@@ -17,10 +17,11 @@ public class Manipulator {
     private DistanceSensor scoringDetectionDS;
 
     private final Elevator elevatorInstance;
+    private final Intake intakeInstance;
 
     private StopWatch timer;
 
-    public Manipulator(HardwareMap hardwareMap, Elevator[] elevator) {
+    public Manipulator(HardwareMap hardwareMap, Elevator[] elevator, Intake[] intake) {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
@@ -28,6 +29,7 @@ public class Manipulator {
         scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
 
         elevatorInstance = elevator[0];
+        intakeInstance = intake[0];
 
         timer = new StopWatch();
     }
@@ -63,14 +65,14 @@ public class Manipulator {
             setTurretPosition(turretPos);
 
             timer.setTime(100);
-            while (!timer.isExpired());
+            while (!timer.isExpired()) ;
         }
 
         if (getExtenderPosition() != extenderPos && safeToExtender(turretPos)) {
             setExtenderPosition(extenderPos);
 
             timer.setTime(100);
-            while (!timer.isExpired());
+            while (!timer.isExpired()) ;
         }
 
         elevatorInstance.getElevatorMotor()[0].setPower(0);
@@ -125,7 +127,7 @@ public class Manipulator {
         clawToPosition(Constants.Manipulator.Claw.OPEN_POSITION);
 
         timer.setTime(100);
-        while (!timer.isExpired());
+        while (!timer.isExpired()) ;
     }
 
     public void capstoneOpenClaw() {
@@ -136,11 +138,22 @@ public class Manipulator {
         clawToPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
     }
 
+    public void manualPickup(boolean[] isOpModeActive)
+    {
+        claw.close();
+        elevatorInstance.setPosition(300, isOpModeActive);
+    }
+
     public void checkDistanceSensor(boolean[] isOpModeActive) {
         if (scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 0.2) {
             closeClaw();
-            // TODO: Add Time Wait For Servo
+            intakeInstance.setIntake(-0.25);
+
+            timer.setTime(100);
+            while(!timer.isExpired());
             elevatorInstance.setPosition(300, isOpModeActive);
+
+
         }
     }
 }

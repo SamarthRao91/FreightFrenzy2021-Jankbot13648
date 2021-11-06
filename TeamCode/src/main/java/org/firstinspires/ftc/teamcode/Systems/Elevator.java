@@ -33,10 +33,16 @@ public class Elevator {
         elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    public void resetElevator(boolean[] isOpModeIsActive)
+    {
+        elevatorMotor.setPower(-0.5);
+        while(isOpModeIsActive[0] && isLimitPressed());
+        elevatorMotor.setPower(0);
+    }
+
     public boolean isLimitPressed() {
         return !ls.getState();
     }
-
 
     public void setSpeed(double speed) {
         elevatorMotor.setPower(speed);
