@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-@TeleOp(name = "TeleOp - Blue - Built")
+@TeleOp(name = "TeleOp - Blue")
 public class TeleOpBlue extends LinearOpMode {
 
     //different subsystems

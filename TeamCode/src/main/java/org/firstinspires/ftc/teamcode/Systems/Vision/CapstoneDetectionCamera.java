@@ -38,7 +38,6 @@ public class CapstoneDetectionCamera {
         switchableWebcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
                                                    @Override
                                                    public void onOpened() {
-                                                       //switchableWebcam.setPipeline();
                                                        switchableWebcam.startStreaming(Constants.Vision.CAMERA_RESOLUTION_WIDTH, Constants.Vision.CAMERA_RESOLUTION_HEIGHT, OpenCvCameraRotation.UPRIGHT);
                                                        FtcDashboard.getInstance().startCameraStream(switchableWebcam, 0);
                                                    }
@@ -50,6 +49,15 @@ public class CapstoneDetectionCamera {
                                                    }
                                                }
         );
+    }
 
+    public CapstonePipeline.CapstonePosition getPosition()
+    {
+        return pipeline.position;
+    }
+
+    public int[] getAnalysis()
+    {
+        return pipeline.getAnalysis();
     }
 }

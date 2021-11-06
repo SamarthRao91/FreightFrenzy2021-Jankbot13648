@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -17,14 +18,18 @@ public class CapstonePipeline extends OpenCvPipeline {
         RIGHT
     }
 
+    final Scalar RED = new Scalar(255, 0, 0);
+    final Scalar GREEN = new Scalar(0, 255, 0);
     final Scalar BLUE = new Scalar(0, 0, 255);
 
-    final Point LEFT_TOPLEFT_ANCHOR_POINT = new Point(100, 100);
-    final Point CENTER_TOPLEFT_ANCHOR_POINT = new Point(100, 100);
-    final Point RIGHT_TOPLEFT_ANCHOR_POINT = new Point(100, 100);
+    // TODO: Check Directions
+    final Point LEFT_TOPLEFT_ANCHOR_POINT = new Point(0, 0);
 
-    final int REGION_WIDTH = 85;
-    final int REGION_HEIGHT = 150;
+    final int REGION_WIDTH = Constants.Vision.CAMERA_RESOLUTION_WIDTH/3;
+    final int REGION_HEIGHT = Constants.Vision.CAMERA_RESOLUTION_HEIGHT;
+
+    final Point CENTER_TOPLEFT_ANCHOR_POINT = new Point(LEFT_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH, 0);
+    final Point RIGHT_TOPLEFT_ANCHOR_POINT = new Point(CENTER_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH, 0);
 
     final Point LEFT_BOTTOMRIGHT_ANCHOR_POINT = new Point(
             LEFT_TOPLEFT_ANCHOR_POINT.x + REGION_WIDTH,
@@ -105,7 +110,7 @@ public class CapstonePipeline extends OpenCvPipeline {
                 input,
                 LEFT_TOPLEFT_ANCHOR_POINT,
                 LEFT_BOTTOMRIGHT_ANCHOR_POINT,
-                BLUE,
+                RED,
                 2
         );
 
@@ -113,7 +118,7 @@ public class CapstonePipeline extends OpenCvPipeline {
                 input,
                 CENTER_TOPLEFT_ANCHOR_POINT,
                 CENTER_BOTTOMRIGHT_ANCHOR_POINT,
-                BLUE,
+                GREEN,
                 2
         );
 
