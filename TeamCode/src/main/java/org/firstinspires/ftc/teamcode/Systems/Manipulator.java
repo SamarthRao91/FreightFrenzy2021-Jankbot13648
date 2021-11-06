@@ -11,15 +11,15 @@ public class Manipulator {
     private Servo extender;
     private Servo claw;
 
-    private Elevator elevatorInstance;
+    private final Elevator elevatorInstance;
 
-    public Manipulator(HardwareMap hardwareMap, Elevator elevator)
+    public Manipulator(HardwareMap hardwareMap, Elevator[] elevator)
     {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
 
-        elevatorInstance = elevator;
+        elevatorInstance = elevator[0];
     }
 
     public boolean safeToTurret(double newPos)

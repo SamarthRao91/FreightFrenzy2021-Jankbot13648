@@ -15,7 +15,7 @@ public class EncoderCheck extends LinearOpMode {
     public void runOpMode() {
 
         elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap, elevator);
+        manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator});
 
         waitForStart();
 

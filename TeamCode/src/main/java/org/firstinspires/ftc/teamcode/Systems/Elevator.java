@@ -1,20 +1,22 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 
-import static org.firstinspires.ftc.teamcode.Constants.Elevator.*;
+import static org.firstinspires.ftc.teamcode.Constants.Elevator.ELEVATOR_MOTOR_NAME;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.internal.android.dx.rop.code.ConservativeTranslationAdvice;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class Elevator {
 
-        private DcMotorEx elevatorMotor;
-        DigitalChannel ls;
+    private DcMotorEx elevatorMotor;
+    DigitalChannel ls;
+
+    Manipulator manipulatorInstance;
+
     public Elevator(HardwareMap hardwareMap)
         {
             elevatorMotor = hardwareMap.get(DcMotorEx.class, ELEVATOR_MOTOR_NAME);
@@ -34,13 +36,9 @@ public class Elevator {
 
             elevatorMotor.setPower(0);
             elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
-
-
         }
 
-        public boolean islimitPressed()
+        public boolean isLimitPressed()
         {
             return !ls.getState();
         }
@@ -49,7 +47,6 @@ public class Elevator {
         public void setSpeed(double speed)
         {
             elevatorMotor.setPower(speed);
-
         }
 
         public int getPosition()

@@ -33,7 +33,7 @@ public class TeleOpBlue extends LinearOpMode {
             sleep(1250);
        // manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
             elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
-            if(elevator.islimitPressed())
+            if(elevator.isLimitPressed())
             {
                 elevator.setPosition(0);
             }
@@ -45,7 +45,7 @@ public class TeleOpBlue extends LinearOpMode {
 
         drive = new MecanumDrive(hardwareMap);
         elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap, elevator);
+        manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator});
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
         scoringAutomation = hardwareMap.get(DistanceSensor.class, Constants.AutomationStuff.DISTANCE_SENSOR_NAME);
@@ -136,7 +136,7 @@ public class TeleOpBlue extends LinearOpMode {
             //driver 2 controls
 
             elevator.setSpeed(-gamepad2.right_stick_y);
-            if(elevator.islimitPressed() && -gamepad2.right_stick_y/2 < 0)
+            if(elevator.isLimitPressed() && -gamepad2.right_stick_y/2 < 0)
             {
                 elevator.setPosition(0);
             }

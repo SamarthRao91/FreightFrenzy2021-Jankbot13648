@@ -58,7 +58,7 @@ public class Constants {
             public static final String EXTENDER_SERVO_NAME ="es";
 
             // Maximum rotation of extender
-            public static double MAX_POS = 0.31  ;
+            public static double MAX_POS = 0.31;
 
             // Minimum rotation of extender
             public static double MIN_POS = 0.685;
