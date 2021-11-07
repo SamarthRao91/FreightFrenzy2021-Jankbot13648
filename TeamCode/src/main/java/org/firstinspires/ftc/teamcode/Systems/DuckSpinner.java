@@ -21,17 +21,18 @@ public class DuckSpinner {
 
     public void spinSpinner(boolean[] isOpModeActive)
     {
-        spinner.setTargetPosition(spinner.getCurrentPosition() + (int) (Math.ceil(6 * 103.6)));
+        int target = spinner.getCurrentPosition() + (int) (Math.ceil(9 * 103.6));
+
+        spinner.setTargetPosition(target);
         spinner.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         spinner.setPower(0.25);
-        while (!spinner.isBusy() && isOpModeActive[0]);
-        spinner.setPower(0);
-        spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        spinner.setTargetPosition(spinner.getCurrentPosition() + (int) (Math.ceil(3 * 103.6)));
-        spinner.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        spinner.setPower(1);
-        while (!spinner.isBusy() && isOpModeActive[0]);
+        while (!spinner.isBusy() && isOpModeActive[0])
+        {
+            if(spinner.getCurrentPosition() >= target - (int) (Math.ceil(3 * 103.6)))
+            {
+                spinner.setPower(1);
+            }
+        };
         spinner.setPower(0);
         spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
