@@ -23,13 +23,10 @@ public class TeleOpRed extends LinearOpMode {
     Intake intake;
 
     public void resetMechanisms() {
-        manipulator.setSuperStructure(
-                Constants.Elevator.SAFE_TURRET_POSITION,
-                Constants.Manipulator.Turret.ZERO_POSITION,
-                Constants.Manipulator.Extender.MIN_POS,
-                new boolean[]{opModeIsActive()}
-        );
-
+        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100, new boolean[]{opModeIsActive()});
+        manipulator.resetTurret();
+        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION, new boolean[]{opModeIsActive()});
         elevator.resetElevator(new boolean[]{opModeIsActive()});
     }
 

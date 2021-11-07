@@ -79,6 +79,12 @@ public class Manipulator {
         elevatorInstance.getElevatorMotor()[0].setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
+    public void resetTurret() {
+        turret.setPosition(Constants.Manipulator.Turret.ZERO_POSITION);
+        timer.setTime(750);
+        while (!timer.isExpired());
+    }
+
     public void setTurretPosition(double newPos) {
         if (newPos > Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION) {
             turret.setPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
@@ -96,7 +102,7 @@ public class Manipulator {
     }
 
     public void setExtenderPosition(double newPos) {
-        if (newPos < Constants.Manipulator.Extender.MIN_POS) {
+        if (newPos <= Constants.Manipulator.Extender.MIN_POS) {
             extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
         } else
             extender.setPosition(Math.min(newPos, Constants.Manipulator.Extender.MAX_POS));

@@ -12,6 +12,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.AngularVelocityConstra
 import com.acmerobotics.roadrunner.trajectory.constraints.MecanumVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Constants;
@@ -25,6 +26,7 @@ import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 
 import java.util.Arrays;
 
+@Autonomous(name = "Red Bottom Auto")
 public class Red_Bottom_Auto extends LinearOpMode {
 
     MecanumDrive drive;
@@ -140,6 +142,14 @@ public class Red_Bottom_Auto extends LinearOpMode {
 
     //methods-----------------------------
 
+    public void resetMechanisms() {
+        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100, new boolean[]{opModeIsActive()});
+        manipulator.resetTurret();
+        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION, new boolean[]{opModeIsActive()});
+        elevator.resetElevator(new boolean[]{opModeIsActive()});
+    }
+
     public void highPreset() {
         manipulator.setSuperStructure(
                 1400 + 200,
@@ -147,16 +157,6 @@ public class Red_Bottom_Auto extends LinearOpMode {
                 Constants.Manipulator.Extender.MAX_POS,
                 new boolean[]{opModeIsActive()}
         );
-    }
-    public void resetMechanisms() {
-        manipulator.setSuperStructure(
-                Constants.Elevator.SAFE_TURRET_POSITION,
-                Constants.Manipulator.Turret.ZERO_POSITION,
-                Constants.Manipulator.Extender.MIN_POS,
-                new boolean[]{opModeIsActive()}
-        );
-
-        elevator.resetElevator(new boolean[]{opModeIsActive()});
     }
 
     public void scoreGamePiecePreset() {
