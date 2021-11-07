@@ -61,11 +61,11 @@ public class TeleOpBlue extends LinearOpMode {
             );
 
             elevator.setSpeed(-gamepad2.right_stick_y);
+            intake.setIntake(Math.min(gamepad1.right_trigger * -gamepad1.left_trigger, 1));
+
             manipulator.checkDistanceSensor(new boolean[]{opModeIsActive()});
             manipulator.moveTurretPosition(gamepad2.left_stick_x / 250);
             manipulator.moveExtenderPosition(-gamepad2.left_stick_y / 200);
-
-            intake.setIntake(Math.min(gamepad1.right_trigger * -gamepad1.left_trigger, 1));
 
             if (gamepad1.a || gamepad2.a) {
                 resetMechanisms();
@@ -99,10 +99,13 @@ public class TeleOpBlue extends LinearOpMode {
                 manipulator.capstoneOpenClaw();
             }
 
-            if (gamepad2.right_bumper) {
+            if (gamepad2.left_bumper) {
                 manipulator.manualPickup(new boolean[]{opModeIsActive()});
             }
 
+            if (gamepad2.right_bumper) {
+                spinner.spinSpinner(new boolean[]{opModeIsActive()});
+            }
         }
     }
 
