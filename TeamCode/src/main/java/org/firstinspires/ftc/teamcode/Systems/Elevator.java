@@ -14,6 +14,8 @@ public class Elevator {
     private DcMotorEx elevatorMotor;
     DigitalChannel ls;
 
+    public boolean opModeActive;
+
     public Elevator(HardwareMap hardwareMap) {
         elevatorMotor = hardwareMap.get(DcMotorEx.class, ELEVATOR_MOTOR_NAME);
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
@@ -22,21 +24,31 @@ public class Elevator {
         elevatorMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
     }
 
-    public void setPosition(int position, boolean[] isOpModeActive) {
+    public void getIsOpModeIsActive(boolean newValue)
+    {
+        opModeActive = newValue;
+    }
+
+    public boolean getIsOpModeIsActive()
+    {
+        return opModeActive;
+    }
+
+    public void setPosition(int position) {
         elevatorMotor.setTargetPosition(position);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         elevatorMotor.setPower(0.5);
 
-        while (elevatorMotor.isBusy() && isOpModeActive[0]) ;
+        while (elevatorMotor.isBusy() && opModeActive) ;
 
         elevatorMotor.setPower(0);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void resetElevator(boolean[] isOpModeIsActive)
+    public void resetElevator()
     {
         elevatorMotor.setPower(-0.5);
-        while(isOpModeIsActive[0] && isLimitPressed());
+        while(opModeActive && isLimitPressed());
         elevatorMotor.setPower(0);
     }
 

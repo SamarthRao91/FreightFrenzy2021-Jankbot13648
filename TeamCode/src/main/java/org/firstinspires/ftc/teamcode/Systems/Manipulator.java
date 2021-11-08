@@ -34,6 +34,17 @@ public class Manipulator {
         timer = new StopWatch();
     }
 
+    public void sleep(long amount) {
+        try {
+            Thread.sleep(amount);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        /*StopWatch timer = new StopWatch(amount);
+        while (!timer.isExpired());*/
+    }
+
     // TODO: TEST
     public boolean safeToTurret(double newPos) {
         //safe turret position is min safe
@@ -69,7 +80,7 @@ public class Manipulator {
         }
 
         if (getExtenderPosition() != extenderPos && safeToExtender(turretPos)) {
-            setExtenderPosition(extenderPos);
+            extender.setPosition(extenderPos);
 
             timer.setTime(100);
             while (!timer.isExpired()) ;
@@ -81,8 +92,6 @@ public class Manipulator {
 
     public void resetTurret() {
         turret.setPosition(Constants.Manipulator.Turret.ZERO_POSITION);
-        timer.setTime(750);
-        while (!timer.isExpired());
     }
 
     public void setTurretPosition(double newPos) {
@@ -131,9 +140,6 @@ public class Manipulator {
 
     public void openClaw() {
         clawToPosition(Constants.Manipulator.Claw.OPEN_POSITION);
-
-        timer.setTime(100);
-        while (!timer.isExpired()) ;
     }
 
     public void capstoneOpenClaw() {
@@ -144,20 +150,20 @@ public class Manipulator {
         clawToPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
     }
 
-    public void manualPickup(boolean[] isOpModeActive)
+    public void manualPickup()
     {
         claw.close();
-        elevatorInstance.setPosition(300, isOpModeActive);
+        elevatorInstance.setPosition(300);
     }
 
     public void checkDistanceSensor(boolean[] isOpModeActive) {
         if (scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 0.2) {
             closeClaw();
-            intakeInstance.setIntake(-0.25);
+            intakeInstance.setIntake(0, 0.25);
 
             timer.setTime(100);
             while(!timer.isExpired());
-            elevatorInstance.setPosition(300, isOpModeActive);
+            elevatorInstance.setPosition(300);
 
 
         }

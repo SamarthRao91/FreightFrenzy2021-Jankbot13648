@@ -20,8 +20,15 @@ public class Intake {
         // intakeDeployer = hardwareMap.get(Servo.class, INTAKE_DEPLOYER_SERVO_NAME);
     }
 
-    public void setIntake(double intakeSpeed) {
-        intake.setPower(intakeSpeed);
+    public void setIntake(double intakeSpeed, double reverseSpeed) {
+        if(reverseSpeed > 0)
+        {
+            intake.setPower(reverseSpeed);
+        }
+
+        else {
+            intake.setPower(intakeSpeed);
+        }
     }
 
     public void deployIntake() {

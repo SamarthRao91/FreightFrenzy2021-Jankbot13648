@@ -23,6 +23,7 @@ import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.StopWatch;
 
 import java.util.Arrays;
 
@@ -119,15 +120,15 @@ public class Blue_Bottom_Auto extends LinearOpMode {
             //spin duck spinner
 
             //intake the duck
-            intake.setIntake(0.33); //slow speed to prevent duck from flying
+            intake.setIntake(0.33, 0); //slow speed to prevent duck from flying
             drive.followTrajectory(BB_traj3);
             drive.followTrajectory(BB_traj4);
             drive.followTrajectory(BB_traj5);
             drive.followTrajectory(BB_traj6);
-            intake.setIntake(0.0);
+            intake.setIntake(0.0, 0);
 
             //pick up possesed duck and score
-            manipulator.manualPickup(new boolean[]{opModeIsActive()});
+            manipulator.manualPickup();
             drive.followTrajectory(BB_traj7);
             highPreset();
             scoreGamePiecePreset();
@@ -143,16 +144,23 @@ public class Blue_Bottom_Auto extends LinearOpMode {
     //methods-----------------------------
 
     public void resetMechanisms() {
+        StopWatch timer = new StopWatch(750);
+        while (!timer.isExpired());
+        manipulator.closeClaw();
         manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100, new boolean[]{opModeIsActive()});
+        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
         manipulator.resetTurret();
-        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION, new boolean[]{opModeIsActive()});
-        elevator.resetElevator(new boolean[]{opModeIsActive()});
+        StopWatch timer1 = new StopWatch(750);
+        timer1.setTime(750);
+        while (!timer1.isExpired());
+        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
+        elevator.resetElevator();
+        manipulator.openClaw();
     }
 
     public void highPreset() {
         manipulator.setSuperStructure(
-                1400 + 200,
+                1400 + 300,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS,
                 new boolean[]{opModeIsActive()}

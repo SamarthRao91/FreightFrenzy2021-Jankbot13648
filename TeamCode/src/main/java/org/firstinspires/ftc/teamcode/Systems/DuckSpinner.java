@@ -19,21 +19,15 @@ public class DuckSpinner {
         spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void spinSpinner(boolean[] isOpModeActive)
+    public void spinSpinner(double speed, double reverseSpeed)
     {
-        int target = spinner.getCurrentPosition() + (int) (Math.ceil(9 * 103.6));
-
-        spinner.setTargetPosition(target);
-        spinner.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        spinner.setPower(0.25);
-        while (!spinner.isBusy() && isOpModeActive[0])
+        if (Math.abs(reverseSpeed) > 0)
         {
-            if(spinner.getCurrentPosition() >= target - (int) (Math.ceil(3 * 103.6)))
-            {
-                spinner.setPower(1);
-            }
-        };
-        spinner.setPower(0);
-        spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            spinner.setPower(reverseSpeed);
+        }
+
+        else {
+            spinner.setPower(speed);
+        }
     }
 }

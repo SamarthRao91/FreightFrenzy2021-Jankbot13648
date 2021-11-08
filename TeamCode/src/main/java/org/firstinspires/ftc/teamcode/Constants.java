@@ -64,7 +64,7 @@ public class Constants {
             public static double MAX_POS = 0.31;
 
             // Minimum rotation of extender
-            public static double MIN_POS = 0.685;
+            public static double MIN_POS = 0.75;
 
             // Stores position of capstone
             public static final double CAPSTONE_POSITION = 0;
