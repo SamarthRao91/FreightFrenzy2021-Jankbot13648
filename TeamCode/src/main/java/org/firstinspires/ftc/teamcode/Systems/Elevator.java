@@ -25,7 +25,7 @@ public class Elevator {
     public void setPosition(int position) {
         elevatorMotor.setTargetPosition(position);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        elevatorMotor.setPower(0.5);
+        elevatorMotor.setPower(1);
 
         while (elevatorMotor.isBusy() && !Thread.currentThread().isInterrupted());
 
@@ -35,7 +35,7 @@ public class Elevator {
 
     public void resetElevator()
     {
-        elevatorMotor.setPower(-0.5);
+        elevatorMotor.setPower(-1);
         while(!Thread.currentThread().isInterrupted() && isLimitPressed());
         elevatorMotor.setPower(0);
     }

@@ -56,7 +56,7 @@ public class Manipulator {
     public void setSuperStructure(int elevatorPos, double turretPos, double extenderPos) {
         elevatorInstance.getElevatorMotor().setTargetPosition(elevatorPos);
         elevatorInstance.getElevatorMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        elevatorInstance.getElevatorMotor().setPower(0.5);
+        elevatorInstance.getElevatorMotor().setPower(1);
 
         while (elevatorInstance.getElevatorMotor().isBusy() && !Thread.currentThread().isInterrupted()) {
             if (elevatorInstance.getPosition() >= Constants.Elevator.SAFE_TURRET_POSITION) {
