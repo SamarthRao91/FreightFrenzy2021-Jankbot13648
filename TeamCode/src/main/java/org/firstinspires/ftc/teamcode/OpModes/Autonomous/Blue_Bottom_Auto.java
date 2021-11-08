@@ -95,7 +95,7 @@ public class Blue_Bottom_Auto extends LinearOpMode {
 
         drive = new MecanumDrive(hardwareMap);
         elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator}, new Intake[]{intake});
+        manipulator = new Manipulator(hardwareMap, elevator, intake);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
         capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap);
@@ -162,8 +162,7 @@ public class Blue_Bottom_Auto extends LinearOpMode {
         manipulator.setSuperStructure(
                 1400 + 300,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
-                new boolean[]{opModeIsActive()}
+                Constants.Manipulator.Extender.MAX_POS
         );
     }
 

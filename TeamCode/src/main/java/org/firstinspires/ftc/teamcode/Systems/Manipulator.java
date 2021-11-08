@@ -19,19 +19,15 @@ public class Manipulator {
     private final Elevator elevatorInstance;
     private final Intake intakeInstance;
 
-    private StopWatch timer;
-
-    public Manipulator(HardwareMap hardwareMap, Elevator[] elevator, Intake[] intake) {
+    public Manipulator(HardwareMap hardwareMap, Elevator elevator, Intake intake) {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
 
         scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
 
-        elevatorInstance = elevator[0];
-        intakeInstance = intake[0];
-
-        timer = new StopWatch();
+        elevatorInstance = elevator;
+        intakeInstance = intake;
     }
 
     public void sleep(long amount) {
@@ -43,9 +39,6 @@ public class Manipulator {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        /*StopWatch timer = new StopWatch(amount);
-        while (!timer.isExpired());*/
     }
 
     // TODO: TEST
@@ -60,12 +53,12 @@ public class Manipulator {
                 || (turretPos > 0.68 || turretPos < 0.517);
     }
 
-    public void setSuperStructure(int elevatorPos, double turretPos, double extenderPos, boolean[] isOpModeActive) {
-        elevatorInstance.getElevatorMotor()[0].setTargetPosition(elevatorPos);
-        elevatorInstance.getElevatorMotor()[0].setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        elevatorInstance.getElevatorMotor()[0].setPower(0.5);
+    public void setSuperStructure(int elevatorPos, double turretPos, double extenderPos) {
+        elevatorInstance.getElevatorMotor().setTargetPosition(elevatorPos);
+        elevatorInstance.getElevatorMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        elevatorInstance.getElevatorMotor().setPower(0.5);
 
-        while (elevatorInstance.getElevatorMotor()[0].isBusy() && isOpModeActive[0]) {
+        while (elevatorInstance.getElevatorMotor().isBusy() && !Thread.currentThread().isInterrupted()) {
             if (elevatorInstance.getPosition() >= Constants.Elevator.SAFE_TURRET_POSITION) {
                 turret.setPosition(turretPos);
             }
@@ -78,6 +71,7 @@ public class Manipulator {
         if (getTurretPosition() != turretPos && safeToTurret(turretPos)) {
             setTurretPosition(turretPos);
 
+            StopWatch timer  = new StopWatch(100);
             timer.setTime(100);
             while (!timer.isExpired()) ;
         }
@@ -85,12 +79,13 @@ public class Manipulator {
         if (getExtenderPosition() != extenderPos && safeToExtender(turretPos)) {
             extender.setPosition(extenderPos);
 
-            timer.setTime(100);
-            while (!timer.isExpired()) ;
+            StopWatch timer1  = new StopWatch(100);
+            timer1.setTime(100);
+            while (!timer1.isExpired()) ;
         }
 
-        elevatorInstance.getElevatorMotor()[0].setPower(0);
-        elevatorInstance.getElevatorMotor()[0].setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        elevatorInstance.getElevatorMotor().setPower(0);
+        elevatorInstance.getElevatorMotor().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void resetTurret() {
@@ -159,15 +154,14 @@ public class Manipulator {
         elevatorInstance.setPosition(300);
     }
 
-    public void checkDistanceSensor(boolean[] isOpModeActive) {
+    public void checkDistanceSensor() {
         if (scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 0.2) {
             closeClaw();
             intakeInstance.setIntake(0, 0.25);
 
-            timer.setTime(100);
+            StopWatch timer  = new StopWatch(100);
             while(!timer.isExpired());
             elevatorInstance.setPosition(300);
-
 
         }
     }

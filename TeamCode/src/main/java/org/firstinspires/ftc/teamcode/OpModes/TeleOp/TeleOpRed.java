@@ -44,7 +44,7 @@ public class TeleOpRed extends LinearOpMode {
 
         drive = new MecanumDrive(hardwareMap);
         elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap, new Elevator[]{elevator}, new Intake[]{intake});
+        manipulator = new Manipulator(hardwareMap, elevator, intake);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
 
@@ -53,7 +53,6 @@ public class TeleOpRed extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (!isStopRequested() && opModeIsActive()) {
-            elevator.getIsOpModeIsActive(opModeIsActive());
 
             Vector2d input = new Vector2d(
                     gamepad1.left_bumper ? gamepad1.left_stick_y / 4 : gamepad1.left_stick_y,
@@ -71,7 +70,7 @@ public class TeleOpRed extends LinearOpMode {
             elevator.setSpeed(-gamepad2.right_stick_y);
             intake.setIntake(gamepad1.left_trigger, gamepad1.right_trigger);
 
-            //manipulator.checkDistanceSensor(new boolean[]{opModeIsActive()});
+            manipulator.checkDistanceSensor();
             manipulator.moveTurretPosition(gamepad2.left_stick_x / 250);
             manipulator.moveExtenderPosition(-gamepad2.left_stick_y / 200);
 
@@ -119,8 +118,7 @@ public class TeleOpRed extends LinearOpMode {
         manipulator.setSuperStructure(
                 Constants.Elevator.SAFE_TURRET_POSITION + 500,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS + 0.2,
-                new boolean[]{opModeIsActive()}
+                Constants.Manipulator.Extender.MAX_POS + 0.2
         );
     }
 
@@ -129,8 +127,7 @@ public class TeleOpRed extends LinearOpMode {
         manipulator.setSuperStructure(
                 1400 + 300,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
-                new boolean[]{opModeIsActive()}
+                Constants.Manipulator.Extender.MAX_POS
         );
     }
 
@@ -138,8 +135,7 @@ public class TeleOpRed extends LinearOpMode {
         manipulator.setSuperStructure(
                 1400 + 200,
                 Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
-                new boolean[]{opModeIsActive()}
+                Constants.Manipulator.Extender.MAX_POS
         );
     }
 
