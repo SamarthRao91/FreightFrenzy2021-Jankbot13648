@@ -68,7 +68,7 @@ public class TeleOpRed extends LinearOpMode {
             );
 
             elevator.setSpeed(-gamepad2.right_stick_y);
-            intake.setIntake(gamepad1.left_trigger, gamepad1.right_trigger);
+            intake.setIntake(gamepad1.right_trigger, gamepad1.left_trigger);
 
             manipulator.checkDistanceSensor();
             manipulator.moveTurretPosition(gamepad2.left_stick_x / 250);
@@ -110,7 +110,12 @@ public class TeleOpRed extends LinearOpMode {
                 manipulator.manualPickup();
             }
 
-            spinner.spinSpinner(gamepad2.right_trigger, -gamepad2.left_trigger);
+            if(gamepad2.right_trigger == 1)
+            {
+                spinner.spinReverseSpinner();
+            }
+
+
         }
     }
 
@@ -126,7 +131,7 @@ public class TeleOpRed extends LinearOpMode {
 
         manipulator.setSuperStructure(
                 1400 + 300,
-                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS
         );
     }
@@ -134,7 +139,7 @@ public class TeleOpRed extends LinearOpMode {
     public void highReversePreset() {
         manipulator.setSuperStructure(
                 1400 + 200,
-                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS
         );
     }

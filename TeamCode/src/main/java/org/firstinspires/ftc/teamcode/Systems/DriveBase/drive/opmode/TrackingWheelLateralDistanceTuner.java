@@ -63,7 +63,6 @@ import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.StandardTrackingWh
  * precision. The heading should still line up.
  */
 @Config
-@Disabled
 @TeleOp(group = "drive")
 public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
     public static int NUM_TURNS = 10;

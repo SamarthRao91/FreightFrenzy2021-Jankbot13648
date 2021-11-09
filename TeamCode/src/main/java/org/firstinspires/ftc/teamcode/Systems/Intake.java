@@ -23,7 +23,7 @@ public class Intake {
     public void setIntake(double intakeSpeed, double reverseSpeed) {
         if(reverseSpeed > 0)
         {
-            intake.setPower(reverseSpeed);
+            intake.setPower(-reverseSpeed);
         }
 
         else {

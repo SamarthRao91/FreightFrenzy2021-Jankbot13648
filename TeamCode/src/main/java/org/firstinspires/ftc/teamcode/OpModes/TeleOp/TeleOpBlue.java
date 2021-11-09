@@ -4,6 +4,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -106,7 +107,15 @@ public class TeleOpBlue extends LinearOpMode {
                 manipulator.manualPickup();
             }
 
-            spinner.spinSpinner(gamepad2.right_trigger, -gamepad2.left_trigger);
+            if(gamepad2.right_trigger ==1)
+            {
+                spinner.spinSpinner();
+            }
+
+
+
+
+
         }
     }
 
@@ -121,7 +130,7 @@ public class TeleOpBlue extends LinearOpMode {
     public void highPreset() {
         manipulator.setSuperStructure(
                 1400 + 300,
-                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS
         );
     }
@@ -129,7 +138,7 @@ public class TeleOpBlue extends LinearOpMode {
     public void highReversePreset() {
         manipulator.setSuperStructure(
                 1400 + 200,
-                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS
         );
     }

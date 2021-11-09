@@ -35,7 +35,7 @@ public class Manipulator {
         while (!timer.isExpired());*/
 
         try {
-            Thread.currentThread().wait(amount);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -58,7 +58,7 @@ public class Manipulator {
         elevatorInstance.getElevatorMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
         elevatorInstance.getElevatorMotor().setPower(1);
 
-        while (elevatorInstance.getElevatorMotor().isBusy() && !Thread.currentThread().isInterrupted()) {
+        while (elevatorInstance.getElevatorMotor().isBusy() && !Thread.interrupted()) {
             if (elevatorInstance.getPosition() >= Constants.Elevator.SAFE_TURRET_POSITION) {
                 turret.setPosition(turretPos);
             }

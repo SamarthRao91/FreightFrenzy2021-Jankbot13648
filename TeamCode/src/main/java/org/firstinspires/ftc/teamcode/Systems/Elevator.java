@@ -27,7 +27,7 @@ public class Elevator {
         elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         elevatorMotor.setPower(1);
 
-        while (elevatorMotor.isBusy() && !Thread.currentThread().isInterrupted());
+        while (elevatorMotor.isBusy() && !Thread.interrupted());
 
         elevatorMotor.setPower(0);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -36,7 +36,7 @@ public class Elevator {
     public void resetElevator()
     {
         elevatorMotor.setPower(-1);
-        while(!Thread.currentThread().isInterrupted() && isLimitPressed());
+        while(!Thread.interrupted() && isLimitPressed());
         elevatorMotor.setPower(0);
     }
 
