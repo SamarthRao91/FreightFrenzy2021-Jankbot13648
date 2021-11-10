@@ -15,19 +15,21 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 @TeleOp(name = "TeleOp - Red")
 public class TeleOpRed extends LinearOpMode {
 
-    //different subsystems
+    ///different subsystems
     MecanumDrive drive;
     Elevator elevator;
     Manipulator manipulator;
     DuckSpinner spinner;
     Intake intake;
 
+    Thread driveThread;
+    Thread elevatorThread;
+    Thread manipulatorThread;
+    Thread spinnerThread;
+    Thread intakeThread;
+
     public void resetMechanisms() {
-        telemetry.addData("Sleeping", "true");
-        telemetry.update();
         manipulator.sleep(750);
-        telemetry.addData("Sleeping", "false");
-        telemetry.update();
         manipulator.closeClaw();
         manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
         elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
@@ -47,6 +49,18 @@ public class TeleOpRed extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap, elevator, intake);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
+
+        driveThread = new Thread(drive, "driveThread");
+        elevatorThread = new Thread(elevator, "elevatorThread");
+        manipulatorThread = new Thread(manipulator, "manipulatorThread");
+        spinnerThread = new Thread(spinner, "spinnerThread");
+        intakeThread = new Thread(intake, "intakeThread");
+
+        driveThread.start();
+        elevatorThread.start();
+        manipulatorThread.start();
+        spinnerThread.start();
+        intakeThread.start();
 
         waitForStart();
 
@@ -110,12 +124,10 @@ public class TeleOpRed extends LinearOpMode {
                 manipulator.manualPickup();
             }
 
-            if(gamepad2.right_trigger == 1)
+            if(gamepad2.right_trigger >= 1)
             {
-                spinner.spinReverseSpinner();
+                spinner.spinSpinner();
             }
-
-
         }
     }
 

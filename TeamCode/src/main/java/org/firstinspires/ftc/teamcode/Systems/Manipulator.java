@@ -9,7 +9,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Util.StopWatch;
 
-public class Manipulator {
+public class Manipulator implements Runnable {
 
     private Servo turret;
     private Servo extender;
@@ -164,5 +164,10 @@ public class Manipulator {
             elevatorInstance.setPosition(300);
 
         }
+    }
+
+    @Override
+    public void run() {
+
     }
 }

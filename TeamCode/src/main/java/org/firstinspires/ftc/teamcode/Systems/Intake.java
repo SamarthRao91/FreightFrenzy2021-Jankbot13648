@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Intake {
+public class Intake implements Runnable {
 
     private DcMotorEx intake;
     private Servo intakeDeployer;
@@ -33,6 +33,11 @@ public class Intake {
 
     public void deployIntake() {
         intakeDeployer.setPosition(0.5);
+    }
+
+    @Override
+    public void run() {
+
     }
 }
 

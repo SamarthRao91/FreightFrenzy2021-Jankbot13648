@@ -52,7 +52,7 @@ import java.util.List;
  * Simple mecanum drive hardware implementation for REV hardware.
  */
 @Config
-public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive {
+public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive implements Runnable{
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0);
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
 
@@ -137,6 +137,11 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
     public void resetHeading() {
         imuOffset = imu.getAngularOrientation().firstAngle;
+    }
+
+    @Override
+    public void run() {
+
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {

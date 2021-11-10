@@ -4,7 +4,6 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -22,6 +21,12 @@ public class TeleOpBlue extends LinearOpMode {
     Manipulator manipulator;
     DuckSpinner spinner;
     Intake intake;
+
+    Thread driveThread;
+    Thread elevatorThread;
+    Thread manipulatorThread;
+    Thread spinnerThread;
+    Thread intakeThread;
 
     public void resetMechanisms() {
         manipulator.sleep(750);
@@ -44,6 +49,18 @@ public class TeleOpBlue extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap, elevator, intake);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
+
+        driveThread = new Thread(drive, "driveThread");
+        elevatorThread = new Thread(elevator, "elevatorThread");
+        manipulatorThread = new Thread(manipulator, "manipulatorThread");
+        spinnerThread = new Thread(spinner, "spinnerThread");
+        intakeThread = new Thread(intake, "intakeThread");
+
+        driveThread.start();
+        elevatorThread.start();
+        manipulatorThread.start();
+        spinnerThread.start();
+        intakeThread.start();
 
         waitForStart();
 
@@ -107,15 +124,10 @@ public class TeleOpBlue extends LinearOpMode {
                 manipulator.manualPickup();
             }
 
-            if(gamepad2.right_trigger ==1)
+            if(gamepad2.right_trigger >= 1)
             {
                 spinner.spinSpinner();
             }
-
-
-
-
-
         }
     }
 

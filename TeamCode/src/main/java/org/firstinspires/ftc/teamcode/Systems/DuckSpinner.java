@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class DuckSpinner {
+public class DuckSpinner implements Runnable {
 
     private DcMotorEx spinner;
 
@@ -63,6 +63,11 @@ public class DuckSpinner {
     public void stopSpinner()
     {
         spinner.setPower(0);
+    }
+
+    @Override
+    public void run() {
+        
     }
 }
 

@@ -16,7 +16,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvSwitchableWebcam;
 
 
-public class CapstoneDetectionCamera {
+public class CapstoneDetectionCamera implements Runnable {
     WebcamName webcam1;
     WebcamName webcam2;
     OpenCvSwitchableWebcam switchableWebcam;
@@ -59,5 +59,10 @@ public class CapstoneDetectionCamera {
     public int[] getAnalysis()
     {
         return pipeline.getAnalysis();
+    }
+
+    @Override
+    public void run() {
+
     }
 }

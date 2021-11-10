@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
 
-public class Elevator {
+public class Elevator implements Runnable {
     private DcMotorEx elevatorMotor;
     DigitalChannel ls;
 
@@ -54,6 +54,11 @@ public class Elevator {
 
     public DcMotorEx getElevatorMotor() {
         return elevatorMotor;
+    }
+
+    @Override
+    public void run() {
+
     }
 }
 
