@@ -106,4 +106,9 @@ public class Drive extends SubsystemBase {
         return drive.getLocalizer();
     }
 
+    public void resetHeading()
+    {
+        drive.resetHeading();
+    }
+
 }

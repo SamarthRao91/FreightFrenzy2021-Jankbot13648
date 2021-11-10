@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
-import com.arcrobotics.ftclib.command.CommandScheduler;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -9,12 +10,13 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.DriveBase.DriveDefault;
+import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckWheel;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorToPosition;
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetSuperStructure;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.SuperStructureToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -47,18 +49,96 @@ public class TeleOpBlue extends CommandOpMode {
 
         register(drive, elevator, manipulator, intake, duckSpinner);
 
-        drive.setDefaultCommand(new DriveDefault(drive, () -> gamepad1.left_stick_x, () -> -gamepad1.left_stick_y, () -> gamepad1.right_stick_x));
+        drive.setDefaultCommand(
+                new DriveDefault(
+                        drive,
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_x/4 : driveGamepad.gamepad.left_stick_x,
+                        () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.left_stick_y/4) : -driveGamepad.gamepad.left_stick_y,
+                        () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.right_stick_x/4) : -driveGamepad.gamepad.right_stick_x
+                )
+        );
+
         intake.setDefaultCommand(new IntakeDefault(intake, () -> (double) gamepad1.right_trigger, () -> (double) gamepad1.left_trigger));
-        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> gamepad2.right_stick_y));
+        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -gamepad2.right_stick_y));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -gamepad2.left_stick_x, () -> -gamepad2.left_stick_y));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new SequentialCommandGroup(
+        // Commands --------------------------------------------------------------------------------
+
+        SequentialCommandGroup resetMechanisms = new SequentialCommandGroup(
                 new WaitCommand(750),
-                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_EXTENDER_POSITION + 200, 0.2),
                 new ManipulatorToPosition(manipulator, Constants.Manipulator.Turret.ZERO_POSITION, Constants.Manipulator.Extender.MIN_POS, Constants.Manipulator.Claw.CLOSE_POSITION),
+                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_EXTENDER_POSITION + 200, 1),
                 new WaitCommand(750),
-                new ElevatorToPosition(elevator, 0, 0.2),
-                new ManipulatorToPosition(manipulator, Constants.Manipulator.Turret.ZERO_POSITION, Constants.Manipulator.Extender.MIN_POS, Constants.Manipulator.Claw.OPEN_POSITION)
+                new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION, 1),
+                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION))
+        );
+
+        Command lowPreset = new SuperStructureToPosition(
+                elevator,
+                manipulator,
+                Constants.Elevator.SAFE_TURRET_POSITION + 200,
+                1,
+                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS + 0.2,
+                Constants.Manipulator.Claw.CLOSE_POSITION
+        );
+
+        Command highPreset = new SuperStructureToPosition(
+                elevator,
+                manipulator,
+                1400 + 300,
+                1,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS,
+                Constants.Manipulator.Claw.CLOSE_POSITION
+        );
+
+        Command highReversePreset = new SuperStructureToPosition(
+                elevator,
+                manipulator,
+                1400 + 200,
+                1,
+                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS,
+                Constants.Manipulator.Claw.CLOSE_POSITION
+        );
+
+        Command scoreGamePiece = new SequentialCommandGroup(
+          new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)),
+          new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
+          new WaitCommand(500),
+                resetMechanisms
+        );
+
+        // Binding ---------------------------------------------------------------------------------
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(resetMechanisms);
+        mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(resetMechanisms);
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(lowPreset);
+        mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(lowPreset);
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(highPreset);
+        mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(highPreset);
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(scoreGamePiece);
+        mechGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(scoreGamePiece);
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(highReversePreset);
+        mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(highReversePreset);
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> drive.resetHeading()));
+
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CAPSTONE_OPEN_FULLY)));
+
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SequentialCommandGroup(
+                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
+                new WaitCommand(250),
+                new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION + 200, 1)
         ));
+
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckWheel(duckSpinner, false));
     }
 }
