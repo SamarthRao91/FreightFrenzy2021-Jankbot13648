@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.CurrentState;
 
 public class Elevator {
     private DcMotorEx elevatorMotor;
@@ -26,13 +27,16 @@ public class Elevator {
         elevatorMotor.setTargetPosition(position);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         elevatorMotor.setPower(1);
+
+        CurrentState.ElevatorState.isRunning = true;
     }
 
     public void queryAtPosition()
     {
-        if(!elevatorMotor.isBusy())
+        if(CurrentState.ElevatorState.isRunning && !elevatorMotor.isBusy())
         {
             stopElevator();
+            CurrentState.ElevatorState.isRunning = false;
         }
     }
 

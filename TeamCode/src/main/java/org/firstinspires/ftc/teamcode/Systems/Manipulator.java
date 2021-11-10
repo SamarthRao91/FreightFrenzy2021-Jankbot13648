@@ -65,7 +65,7 @@ public class Manipulator {
 
     public void queryAtPosition()
     {
-        if(!elevatorInstance.isBusy())
+        if(!CurrentState.ElevatorState.isRunning && !elevatorInstance.isBusy())
         {
             elevatorInstance.stopElevator();
 
