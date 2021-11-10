@@ -15,16 +15,17 @@ public class Elevator extends SubsystemBase {
     DigitalChannel ls;
 
     public Elevator(HardwareMap hardwareMap) {
-        elevatorMotor = hardwareMap.get(Motor.class, ELEVATOR_MOTOR_NAME);
+        elevatorMotor = new Motor(hardwareMap, ELEVATOR_MOTOR_NAME);
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
         elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        elevatorMotor.setRunMode(Motor.RunMode.PositionControl);
+        elevatorMotor.setRunMode(Motor.RunMode.RawPower);
         elevatorMotor.setPositionCoefficient(0.05);
         elevatorMotor.setPositionTolerance(10);
     }
 
     public void setTargetPosition(int targetPosition)
     {
+        elevatorMotor.setRunMode(Motor.RunMode.PositionControl);
         elevatorMotor.setTargetPosition(targetPosition);
     }
 
@@ -36,6 +37,11 @@ public class Elevator extends SubsystemBase {
     public boolean atTargetPosition()
     {
         return elevatorMotor.atTargetPosition();
+    }
+
+    public void setRunMode(Motor.RunMode runMode)
+    {
+        elevatorMotor.setRunMode(runMode);
     }
 
     public int getPosition()

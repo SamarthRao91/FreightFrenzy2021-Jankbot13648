@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Systems;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.SensorDistance;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -11,17 +12,17 @@ import org.firstinspires.ftc.teamcode.Constants;
 
 public class Manipulator extends SubsystemBase {
 
-    private ServoEx turret;
-    private ServoEx extender;
+    private Servo turret;
+    private Servo extender;
     private Servo claw;
-    private SensorDistance scoringDetectionDS;
+    private DistanceSensor scoringDetectionDS;
 
     public Manipulator(HardwareMap hardwareMap) {
-        turret = hardwareMap.get(ServoEx.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
-        extender = hardwareMap.get(ServoEx.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
+        turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
+        extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
 
-        scoringDetectionDS = hardwareMap.get(SensorDistance.class, Constants.Intake.DISTANCE_SENSOR_NAME);
+        scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
     }
 
     public void setTurretPosition(double newPos) {

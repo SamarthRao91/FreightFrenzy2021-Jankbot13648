@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
@@ -58,6 +59,7 @@ public class SuperStructureToPosition extends CommandBase {
     public void end(boolean isInterrupted)
     {
         elevator.setSpeed(0);
+        elevator.setRunMode(Motor.RunMode.RawPower);
 
         if(manipulator.getTurretPosition() != turretTarget)
         {

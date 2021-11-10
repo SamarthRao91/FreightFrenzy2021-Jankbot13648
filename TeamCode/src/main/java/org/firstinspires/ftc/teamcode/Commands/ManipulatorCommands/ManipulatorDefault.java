@@ -12,22 +12,20 @@ import java.util.function.DoubleSupplier;
 public class ManipulatorDefault extends CommandBase {
 
     private final Manipulator manipulator;
-    private final Elevator elevator;
 
     private final BooleanSupplier dsStatus;
     private final DoubleSupplier leftStickX;
     private final DoubleSupplier leftStickY;
 
-    public ManipulatorDefault(Manipulator manipulator, Elevator elevator, BooleanSupplier dsStatus, DoubleSupplier leftStickX, DoubleSupplier leftStickY)
+    public ManipulatorDefault(Manipulator manipulator, BooleanSupplier dsStatus, DoubleSupplier leftStickX, DoubleSupplier leftStickY)
     {
         this.manipulator = manipulator;
-        this.elevator = elevator;
 
         this.dsStatus = dsStatus;
         this.leftStickX = leftStickX;
         this.leftStickY = leftStickY;
 
-        addRequirements(manipulator, elevator);
+        addRequirements(manipulator);
     }
 
     @Override
@@ -35,13 +33,6 @@ public class ManipulatorDefault extends CommandBase {
         if(dsStatus.getAsBoolean())
         {
             manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
-            elevator.setTargetPosition(Constants.Elevator.MINIMUM_POSITION + 200);
-            elevator.setSpeed(1);
-        }
-
-        if(elevator.atTargetPosition())
-        {
-            elevator.setSpeed(0);
         }
 
         manipulator.moveTurretPosition(leftStickX.getAsDouble() / 250);

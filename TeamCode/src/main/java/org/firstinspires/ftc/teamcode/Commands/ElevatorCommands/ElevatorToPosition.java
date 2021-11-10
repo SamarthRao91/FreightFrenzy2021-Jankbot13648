@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 
@@ -8,9 +9,9 @@ public class ElevatorToPosition extends CommandBase {
     private final Elevator elevator;
 
     private final int target;
-    private final int speed;
+    private final double speed;
 
-    public ElevatorToPosition(Elevator elevator, int target, int speed) {
+    public ElevatorToPosition(Elevator elevator, int target, double speed) {
         this.elevator = elevator;
         this.target = target;
         this.speed = speed;
@@ -34,6 +35,7 @@ public class ElevatorToPosition extends CommandBase {
     public void end(boolean isInterrupted)
     {
         elevator.setSpeed(0);
+        elevator.setRunMode(Motor.RunMode.RawPower);
     }
 
     @Override

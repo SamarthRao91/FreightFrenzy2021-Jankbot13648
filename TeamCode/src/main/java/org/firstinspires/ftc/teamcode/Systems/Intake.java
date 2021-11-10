@@ -11,25 +11,21 @@ public class Intake extends SubsystemBase {
     private Motor intake;
 
     public Intake(HardwareMap hardwareMap) {
-        intake = hardwareMap.get(Motor.class, INTAKE_MOTOR_NAME);
+        intake = new Motor(hardwareMap,INTAKE_MOTOR_NAME);
         intake.setInverted(false);
         intake.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         intake.setRunMode(Motor.RunMode.RawPower);
     }
 
     public void setIntake(double intakeSpeed, double reverseSpeed) {
-        if(reverseSpeed > 0)
-        {
+        if (reverseSpeed > 0) {
             intake.set(-reverseSpeed);
-        }
-
-        else {
+        } else {
             intake.set(intakeSpeed);
         }
     }
 
-    public void setIntake(double speed)
-    {
+    public void setIntake(double speed) {
         intake.set(speed);
     }
 }

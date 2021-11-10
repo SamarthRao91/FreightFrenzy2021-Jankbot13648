@@ -41,7 +41,7 @@ public class ResetSuperStructure extends CommandBase {
     @Override
     public void execute()
     {
-        elevator.setSpeed(-1);
+        elevator.setSpeed(1);
     }
 
     @Override

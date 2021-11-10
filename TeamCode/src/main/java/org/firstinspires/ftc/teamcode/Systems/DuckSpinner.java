@@ -11,7 +11,7 @@ public class DuckSpinner extends SubsystemBase {
     private Motor spinner;
 
     public DuckSpinner(HardwareMap hardwareMap) {
-        spinner = hardwareMap.get(Motor.class, DUCK_SPINNER_MOTOR_NAME);
+        spinner = new Motor(hardwareMap, DUCK_SPINNER_MOTOR_NAME);
         spinner.setInverted(false);
         spinner.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         spinner.setRunMode(Motor.RunMode.PositionControl);
