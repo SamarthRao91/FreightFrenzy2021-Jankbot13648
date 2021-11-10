@@ -26,9 +26,18 @@ public class Elevator {
         elevatorMotor.setTargetPosition(position);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         elevatorMotor.setPower(1);
+    }
 
-        while (elevatorMotor.isBusy() && !Thread.interrupted());
+    public void queryAtPosition()
+    {
+        if(!elevatorMotor.isBusy())
+        {
+            stopElevator();
+        }
+    }
 
+    public void stopElevator()
+    {
         elevatorMotor.setPower(0);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
@@ -54,6 +63,11 @@ public class Elevator {
 
     public DcMotorEx getElevatorMotor() {
         return elevatorMotor;
+    }
+
+    public boolean isBusy()
+    {
+        return elevatorMotor.isBusy();
     }
 }
 

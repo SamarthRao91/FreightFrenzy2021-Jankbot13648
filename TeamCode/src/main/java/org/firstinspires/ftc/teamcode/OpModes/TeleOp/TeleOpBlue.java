@@ -4,9 +4,9 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.CurrentState;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
@@ -39,6 +39,8 @@ public class TeleOpBlue extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        CurrentState.resetState();
+
         drive = new MecanumDrive(hardwareMap);
         elevator = new Elevator(hardwareMap);
         manipulator = new Manipulator(hardwareMap, elevator, intake);
@@ -50,6 +52,10 @@ public class TeleOpBlue extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (!isStopRequested() && opModeIsActive()) {
+
+            // State Checks
+            elevator.queryAtPosition();
+            manipulator.queryAtPosition();
 
             Vector2d input = new Vector2d(
                     gamepad1.left_bumper ? gamepad1.left_stick_y / 4 : gamepad1.left_stick_y,
@@ -111,11 +117,6 @@ public class TeleOpBlue extends LinearOpMode {
             {
                 spinner.spinSpinner();
             }
-
-
-
-
-
         }
     }
 

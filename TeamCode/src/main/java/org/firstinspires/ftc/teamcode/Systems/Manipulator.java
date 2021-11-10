@@ -1,12 +1,12 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.CurrentState;
 import org.firstinspires.ftc.teamcode.Util.StopWatch;
 
 public class Manipulator {
@@ -19,10 +19,14 @@ public class Manipulator {
     private final Elevator elevatorInstance;
     private final Intake intakeInstance;
 
+    private StopWatch timer;
+
     public Manipulator(HardwareMap hardwareMap, Elevator elevator, Intake intake) {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
+
+        timer = new StopWatch();
 
         scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
 
@@ -30,15 +34,14 @@ public class Manipulator {
         intakeInstance = intake;
     }
 
-    public void sleep(long amount) {
-        /*StopWatch timer = new StopWatch(amount);
-        while (!timer.isExpired());*/
+    public void sleep(int amount) {
+        CurrentState.ManipulatorState.sleeping = true;
+        timer.setTime(amount);
+    }
 
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public boolean isTimerExpired()
+    {
+        return timer.isExpired();
     }
 
     // TODO: TEST
@@ -54,38 +57,40 @@ public class Manipulator {
     }
 
     public void setSuperStructure(int elevatorPos, double turretPos, double extenderPos) {
-        elevatorInstance.getElevatorMotor().setTargetPosition(elevatorPos);
-        elevatorInstance.getElevatorMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        elevatorInstance.getElevatorMotor().setPower(1);
+        elevatorInstance.setPosition(elevatorPos);
 
-        while (elevatorInstance.getElevatorMotor().isBusy() && !Thread.interrupted()) {
+        CurrentState.ManipulatorState.currentTurretPos = turretPos;
+        CurrentState.ManipulatorState.currentExtenderPos = extenderPos;
+    }
+
+    public void queryAtPosition()
+    {
+        if(!elevatorInstance.isBusy())
+        {
+            elevatorInstance.stopElevator();
+
+            if(getTurretPosition() != CurrentState.ManipulatorState.currentTurretPos
+                    && safeToTurret(CurrentState.ManipulatorState.currentTurretPos))
+            {
+                turret.setPosition(CurrentState.ManipulatorState.currentTurretPos);
+            }
+
+            if(getExtenderPosition() != CurrentState.ManipulatorState.currentExtenderPos
+                    && safeToExtender(CurrentState.ManipulatorState.currentExtenderPos))
+            {
+                turret.setPosition(CurrentState.ManipulatorState.currentExtenderPos);
+            }
+        }
+
+        else{
             if (elevatorInstance.getPosition() >= Constants.Elevator.SAFE_TURRET_POSITION) {
-                turret.setPosition(turretPos);
+                turret.setPosition(CurrentState.ManipulatorState.currentTurretPos);
             }
 
             if (elevatorInstance.getPosition() >= Constants.Elevator.SAFE_EXTENDER_POSITION) {
-                extender.setPosition(extenderPos);
+                extender.setPosition(CurrentState.ManipulatorState.currentExtenderPos);
             }
         }
-
-        if (getTurretPosition() != turretPos && safeToTurret(turretPos)) {
-            setTurretPosition(turretPos);
-
-            StopWatch timer  = new StopWatch(100);
-            timer.setTime(100);
-            while (!timer.isExpired()) ;
-        }
-
-        if (getExtenderPosition() != extenderPos && safeToExtender(turretPos)) {
-            extender.setPosition(extenderPos);
-
-            StopWatch timer1  = new StopWatch(100);
-            timer1.setTime(100);
-            while (!timer1.isExpired()) ;
-        }
-
-        elevatorInstance.getElevatorMotor().setPower(0);
-        elevatorInstance.getElevatorMotor().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void resetTurret() {
