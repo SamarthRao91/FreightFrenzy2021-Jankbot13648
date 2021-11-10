@@ -10,7 +10,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.DriveBase.DriveDefault;
-import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckWheel;
+import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.DuckWheelToPosition;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
@@ -52,8 +52,8 @@ public class TeleOpRed extends CommandOpMode {
         drive.setDefaultCommand(
                 new DriveDefault(
                         drive,
-                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_x/4 : driveGamepad.gamepad.left_stick_x,
-                        () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.left_stick_y/4) : -driveGamepad.gamepad.left_stick_y,
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_y/4 : driveGamepad.gamepad.left_stick_y,
+                        () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.left_stick_x/4) : -driveGamepad.gamepad.left_stick_x,
                         () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.right_stick_x/4) : -driveGamepad.gamepad.right_stick_x
                 )
         );
@@ -110,6 +110,11 @@ public class TeleOpRed extends CommandOpMode {
                 resetMechanisms
         );
 
+        SequentialCommandGroup spinDuckSpinner = new SequentialCommandGroup(
+                new DuckWheelToPosition(duckSpinner, -675, 0.6),
+                new DuckWheelToPosition(duckSpinner, -325, 1)
+        );
+
         // Binding ---------------------------------------------------------------------------------
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(resetMechanisms);
@@ -133,13 +138,13 @@ public class TeleOpRed extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)));
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CAPSTONE_OPEN_FULLY)));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SequentialCommandGroup(
+        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new SequentialCommandGroup(
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                 new WaitCommand(250),
                 new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION + 200, 1)
         ));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckWheel(duckSpinner, true));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(spinDuckSpinner);
     }
 
 }

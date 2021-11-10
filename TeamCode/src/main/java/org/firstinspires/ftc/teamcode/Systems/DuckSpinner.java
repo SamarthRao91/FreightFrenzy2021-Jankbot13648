@@ -12,11 +12,11 @@ public class DuckSpinner extends SubsystemBase {
 
     public DuckSpinner(HardwareMap hardwareMap) {
         spinner = new Motor(hardwareMap, DUCK_SPINNER_MOTOR_NAME);
-        spinner.setInverted(false);
+        spinner.setInverted(true);
         spinner.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         spinner.setRunMode(Motor.RunMode.PositionControl);
-        spinner.setPositionCoefficient(0.05);
-        spinner.setPositionTolerance(10);
+        spinner.setPositionCoefficient(0.03);
+        spinner.setPositionTolerance(15);
     }
 
     public void setTargetPosition(int targetPosition)
@@ -34,7 +34,12 @@ public class DuckSpinner extends SubsystemBase {
         return spinner.atTargetPosition();
     }
 
-    public int getPosition()
+    public void resetEncoder()
+    {
+        spinner.resetEncoder();
+    }
+
+    public int getCurrentPosition()
     {
         return spinner.getCurrentPosition();
     }
