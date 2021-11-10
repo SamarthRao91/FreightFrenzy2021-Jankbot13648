@@ -58,7 +58,7 @@ public class TeleOpRed extends CommandOpMode {
                 )
         );
 
-        intake.setDefaultCommand(new IntakeDefault(intake, () -> (double) driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> (double) driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
+        intake.setDefaultCommand(new IntakeDefault(intake, () -> driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
         elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.getRightY()));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -mechGamepad.getLeftX(), () -> -mechGamepad.getLeftY()));
 
