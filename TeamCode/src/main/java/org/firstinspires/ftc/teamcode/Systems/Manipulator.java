@@ -35,13 +35,42 @@ public class Manipulator {
     }
 
     public void sleep(int amount) {
-        CurrentState.ManipulatorState.sleeping = true;
         timer.setTime(amount);
+        CurrentState.ManipulatorState.sleeping = true;
     }
 
     public boolean isTimerExpired()
     {
         return timer.isExpired();
+    }
+
+    public void resetMechanisms()
+    {
+        CurrentState.ManipulatorState.resetting = true;
+
+        if(!CurrentState.ManipulatorState.sleeping)
+        {
+            sleep(750);
+        }
+
+        else if(isTimerExpired())
+        {
+            CurrentState.ManipulatorState.sleeping = false;
+
+            closeClaw();
+            setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+            elevatorInstance.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
+            resetTurret();
+
+
+            sleep(750);
+            elevatorInstance.setPosition(Constants.Elevator.MINIMUM_POSITION);
+            elevatorInstance.resetElevator();
+            openClaw();
+            sleep(250);
+        }
+
+        CurrentState.ManipulatorState.resetting = false;
     }
 
     // TODO: TEST

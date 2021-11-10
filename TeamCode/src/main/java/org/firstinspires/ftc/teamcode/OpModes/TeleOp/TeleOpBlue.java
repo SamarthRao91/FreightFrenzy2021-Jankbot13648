@@ -23,19 +23,6 @@ public class TeleOpBlue extends LinearOpMode {
     DuckSpinner spinner;
     Intake intake;
 
-    public void resetMechanisms() {
-        manipulator.sleep(750);
-        manipulator.closeClaw();
-        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
-        manipulator.resetTurret();
-        manipulator.sleep(750);
-        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
-        elevator.resetElevator();
-        manipulator.openClaw();
-        manipulator.sleep(250);
-    }
-
     @Override
     public void runOpMode() {
 
@@ -77,8 +64,8 @@ public class TeleOpBlue extends LinearOpMode {
             manipulator.moveTurretPosition(gamepad2.left_stick_x / 250);
             manipulator.moveExtenderPosition(-gamepad2.left_stick_y / 200);
 
-            if (gamepad1.a || gamepad2.a) {
-                resetMechanisms();
+            if (gamepad1.a || gamepad2.a || CurrentState.ManipulatorState.resetting) {
+                manipulator.resetMechanisms();
             }
 
             if (gamepad1.b || gamepad2.b) {
@@ -148,6 +135,6 @@ public class TeleOpBlue extends LinearOpMode {
         manipulator.openClaw();
         manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
         manipulator.sleep(500);
-        resetMechanisms();
+        manipulator.resetMechanisms();
     }
 }
