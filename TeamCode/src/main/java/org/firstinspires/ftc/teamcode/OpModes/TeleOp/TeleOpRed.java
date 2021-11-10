@@ -139,7 +139,7 @@ public class TeleOpRed extends CommandOpMode {
                 new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION + 200, 1)
         ));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckWheel(duckSpinner, false));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckWheel(duckSpinner, true));
     }
 
 }
