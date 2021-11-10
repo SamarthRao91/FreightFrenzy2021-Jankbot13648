@@ -2,37 +2,35 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 import static org.firstinspires.ftc.teamcode.Constants.Intake.INTAKE_MOTOR_NAME;
 
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
-public class Intake {
+public class Intake extends SubsystemBase {
 
-    private DcMotorEx intake;
-    private Servo intakeDeployer;
+    private Motor intake;
 
     public Intake(HardwareMap hardwareMap) {
-        intake = hardwareMap.get(DcMotorEx.class, INTAKE_MOTOR_NAME);
-        intake.setDirection(DcMotorEx.Direction.FORWARD);
-        intake.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        intake.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-
-        // intakeDeployer = hardwareMap.get(Servo.class, INTAKE_DEPLOYER_SERVO_NAME);
+        intake = hardwareMap.get(Motor.class, INTAKE_MOTOR_NAME);
+        intake.setInverted(false);
+        intake.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        intake.setRunMode(Motor.RunMode.RawPower);
     }
 
     public void setIntake(double intakeSpeed, double reverseSpeed) {
         if(reverseSpeed > 0)
         {
-            intake.setPower(-reverseSpeed);
+            intake.set(-reverseSpeed);
         }
 
         else {
-            intake.setPower(intakeSpeed);
+            intake.set(intakeSpeed);
         }
     }
 
-    public void deployIntake() {
-        intakeDeployer.setPosition(0.5);
+    public void setIntake(double speed)
+    {
+        intake.set(speed);
     }
 }
 

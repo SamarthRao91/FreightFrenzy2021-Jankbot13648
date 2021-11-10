@@ -1,152 +1,32 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.arcrobotics.ftclib.command.CommandOpMode;
 
-import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Commands.DriveBase.DriveDefault;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
+import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
+import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDefault;
+import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-@TeleOp(name = "TeleOp - Blue")
-public class TeleOpBlue extends LinearOpMode {
-
-    //different subsystems
-    MecanumDrive drive;
-    Elevator elevator;
-    Manipulator manipulator;
-    DuckSpinner spinner;
-    Intake intake;
-
-    public void resetMechanisms() {
-        manipulator.sleep(750);
-        manipulator.closeClaw();
-        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-        elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
-        manipulator.resetTurret();
-        manipulator.sleep(750);
-        elevator.setPosition(Constants.Elevator.MINIMUM_POSITION);
-        elevator.resetElevator();
-        manipulator.openClaw();
-        manipulator.sleep(250);
-    }
-
+public class TeleOpBlue extends CommandOpMode {
     @Override
-    public void runOpMode() {
+    public void initialize() {
+        Drive drive = new Drive(new MecanumDrive(hardwareMap), true);
+        Elevator elevator = new Elevator(hardwareMap);
+        Manipulator manipulator = new Manipulator(hardwareMap);
+        Intake intake = new Intake(hardwareMap);
+        DuckSpinner duckSpinner = new DuckSpinner(hardwareMap);
 
-        drive = new MecanumDrive(hardwareMap);
-        elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap, elevator, intake);
-        spinner = new DuckSpinner(hardwareMap);
-        intake = new Intake(hardwareMap);
+        register(drive, elevator, manipulator, intake, duckSpinner);
 
-        waitForStart();
-
-        if (isStopRequested()) return;
-
-        while (!isStopRequested() && opModeIsActive()) {
-
-            Vector2d input = new Vector2d(
-                    gamepad1.left_bumper ? gamepad1.left_stick_y / 4 : gamepad1.left_stick_y,
-                    gamepad1.left_bumper ? -gamepad1.left_stick_x / 4 : -gamepad1.left_stick_x
-            ).rotated(drive.getRawExternalHeading());
-
-            drive.setWeightedDrivePower(
-                    new Pose2d(
-                            input.getX(),
-                            input.getY(),
-                            -gamepad1.right_stick_x
-                    )
-            );
-
-            elevator.setSpeed(-gamepad2.right_stick_y);
-            intake.setIntake(gamepad1.right_trigger, gamepad1.left_trigger);
-
-            manipulator.checkDistanceSensor();
-            manipulator.moveTurretPosition(gamepad2.left_stick_x / 250);
-            manipulator.moveExtenderPosition(-gamepad2.left_stick_y / 200);
-
-            if (gamepad1.a || gamepad2.a) {
-                resetMechanisms();
-            }
-
-            if (gamepad1.b || gamepad2.b) {
-                lowPreset();
-            }
-
-            if (gamepad1.y || gamepad2.y) {
-                highPreset();
-            }
-
-            if (gamepad1.x || gamepad2.x) {
-                scoreGamePiecePreset();
-            }
-
-            if (gamepad1.start || gamepad2.start) {
-                highReversePreset();
-            }
-
-            if (gamepad1.dpad_up) {
-                drive.resetHeading();
-            }
-
-            if (gamepad2.dpad_down) {
-                manipulator.closeClaw();
-            } else if (gamepad2.dpad_up) {
-                manipulator.openClaw();
-            } else if (gamepad2.dpad_right) {
-                manipulator.capstoneOpenClaw();
-            }
-
-            if (gamepad2.left_bumper) {
-                manipulator.manualPickup();
-            }
-
-            if(gamepad2.right_trigger ==1)
-            {
-                spinner.spinSpinner();
-            }
-
-
-
-
-
-        }
-    }
-
-    public void lowPreset() {
-        manipulator.setSuperStructure(
-                Constants.Elevator.SAFE_TURRET_POSITION + 500,
-                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS + 0.2
-        );
-    }
-
-    public void highPreset() {
-        manipulator.setSuperStructure(
-                1400 + 300,
-                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS
-        );
-    }
-
-    public void highReversePreset() {
-        manipulator.setSuperStructure(
-                1400 + 200,
-                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS
-        );
-    }
-
-    public void scoreGamePiecePreset() {
-        manipulator.openClaw();
-        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
-        manipulator.sleep(500);
-        resetMechanisms();
+        drive.setDefaultCommand(new DriveDefault(drive, () -> gamepad1.left_stick_x, () -> gamepad1.left_stick_y, () -> gamepad1.right_stick_x));
+        intake.setDefaultCommand(new IntakeDefault(intake, () -> (double) gamepad1.right_trigger, () -> (double) gamepad1.left_trigger));
+        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> gamepad2.left_stick_y));
+        manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, elevator, manipulator::dsTripped, () -> gamepad2.left_stick_x, () -> gamepad2.left_stick_y));
     }
 }

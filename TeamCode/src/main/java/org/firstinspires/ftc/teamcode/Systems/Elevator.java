@@ -3,57 +3,44 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 import static org.firstinspires.ftc.teamcode.Constants.Elevator.ELEVATOR_MOTOR_NAME;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
 
-public class Elevator {
-    private DcMotorEx elevatorMotor;
+public class Elevator extends SubsystemBase {
+    private Motor elevatorMotor;
     DigitalChannel ls;
 
     public Elevator(HardwareMap hardwareMap) {
-        elevatorMotor = hardwareMap.get(DcMotorEx.class, ELEVATOR_MOTOR_NAME);
+        elevatorMotor = hardwareMap.get(Motor.class, ELEVATOR_MOTOR_NAME);
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
-        elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        elevatorMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        elevatorMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        elevatorMotor.setRunMode(Motor.RunMode.PositionControl);
+        elevatorMotor.setPositionCoefficient(0.05);
+        elevatorMotor.setPositionTolerance(10);
     }
 
-    public void setPosition(int position) {
-        elevatorMotor.setTargetPosition(position);
-        elevatorMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        elevatorMotor.setPower(1);
-
-        while (elevatorMotor.isBusy() && !Thread.interrupted());
-
-        elevatorMotor.setPower(0);
-        elevatorMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-
-    public void resetElevator()
+    public void setTargetPosition(int targetPosition)
     {
-        elevatorMotor.setPower(-1);
-        while(!Thread.interrupted() && isLimitPressed());
-        elevatorMotor.setPower(0);
+        elevatorMotor.setTargetPosition(targetPosition);
     }
 
-    public boolean isLimitPressed() {
-        return !ls.getState();
+    public void setSpeed(double speed)
+    {
+        elevatorMotor.set(speed);
     }
 
-    public void setSpeed(double speed) {
-        elevatorMotor.setPower(speed);
+    public boolean atTargetPosition()
+    {
+        return elevatorMotor.atTargetPosition();
     }
 
-    public int getPosition() {
+    public int getPosition()
+    {
         return elevatorMotor.getCurrentPosition();
-    }
-
-    public DcMotorEx getElevatorMotor() {
-        return elevatorMotor;
     }
 }
 
