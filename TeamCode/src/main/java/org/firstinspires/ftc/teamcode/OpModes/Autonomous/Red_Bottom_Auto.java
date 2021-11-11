@@ -4,7 +4,9 @@ import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConsta
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_ANG_VEL;
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_VEL;
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline.CapstonePosition.LEFT;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.drive.Drive;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -51,7 +53,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap, elevator, intake);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap);
+        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
 
         Trajectory RB_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(180)))
                 .lineTo(new Vector2d(20, 26),
@@ -60,7 +62,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
                 .build();
         //brings the robot close to the duck wheel (TUNE THIS POSITION CAREFULLY)
         Trajectory RB_traj2 = BuildTrajectory(RB_traj1.end())
-                .lineTo(new Vector2d(-8, 6.5),
+                .lineTo(new Vector2d(-8.5, 8),
                         MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                         MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
                 .build();
@@ -72,31 +74,37 @@ public class Red_Bottom_Auto extends LinearOpMode {
                 .build();
         //strafes up to intake
         Trajectory RB_traj4 = BuildTrajectory(RB_traj3.end())
-                .lineToSplineHeading(new Pose2d(8, 16, Math.toRadians(-90)),
+                .lineToSplineHeading(new Pose2d(12, 16, Math.toRadians(-90)),
                         MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                         MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
                 .build();
         //drives forwards for second intake pass
         Trajectory RB_traj5 = BuildTrajectory(RB_traj4.end())
-                .lineToSplineHeading(new Pose2d(8, 11, Math.toRadians(-90)),
+                .lineToSplineHeading(new Pose2d(12, 11.5, Math.toRadians(-90)),
                         MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                         MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
                 .build();
         //strafes down for second intake pass
         Trajectory RB_traj6 = BuildTrajectory(RB_traj5.end())
-                .lineToSplineHeading(new Pose2d(-16, 11, Math.toRadians(-90)),
+                .lineToSplineHeading(new Pose2d(-20, 11.5, Math.toRadians(-90)),
+                        MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
+                        MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
+                .build();
+        //strafes down for second intake pass
+        Trajectory RB_trajfix = BuildTrajectory(RB_traj6.end())
+                .lineToSplineHeading(new Pose2d(-20, 14, Math.toRadians(-90)),
                         MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                         MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
                 .build();
         //align to goal for the second time
-        Trajectory RB_traj7 = BuildTrajectory(RB_traj6.end())
-                .lineToSplineHeading(new Pose2d(20, 26, Math.toRadians(180)),
+        Trajectory RB_traj7 = BuildTrajectory(RB_trajfix.end())
+                .lineToSplineHeading(new Pose2d(19, 24, Math.toRadians(180)),
                         MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                         MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
                 .build();
         //park
         Trajectory RB_traj8 = BuildTrajectory(RB_traj7.end())
-                .lineTo(new Vector2d(-25, 35),
+                .lineTo(new Vector2d(-22, 38),
                         MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                         MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
                 .build();
@@ -106,16 +114,35 @@ public class Red_Bottom_Auto extends LinearOpMode {
 
         while (!isStarted()) {
             capstonePosition = capstoneDetectionCamera.getPosition();
+
+            telemetry.addData("Capstone Position", capstonePosition);
+            telemetry.addData("Left Analysis", capstoneDetectionCamera.getAnalysis()[0]);
+            telemetry.addData("Middle Analysis", capstoneDetectionCamera.getAnalysis()[1]);
+            telemetry.addData("Right Analysis", capstoneDetectionCamera.getAnalysis()[2]);
+            telemetry.update();
         }
         
         //automous---------------------------
         //auto has been started
 
-        if(!isStopRequested())
+        if(!isStopRequested() && opModeIsActive())
         {
             // TODO: Deploy Intake
 
-             highPreset();
+            highPreset();
+
+            switch (capstonePosition)
+            {
+                case LEFT:
+                    lowPreset();;
+                    break;
+                case CENTER:
+                    midPreset();
+                    break;
+                case RIGHT:
+                    highPreset();
+                    break;
+            }
 
             drive.followTrajectory(RB_traj1);
 
@@ -128,12 +155,14 @@ public class Red_Bottom_Auto extends LinearOpMode {
             spinner.spinReverseSlow();
 
             //intake the duck
-            intake.setIntake(1.0, 0); //slow speed to prevent duck from flying
+            intake.setIntake(0.75, 0); //slow speed to prevent duck from flying
             drive.followTrajectory(RB_traj3);
             drive.followTrajectory(RB_traj4);
 
             drive.followTrajectory(RB_traj5);
             drive.followTrajectory(RB_traj6);
+            drive.followTrajectory(RB_trajfix);
+            sleep(500);
             manipulator.closeClaw();
             sleep(100);
             manipulator.manualPickup();
@@ -162,7 +191,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
     //methods-----------------------------
 
     public void resetMechanisms() {
-        manipulator.sleep(750);
+        manipulator.sleep(250);
         manipulator.closeClaw();
         manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
         elevator.setPosition(Constants.Elevator.SAFE_TURRET_POSITION + 100);
@@ -181,6 +210,18 @@ public class Red_Bottom_Auto extends LinearOpMode {
         );
     }
 
+    public void midPreset() {
+        manipulator.setSuperStructure( 900,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS
+        );
+    }
+    public void lowPreset() {
+        manipulator.setSuperStructure(445,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS
+        );
+    }
     public void scoreGamePiecePreset() {
 
         manipulator.openClaw();

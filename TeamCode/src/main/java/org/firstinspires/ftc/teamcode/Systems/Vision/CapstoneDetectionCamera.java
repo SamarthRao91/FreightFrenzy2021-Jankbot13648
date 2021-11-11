@@ -23,7 +23,7 @@ public class CapstoneDetectionCamera {
     CapstonePipeline pipeline;
     Telemetry telemetry;
 
-    public CapstoneDetectionCamera(HardwareMap hardwareMap) {
+    public CapstoneDetectionCamera(HardwareMap hardwareMap, boolean useWebCam2) {
         webcam1 = hardwareMap.get(WebcamName.class, CAPSTONE_DETECTION_CAMERA_NAME_LEFT);
         webcam2 = hardwareMap.get(WebcamName.class, CAPSTONE_DETECTION_CAMERA_NAME_RIGHT);
 
@@ -38,6 +38,10 @@ public class CapstoneDetectionCamera {
         switchableWebcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
                                                    @Override
                                                    public void onOpened() {
+                                                       if(useWebCam2)
+                                                       {
+                                                           switchWebcam();
+                                                       }
                                                        switchableWebcam.startStreaming(Constants.Vision.CAMERA_RESOLUTION_WIDTH, Constants.Vision.CAMERA_RESOLUTION_HEIGHT, OpenCvCameraRotation.UPRIGHT);
                                                        FtcDashboard.getInstance().startCameraStream(switchableWebcam, 0);
                                                    }
@@ -49,6 +53,11 @@ public class CapstoneDetectionCamera {
                                                    }
                                                }
         );
+    }
+
+    public void switchWebcam()
+    {
+        switchableWebcam.setActiveCamera(webcam2);
     }
 
     public CapstonePipeline.CapstonePosition getPosition()

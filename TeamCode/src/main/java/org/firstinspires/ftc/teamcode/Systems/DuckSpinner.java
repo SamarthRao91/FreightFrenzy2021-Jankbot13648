@@ -66,7 +66,7 @@ public class DuckSpinner {
         FtcDashboard.getInstance().getTelemetry().update();
         while(spinner.getCurrentPosition() > -1000) {
             if (spinner.getCurrentPosition() <= -675) {
-                spinner.setPower(-0.2);
+                spinner.setPower(-0.4);
             } else {
                 spinner.setPower(-0.4);
 

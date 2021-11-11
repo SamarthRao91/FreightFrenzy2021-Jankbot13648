@@ -98,7 +98,7 @@ public class Blue_Bottom_Auto extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap, elevator, intake);
         spinner = new DuckSpinner(hardwareMap);
         intake = new Intake(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap);
+        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, false);
 
         while (!isStarted()) {
             capstonePosition = capstoneDetectionCamera.getPosition();

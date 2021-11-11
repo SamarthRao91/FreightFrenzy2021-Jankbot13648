@@ -1,52 +1,32 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
+
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
+import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 
-import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
-
-import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.*;
-
-import java.util.List;
-
-@TeleOp(name = "Test Teleop")
+@TeleOp(name = "Test Tele-Op")
 public class TestTeleOp extends LinearOpMode {
 
-    Telemetry dashboardTelemetry;
-
-    MecanumDrive driveBase;
-
+    CapstoneDetectionCamera capstoneDetectionCamera;
+    CapstonePipeline.CapstonePosition capstonePosition;
 
     @Override
     public void runOpMode() {
 
-        dashboardTelemetry = FtcDashboard.getInstance().getTelemetry();
+        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
 
-        driveBase = new MecanumDrive(hardwareMap);
+        while (!isStarted())
+        {
+            capstonePosition = capstoneDetectionCamera.getPosition();
 
-
-        telemetry.addLine("System Initialization Complete");
-        telemetry.update();
-
-        waitForStart();
-
-
-        telemetry.clearAll();
-        telemetry.update();
-        while (!isStopRequested() && opModeIsActive()) {
-
-            List<Double> positions = driveBase.getWheelPositions();
-            telemetry.addData("Right front encoder", positions.get(0));
-            telemetry.addData("Right back encoder", positions.get(1));
-            telemetry.addData("Left front encoder", positions.get(2));
-            telemetry.addData("Left back encoder", positions.get(3));
-            telemetry.update();
+            FtcDashboard.getInstance().getTelemetry().addData("Capstone Position", capstonePosition);
+            FtcDashboard.getInstance().getTelemetry().addData("Left Analysis", capstoneDetectionCamera.getAnalysis()[0]);
+            FtcDashboard.getInstance().getTelemetry().addData("Middle Analysis", capstoneDetectionCamera.getAnalysis()[1]);
+            FtcDashboard.getInstance().getTelemetry().addData("Right Analysis", capstoneDetectionCamera.getAnalysis()[2]);
+            FtcDashboard.getInstance().getTelemetry().update();
         }
     }
-};
+}
