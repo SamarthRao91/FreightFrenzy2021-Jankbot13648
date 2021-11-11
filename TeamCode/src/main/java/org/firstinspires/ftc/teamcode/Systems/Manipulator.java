@@ -31,14 +31,8 @@ public class Manipulator {
     }
 
     public void sleep(long amount) {
-        /*StopWatch timer = new StopWatch(amount);
-        while (!timer.isExpired());*/
-
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        StopWatch timer = new StopWatch(amount);
+        while (!timer.isExpired());
     }
 
     // TODO: TEST

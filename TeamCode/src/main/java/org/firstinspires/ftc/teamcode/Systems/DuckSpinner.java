@@ -40,6 +40,47 @@ public class DuckSpinner {
 
     }
 
+    public void spinSlow()
+    {
+        FtcDashboard.getInstance().getTelemetry().addData("Spinner Position", spinner.getCurrentPosition());
+        FtcDashboard.getInstance().getTelemetry().update();
+        while(spinner.getCurrentPosition() < 1000) {
+            if (spinner.getCurrentPosition() >= 675) {
+                spinner.setPower(0.2);
+            } else {
+                spinner.setPower(0.4);
+
+            }
+        }
+
+        spinner.setPower(0);
+        spinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+    }
+
+    public void spinReverseSlow()
+    {
+        FtcDashboard.getInstance().getTelemetry().addData("Spinner Position", spinner.getCurrentPosition());
+        FtcDashboard.getInstance().getTelemetry().update();
+        while(spinner.getCurrentPosition() > -1000) {
+            if (spinner.getCurrentPosition() <= -675) {
+                spinner.setPower(-0.2);
+            } else {
+                spinner.setPower(-0.4);
+
+            }
+        }
+
+        spinner.setPower(0);
+        spinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+    }
+
+
     public void spinReverseSpinner()
     {
         FtcDashboard.getInstance().getTelemetry().addData("Spinner Position", spinner.getCurrentPosition());
