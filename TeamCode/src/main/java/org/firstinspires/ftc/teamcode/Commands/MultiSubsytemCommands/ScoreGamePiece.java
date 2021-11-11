@@ -16,7 +16,8 @@ public class ScoreGamePiece extends SequentialCommandGroup {
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)),
                 new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
                 new WaitCommand(500),
-                new ResetMechanisms(elevator, manipulator)
+                new ResetMechanisms(elevator, manipulator),
+                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION))
         );
 
         addRequirements(elevator, manipulator);

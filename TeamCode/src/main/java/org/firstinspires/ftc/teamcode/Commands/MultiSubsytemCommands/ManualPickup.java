@@ -16,7 +16,7 @@ public class ManualPickup extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                 new WaitCommand(250),
-                new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION + 200, 1)
+                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION, 1)
         );
 
         addRequirements(elevator, manipulator);

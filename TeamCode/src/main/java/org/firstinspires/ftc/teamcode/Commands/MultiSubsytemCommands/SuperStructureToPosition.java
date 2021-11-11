@@ -19,7 +19,6 @@ public class SuperStructureToPosition extends CommandBase {
     private final double extenderTarget;
     private final double clawTarget;
 
-
     public SuperStructureToPosition(Elevator elevator, Manipulator manipulator, int elevatorTarget, int elevatorSpeed, double turretTarget, double extenderTarget, double clawTarget)
     {
         this.elevator = elevator;
@@ -38,6 +37,8 @@ public class SuperStructureToPosition extends CommandBase {
     @Override
     public void initialize()
     {
+        manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS);
+        manipulator.setClawPosition(clawTarget);
         elevator.setTargetPosition(elevatorTarget);
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
@@ -48,12 +49,12 @@ public class SuperStructureToPosition extends CommandBase {
     {
         elevator.setSpeed(elevatorSpeed);
 
-        if(elevator.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION && manipulator.getTurretPosition() != turretTarget)
+        if(elevator.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION)
         {
             manipulator.setTurretPosition(turretTarget);
         }
 
-        if(elevator.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION && manipulator.getExtenderPosition() != extenderTarget)
+        if(elevator.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION)
         {
             manipulator.setExtenderPosition(extenderTarget);
         }
@@ -65,15 +66,8 @@ public class SuperStructureToPosition extends CommandBase {
         elevator.setSpeed(0);
         elevator.setRunMode(Motor.RunMode.RawPower);
 
-        if(manipulator.getTurretPosition() != turretTarget)
-        {
-            manipulator.setTurretPosition(turretTarget);
-        }
-
-        if(manipulator.getExtenderPosition() != extenderTarget)
-        {
-            manipulator.setTurretPosition(extenderTarget);
-        }
+        manipulator.setTurretPosition(turretTarget);
+        manipulator.setExtenderPosition(extenderTarget);
     }
 
     @Override

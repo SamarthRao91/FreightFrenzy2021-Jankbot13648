@@ -4,6 +4,7 @@ import static org.firstinspires.ftc.teamcode.Constants.Vision.CAPSTONE_DETECTION
 import static org.firstinspires.ftc.teamcode.Constants.Vision.CAPSTONE_DETECTION_CAMERA_NAME_RIGHT;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -16,14 +17,15 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvSwitchableWebcam;
 
 
-public class CapstoneDetectionCamera {
+public class CapstoneDetectionCamera extends SubsystemBase {
     WebcamName webcam1;
     WebcamName webcam2;
     OpenCvSwitchableWebcam switchableWebcam;
     CapstonePipeline pipeline;
     Telemetry telemetry;
 
-    public CapstoneDetectionCamera(HardwareMap hardwareMap) {
+    public CapstoneDetectionCamera(HardwareMap hardwareMap)
+    {
         webcam1 = hardwareMap.get(WebcamName.class, CAPSTONE_DETECTION_CAMERA_NAME_LEFT);
         webcam2 = hardwareMap.get(WebcamName.class, CAPSTONE_DETECTION_CAMERA_NAME_RIGHT);
 

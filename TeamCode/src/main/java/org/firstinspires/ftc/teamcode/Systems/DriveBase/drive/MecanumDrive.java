@@ -54,7 +54,7 @@ import java.util.List;
 @Config
 public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0);
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(  6, 0.5, 0);
 
     public static double LATERAL_MULTIPLIER = 1;
 
@@ -125,10 +125,10 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         }
 
         // TODO: reverse any motors using DcMotor.setDirection()
-        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
         leftRear.setDirection(DcMotorSimple.Direction.FORWARD);
         rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightRear.setDirection(DcMotorSimple.Direction.FORWARD);
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
 
@@ -260,18 +260,26 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     @Override
     public List<Double> getWheelPositions() {
         List<Double> wheelPositions = new ArrayList<>();
-        for (DcMotorEx motor : motors) {
+        /*for (DcMotorEx motor : motors) {
             wheelPositions.add(encoderTicksToInches(motor.getCurrentPosition()));
-        }
+        }*/
+        wheelPositions.add(encoderTicksToInches(motors.get(0).getCurrentPosition()));
+        wheelPositions.add(encoderTicksToInches(motors.get(1).getCurrentPosition()));
+        wheelPositions.add(encoderTicksToInches(-motors.get(2).getCurrentPosition()));
+        wheelPositions.add(encoderTicksToInches(-motors.get(3).getCurrentPosition()));
         return wheelPositions;
     }
 
     @Override
     public List<Double> getWheelVelocities() {
         List<Double> wheelVelocities = new ArrayList<>();
-        for (DcMotorEx motor : motors) {
+        /*for (DcMotorEx motor : motors) {
             wheelVelocities.add(encoderTicksToInches(motor.getVelocity()));
-        }
+        }*/
+        wheelVelocities.add(encoderTicksToInches(motors.get(0).getVelocity()));
+        wheelVelocities.add(encoderTicksToInches(motors.get(1).getVelocity()));
+        wheelVelocities.add(encoderTicksToInches(-motors.get(2).getVelocity()));
+        wheelVelocities.add(encoderTicksToInches(-motors.get(3).getVelocity()));
         return wheelVelocities;
     }
 

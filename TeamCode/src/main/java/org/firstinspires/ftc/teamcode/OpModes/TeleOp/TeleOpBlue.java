@@ -7,7 +7,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Commands.DriveBase.DriveDefault;
+import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
 import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckSpinner;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
@@ -58,8 +58,8 @@ public class TeleOpBlue extends CommandOpMode {
         );
 
         intake.setDefaultCommand(new IntakeDefault(intake, () -> driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
-        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.getRightY()));
-        manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -mechGamepad.getLeftX(), () -> -mechGamepad.getLeftY()));
+        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_y));
+        manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -mechGamepad.gamepad.left_stick_x, () -> -mechGamepad.gamepad.left_stick_y));
 
         // Commands --------------------------------------------------------------------------------
 
@@ -118,6 +118,6 @@ public class TeleOpBlue extends CommandOpMode {
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckSpinner(duckSpinner, false));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckSpinner(duckSpinner, false, 0.6, 1));
     }
 }

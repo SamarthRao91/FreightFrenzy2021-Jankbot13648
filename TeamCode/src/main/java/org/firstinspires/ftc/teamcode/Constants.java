@@ -26,16 +26,16 @@ public class Constants {
 
         // Minimum position of elevator to stop movement
         // TODO: Check Value
-        public static final int MINIMUM_POSITION = 0;
+        public static final int MINIMUM_POSITION = 116;
 
         // Maximum position of elevator
-        public static final int MAXIMUM_POSITION = 2350;
+        public static final int MAXIMUM_POSITION = 2500;
 
         // Position in which turret clears the bottom if extender is retracted // min safe pos
-        public static final int SAFE_TURRET_POSITION = 450;
+        public static final int SAFE_TURRET_POSITION = 625;
 
         // Position in which everything clears duck spinner if extender is extended
-        public static final int SAFE_EXTENDER_POSITION = -330;
+        public static final int SAFE_EXTENDER_POSITION = 1224;
 
         public static final String LIMIT_SWITCH_NAME = "ls";
     }
@@ -53,7 +53,7 @@ public class Constants {
             // Stores angle to not hit duck spinner
             public static final double LEFT_MAXIMUM_POSITION = 0.9;
 
-            public static final double ZERO_POSITION = 0.495;
+            public static final double ZERO_POSITION = 0.52;
         }
 
         @Config

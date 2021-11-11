@@ -7,7 +7,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Commands.DriveBase.DriveDefault;
+import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
 import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckSpinner;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
@@ -118,7 +118,7 @@ public class TeleOpRed extends CommandOpMode {
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckSpinner(duckSpinner, true));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckSpinner(duckSpinner, true, 0.6, 1));
     }
 
 }
