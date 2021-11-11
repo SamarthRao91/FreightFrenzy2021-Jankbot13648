@@ -82,7 +82,7 @@ public class Red_Bottom_Path {
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
 
-    public static TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
+    private static TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(MAX_ANG_VEL),
                 new MecanumVelocityConstraint(MAX_VEL, TRACK_WIDTH)

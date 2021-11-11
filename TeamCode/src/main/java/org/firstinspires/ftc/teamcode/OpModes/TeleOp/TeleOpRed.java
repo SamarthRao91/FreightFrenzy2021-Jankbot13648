@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
-import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -10,12 +9,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
 import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckSpinner;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighReversePreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedLowPreset;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ManualPickup;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ScoreGamePiece;
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.SuperStructureToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -61,54 +62,22 @@ public class TeleOpRed extends CommandOpMode {
         elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_y));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -mechGamepad.gamepad.left_stick_x, () -> -mechGamepad.gamepad.left_stick_y));
 
-        // Commands --------------------------------------------------------------------------------
-
-        Command lowPreset = new SuperStructureToPosition(
-                elevator,
-                manipulator,
-                Constants.Elevator.SAFE_TURRET_POSITION + 200,
-                1,
-                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS + 0.2,
-                Constants.Manipulator.Claw.CLOSE_POSITION
-        );
-
-        Command highPreset = new SuperStructureToPosition(
-                elevator,
-                manipulator,
-                1400 + 300,
-                1,
-                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
-                Constants.Manipulator.Claw.CLOSE_POSITION
-        );
-
-        Command highReversePreset = new SuperStructureToPosition(
-                elevator,
-                manipulator,
-                1400 + 200,
-                1,
-                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
-                Constants.Manipulator.Claw.CLOSE_POSITION
-        );
-
         // Binding ---------------------------------------------------------------------------------
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(lowPreset);
-        mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(lowPreset);
+        driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new RedLowPreset(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new RedLowPreset(elevator, manipulator));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(highPreset);
-        mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(highPreset);
+        driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new RedHighPreset(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new RedHighPreset(elevator, manipulator));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new ScoreGamePiece(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new ScoreGamePiece(elevator, manipulator));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(highReversePreset);
-        mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(highReversePreset);
+        driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new RedHighReversePreset(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new RedHighReversePreset(elevator, manipulator));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> drive.resetHeading()));
 
