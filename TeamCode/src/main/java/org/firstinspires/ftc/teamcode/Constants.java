@@ -35,7 +35,7 @@ public class Constants {
         public static final int SAFE_TURRET_POSITION = 450;
 
         // Position in which everything clears duck spinner if extender is extended
-        public static final int SAFE_EXTENDER_POSITION = 1090;
+        public static final int SAFE_EXTENDER_POSITION = -330;
 
         public static final String LIMIT_SWITCH_NAME = "ls";
     }

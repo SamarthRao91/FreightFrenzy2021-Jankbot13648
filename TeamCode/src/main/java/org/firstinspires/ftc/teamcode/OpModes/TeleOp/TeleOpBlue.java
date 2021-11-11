@@ -3,19 +3,18 @@ package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.DriveBase.DriveDefault;
-import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.DuckWheelToPosition;
+import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckSpinner;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
-import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDefault;
-import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorToPosition;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ManualPickup;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ScoreGamePiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.SuperStructureToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -64,15 +63,6 @@ public class TeleOpBlue extends CommandOpMode {
 
         // Commands --------------------------------------------------------------------------------
 
-        SequentialCommandGroup resetMechanisms = new SequentialCommandGroup(
-                new WaitCommand(750),
-                new ManipulatorToPosition(manipulator, Constants.Manipulator.Turret.ZERO_POSITION, Constants.Manipulator.Extender.MIN_POS, Constants.Manipulator.Claw.CLOSE_POSITION),
-                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_EXTENDER_POSITION + 200, 1),
-                new WaitCommand(750),
-                new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION, 1),
-                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION))
-        );
-
         Command lowPreset = new SuperStructureToPosition(
                 elevator,
                 manipulator,
@@ -103,22 +93,10 @@ public class TeleOpBlue extends CommandOpMode {
                 Constants.Manipulator.Claw.CLOSE_POSITION
         );
 
-        Command scoreGamePiece = new SequentialCommandGroup(
-          new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)),
-          new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
-          new WaitCommand(500),
-                resetMechanisms
-        );
-
-        SequentialCommandGroup spinDuckSpinner = new SequentialCommandGroup(
-                new DuckWheelToPosition(duckSpinner, 675, 0.2),
-                new DuckWheelToPosition(duckSpinner, 325, 0.3)
-        );
-
         // Binding ---------------------------------------------------------------------------------
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(resetMechanisms);
-        mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(resetMechanisms);
+        driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(lowPreset);
         mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(lowPreset);
@@ -126,8 +104,8 @@ public class TeleOpBlue extends CommandOpMode {
         driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(highPreset);
         mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(highPreset);
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(scoreGamePiece);
-        mechGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(scoreGamePiece);
+        driveGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new ScoreGamePiece(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new ScoreGamePiece(elevator, manipulator));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(highReversePreset);
         mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(highReversePreset);
@@ -138,12 +116,8 @@ public class TeleOpBlue extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)));
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CAPSTONE_OPEN_FULLY)));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new SequentialCommandGroup(
-                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                new WaitCommand(250),
-                new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION + 200, 1)
-        ));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(spinDuckSpinner);
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckSpinner(duckSpinner, false));
     }
 }

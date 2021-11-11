@@ -48,9 +48,13 @@ public class SuperStructureToPosition extends CommandBase {
     {
         elevator.setSpeed(elevatorSpeed);
 
-        if(elevator.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION)
+        if(elevator.getPosition() > Constants.Elevator.SAFE_TURRET_POSITION && manipulator.getTurretPosition() != turretTarget)
         {
             manipulator.setTurretPosition(turretTarget);
+        }
+
+        if(elevator.getPosition() > Constants.Elevator.SAFE_EXTENDER_POSITION && manipulator.getExtenderPosition() != extenderTarget)
+        {
             manipulator.setExtenderPosition(extenderTarget);
         }
     }
