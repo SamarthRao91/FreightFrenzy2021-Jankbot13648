@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -30,9 +29,6 @@ public class DuckWheelToPosition extends CommandBase {
     @Override
     public void execute()
     {
-        FtcDashboard.getInstance().getTelemetry().addData("Current Pos", duckSpinner.getCurrentPosition());
-        FtcDashboard.getInstance().getTelemetry().update();
-
         duckSpinner.setSpeed(speed);
     }
 

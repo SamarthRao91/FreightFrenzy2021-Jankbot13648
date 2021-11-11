@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -20,10 +19,7 @@ public class TestTeleOp extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested())
         {
-            FtcDashboard.getInstance().getTelemetry().addData("Elevator Position", elevator.getPosition());
-            FtcDashboard.getInstance().getTelemetry().update();
 
-            elevator.setSpeed(-gamepad1.left_stick_y);
         }
     }
 }

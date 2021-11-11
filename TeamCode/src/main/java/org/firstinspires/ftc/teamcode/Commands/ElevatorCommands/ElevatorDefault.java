@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
@@ -23,9 +22,6 @@ public class ElevatorDefault extends CommandBase {
     @Override
     public void execute()
     {
-        FtcDashboard.getInstance().getTelemetry().addData("Input Speed", speed.getAsDouble());
-        FtcDashboard.getInstance().getTelemetry().update();
-
         elevator.setSpeed(speed.getAsDouble());
     }
 }
