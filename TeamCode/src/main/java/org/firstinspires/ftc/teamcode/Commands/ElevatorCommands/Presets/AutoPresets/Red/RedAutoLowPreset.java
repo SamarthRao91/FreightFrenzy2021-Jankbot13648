@@ -1,20 +1,19 @@
-package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue;
+package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red;
 
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.SuperStructureToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class BlueHighPreset extends SuperStructureToPosition {
-
-    public BlueHighPreset(Elevator elevator, Manipulator manipulator) {
+public class RedAutoLowPreset extends SuperStructureToPosition {
+    public RedAutoLowPreset(Elevator elevator, Manipulator manipulator) {
         super(
                 elevator,
                 manipulator,
-                1400 + 200,
+                445,
                 1,
-                Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS + 0.2,
+                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
+                Constants.Manipulator.Extender.MAX_POS,
                 Constants.Manipulator.Claw.CLOSE_POSITION
         );
     }

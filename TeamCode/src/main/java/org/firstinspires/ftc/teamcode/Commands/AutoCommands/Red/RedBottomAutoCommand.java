@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Commands.AutoCommands;
+package org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -24,7 +24,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        //new RedLowPreset(elevator, manipulator),
+                        //new RedAutoLowPreset(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         //new ScoreGamePiece(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2),
@@ -49,7 +49,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case CENTER:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        //new RedMiddlePreset(elevator, manipulator),
+                        //new RedAutoMiddlePreset(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         //new ScoreGamePiece(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2),

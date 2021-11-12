@@ -5,12 +5,12 @@ import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class RedLowPreset extends SuperStructureToPosition {
-    public RedLowPreset(Elevator elevator, Manipulator manipulator) {
+public class RedAutoMiddlePreset extends SuperStructureToPosition {
+    public RedAutoMiddlePreset(Elevator elevator, Manipulator manipulator) {
         super(
                 elevator,
                 manipulator,
-                445,
+                900,
                 1,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS,

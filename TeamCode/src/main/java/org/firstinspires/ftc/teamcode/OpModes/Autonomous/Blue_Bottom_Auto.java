@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedBottomAutoCommand;
+import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Blue.BlueBottomAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -17,9 +17,8 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 
-@Autonomous(name = "Red Bottom Auto")
-public class Red_Bottom_Auto extends LinearOpMode {
-
+@Autonomous(name = "Blue Bottom Auto")
+public class Blue_Bottom_Auto extends LinearOpMode {
     Drive drive;
     Elevator elevator;
     Manipulator manipulator;
@@ -36,7 +35,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap);
         intake = new Intake(hardwareMap);
         duckSpinner = new DuckSpinner(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
+        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, false);
 
         register(
                 drive,
@@ -60,7 +59,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
         }
 
         schedule(
-                new RedBottomAutoCommand(
+                new BlueBottomAutoCommand(
                         drive,
                         elevator,
                         manipulator,
