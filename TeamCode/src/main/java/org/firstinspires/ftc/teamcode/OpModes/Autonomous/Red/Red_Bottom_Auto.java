@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes.Autonomous;
+package org.firstinspires.ftc.teamcode.OpModes.Autonomous.Red;
 
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Blue.BlueBottomAutoCommand;
+import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedBottomAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
@@ -17,8 +17,9 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 
-@Autonomous(name = "Blue Bottom Auto")
-public class Blue_Bottom_Auto extends LinearOpMode {
+@Autonomous(name = "Red Bottom Auto")
+public class Red_Bottom_Auto extends LinearOpMode {
+
     Drive drive;
     Elevator elevator;
     Manipulator manipulator;
@@ -35,7 +36,7 @@ public class Blue_Bottom_Auto extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap);
         intake = new Intake(hardwareMap);
         duckSpinner = new DuckSpinner(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, false);
+        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
 
         register(
                 drive,
@@ -59,7 +60,7 @@ public class Blue_Bottom_Auto extends LinearOpMode {
         }
 
         schedule(
-                new BlueBottomAutoCommand(
+                new RedBottomAutoCommand(
                         drive,
                         elevator,
                         manipulator,
