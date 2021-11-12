@@ -15,7 +15,7 @@ public class DuckSpinner extends SubsystemBase {
         spinner.setInverted(true);
         spinner.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         spinner.setRunMode(Motor.RunMode.PositionControl);
-        spinner.setPositionCoefficient(0.01);
+        spinner.setPositionCoefficient(0.005);
         spinner.setPositionTolerance(15);
     }
 
