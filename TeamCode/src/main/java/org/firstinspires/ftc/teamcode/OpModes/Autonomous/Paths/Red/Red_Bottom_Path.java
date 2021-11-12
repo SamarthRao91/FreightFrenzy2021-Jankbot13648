@@ -62,21 +62,21 @@ public class Red_Bottom_Path {
             .build();
 
     //strafes down for second intake pass
-    public static Trajectory RB_trajfix = BuildTrajectory(RB_traj6.end())
+    public static Trajectory RB_traj7 = BuildTrajectory(RB_traj6.end())
             .lineToSplineHeading(new Pose2d(-20, 14, Math.toRadians(-90)),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
 
     //align to goal for the second time
-    public static Trajectory RB_traj7 = BuildTrajectory(RB_trajfix.end())
+    public static Trajectory RB_traj8 = BuildTrajectory(RB_traj7.end())
             .lineToSplineHeading(new Pose2d(19, 24, Math.toRadians(180)),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
 
     //park
-    public static Trajectory RB_traj8 = BuildTrajectory(RB_traj7.end())
+    public static Trajectory RB_traj9 = BuildTrajectory(RB_traj8.end())
             .lineTo(new Vector2d(-22, 38),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))

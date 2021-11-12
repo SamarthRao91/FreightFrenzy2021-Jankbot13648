@@ -60,28 +60,28 @@ public class Blue_Bottom_Path {
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
     //grabs duck under wheel
-    public static Trajectory BB_trajfix2 = BuildTrajectory(BB_traj6.end())
+    public static Trajectory BB_traj7 = BuildTrajectory(BB_traj6.end())
             .lineToSplineHeading(new Pose2d(-10, -11.5, Math.toRadians(135)),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
 
     //backs up
-    public static Trajectory BB_trajfix = BuildTrajectory(BB_trajfix2.end())
+    public static Trajectory BB_traj8 = BuildTrajectory(BB_traj7.end())
             .lineToSplineHeading(new Pose2d(-20, -14, Math.toRadians(90)),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
 
     //align to goal for the second time
-    public static Trajectory BB_traj7 = BuildTrajectory(BB_trajfix.end())
+    public static Trajectory BB_traj9 = BuildTrajectory(BB_traj8.end())
             .lineToSplineHeading(new Pose2d(19, -24, Math.toRadians(180)),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))
             .build();
 
     //park
-    public static Trajectory BB_traj8 = BuildTrajectory(BB_traj7.end())
+    public static Trajectory BB_traj10 = BuildTrajectory(BB_traj9.end())
             .lineTo(new Vector2d(-22, -38),
                     MecanumDrive.getVelocityConstraint(MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(MAX_ACCEL))

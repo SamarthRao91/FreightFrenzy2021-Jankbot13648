@@ -34,16 +34,16 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj4),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj5),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj6),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_trajfix),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj7),
                         new WaitCommand(500),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(100),
                         //new ManualPickup(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj7),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8),
                         new InstantCommand(() -> intake.setIntake(0)),
                         //new RedHighPreset(elevator, manipulator),
                         //new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8)
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
                 );
                 break;
             case CENTER:
@@ -59,16 +59,16 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj4),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj5),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj6),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_trajfix),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj7),
                         new WaitCommand(500),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(100),
                         //new ManualPickup(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj7),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8),
                         new InstantCommand(() -> intake.setIntake(0)),
                         //new RedHighPreset(elevator, manipulator),
                         //new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8)
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
                 );
                 break;
             case RIGHT:
@@ -84,16 +84,16 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj4),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj5),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj6),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_trajfix),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj7),
                         new WaitCommand(500),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(100),
                         //new ManualPickup(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj7),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8),
                         new InstantCommand(() -> intake.setIntake(0)),
                         //new RedHighPreset(elevator, manipulator),
                         //new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8)
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
                 );
                 break;
         }

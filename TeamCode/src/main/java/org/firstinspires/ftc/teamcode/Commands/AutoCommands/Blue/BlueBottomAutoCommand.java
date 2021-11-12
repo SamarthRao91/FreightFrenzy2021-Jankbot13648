@@ -34,17 +34,17 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj4),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj5),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj6),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_trajfix2),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_trajfix),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8),
                         new WaitCommand(500),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(100),
                         //new ManualPickup(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj9),
                         new InstantCommand(() -> intake.setIntake(0)),
                         //new RedHighPreset(elevator, manipulator),
                         //new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
                 );
                 break;
             case CENTER:
@@ -60,17 +60,17 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj4),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj5),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj6),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_trajfix2),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_trajfix),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8),
                         new WaitCommand(500),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(100),
                         //new ManualPickup(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj9),
                         new InstantCommand(() -> intake.setIntake(0)),
                         //new RedHighPreset(elevator, manipulator),
                         //new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
                 );
                 break;
             case RIGHT:
@@ -86,17 +86,17 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj4),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj5),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj6),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_trajfix2),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_trajfix),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8),
                         new WaitCommand(500),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(100),
                         //new ManualPickup(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj9),
                         new InstantCommand(() -> intake.setIntake(0)),
                         //new RedHighPreset(elevator, manipulator),
                         //new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
                 );
                 break;
         }
