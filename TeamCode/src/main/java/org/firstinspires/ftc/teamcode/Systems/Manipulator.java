@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.SensorDistance;
-import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -73,6 +71,11 @@ public class Manipulator extends SubsystemBase {
 
     public boolean dsTripped()
     {
-        return scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 0.5;
+        return scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 2.7;
+    }
+
+    public double getDsDistance()
+    {
+        return scoringDetectionDS.getDistance(DistanceUnit.INCH);
     }
 }
