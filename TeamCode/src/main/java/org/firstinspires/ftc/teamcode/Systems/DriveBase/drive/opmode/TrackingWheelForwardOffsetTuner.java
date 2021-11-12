@@ -34,6 +34,8 @@ import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.StandardTrackingWh
  * for the forward offset. You can run this procedure as many times as necessary until a
  * satisfactory result is produced.
  */
+
+@Disabled
 @Config
 @Autonomous(group="drive")
 public class TrackingWheelForwardOffsetTuner extends LinearOpMode {

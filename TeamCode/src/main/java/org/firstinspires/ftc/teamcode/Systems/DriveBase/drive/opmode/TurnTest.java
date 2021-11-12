@@ -10,6 +10,8 @@ import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 /*
  * This is a simple routine to test turning capabilities.
  */
+
+@Disabled
 @Config
 @Autonomous(group = "drive")
 public class TurnTest extends LinearOpMode {
