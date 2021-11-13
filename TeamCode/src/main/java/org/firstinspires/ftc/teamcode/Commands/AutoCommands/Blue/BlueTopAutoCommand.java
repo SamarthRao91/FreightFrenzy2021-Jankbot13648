@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class BlueTopAutoCommand extends SequentialCommandGroup {
     
@@ -172,5 +173,7 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                 );
                 break;
         }
+
+        HeadingStorage.setHeading(90);
     }
 }

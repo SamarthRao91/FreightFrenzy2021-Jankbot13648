@@ -23,6 +23,7 @@ import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 @TeleOp(name = "RED | Tele-Op", group = "Red")
 public class TeleOpRed extends CommandOpMode {
@@ -47,6 +48,8 @@ public class TeleOpRed extends CommandOpMode {
         mechGamepad = new GamepadEx(gamepad2);
 
         register(drive, elevator, manipulator, intake, duckSpinner);
+
+        drive.addToHeadingOffset(HeadingStorage.getHeading());
 
         drive.setDefaultCommand(
                 new DriveDefault(

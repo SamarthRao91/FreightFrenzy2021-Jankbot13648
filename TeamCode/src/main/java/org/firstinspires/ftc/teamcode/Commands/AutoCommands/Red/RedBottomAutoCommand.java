@@ -19,6 +19,7 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class RedBottomAutoCommand extends SequentialCommandGroup {
     public RedBottomAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, DuckSpinner duckSpinner, CapstonePipeline.CapstonePosition capstonePosition)
@@ -101,5 +102,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                 );
                 break;
         }
+
+        HeadingStorage.setHeading(90);
     }
 }

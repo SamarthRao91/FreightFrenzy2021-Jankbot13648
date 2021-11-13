@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class RedTopAutoCommand extends SequentialCommandGroup {
     public RedTopAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, CapstonePipeline.CapstonePosition capstonePosition)
@@ -171,5 +172,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                 );
                 break;
         }
+
+        HeadingStorage.setHeading(270);
     }
 }

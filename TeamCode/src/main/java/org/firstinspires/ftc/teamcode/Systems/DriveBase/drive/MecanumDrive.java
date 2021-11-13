@@ -75,10 +75,12 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     private BNO055IMU imu;
     private VoltageSensor batteryVoltageSensor;
 
-    double imuOffset = 0;
+    double headingOffset;
 
     public MecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
+
+        headingOffset = 0;
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
@@ -136,7 +138,12 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     }
 
     public void resetHeading() {
-        imuOffset = imu.getAngularOrientation().firstAngle;
+        headingOffset = imu.getAngularOrientation().firstAngle;
+    }
+
+    public void addToHeadingOffset(double newValue)
+    {
+        headingOffset += newValue;
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -293,7 +300,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
     @Override
     public double getRawExternalHeading() {
-        return imu.getAngularOrientation().firstAngle - imuOffset;
+        return imu.getAngularOrientation().firstAngle - headingOffset;
     }
 
     @Override
