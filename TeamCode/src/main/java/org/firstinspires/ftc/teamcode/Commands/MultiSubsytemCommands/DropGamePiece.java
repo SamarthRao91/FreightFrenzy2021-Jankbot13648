@@ -14,6 +14,7 @@ public class DropGamePiece extends SequentialCommandGroup {
     {
         addCommands(
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)),
+                new WaitCommand(250),
                 new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
                 new WaitCommand(500)
         );
