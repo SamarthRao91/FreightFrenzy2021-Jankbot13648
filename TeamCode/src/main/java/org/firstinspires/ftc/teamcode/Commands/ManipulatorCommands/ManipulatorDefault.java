@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
-import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
 import java.util.function.BooleanSupplier;
@@ -32,10 +31,10 @@ public class ManipulatorDefault extends CommandBase {
         /*FtcDashboard.getInstance().getTelemetry().addData("DSTripped", dsStatus);
         FtcDashboard.getInstance().getTelemetry().update();*/
 
-        if(dsStatus.getAsBoolean())
+        /*if(dsStatus.getAsBoolean())
         {
             manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
-        }
+        }*/
 
         manipulator.moveTurretPosition(leftStickX.getAsDouble() / 250);
         manipulator.moveExtenderPosition(-leftStickY.getAsDouble() / 200);

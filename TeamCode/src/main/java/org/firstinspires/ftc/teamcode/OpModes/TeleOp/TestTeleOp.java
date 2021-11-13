@@ -4,24 +4,26 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Systems.Manipulator;
+import org.firstinspires.ftc.teamcode.Systems.Elevator;
 
 @TeleOp(name = "Test Tele-Op")
 public class TestTeleOp extends LinearOpMode {
 
-    Manipulator manipulator;
+    Elevator elevator;
 
     @Override
     public void runOpMode() {
 
-        manipulator = new Manipulator(hardwareMap);
+        elevator = new Elevator(hardwareMap);
 
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested())
         {
-            FtcDashboard.getInstance().getTelemetry().addData("DS", manipulator.getDsDistance());
+            FtcDashboard.getInstance().getTelemetry().addData("Ele Pos", elevator.getPosition());
             FtcDashboard.getInstance().getTelemetry().update();
+
+            elevator.setSpeed(-gamepad1.left_stick_y);
         }
     }
 }

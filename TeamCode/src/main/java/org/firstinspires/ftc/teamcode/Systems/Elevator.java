@@ -16,6 +16,7 @@ public class Elevator extends SubsystemBase {
 
     public Elevator(HardwareMap hardwareMap) {
         elevatorMotor = new Motor(hardwareMap, ELEVATOR_MOTOR_NAME);
+        elevatorMotor.resetEncoder();
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
         elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         elevatorMotor.setRunMode(Motor.RunMode.RawPower);

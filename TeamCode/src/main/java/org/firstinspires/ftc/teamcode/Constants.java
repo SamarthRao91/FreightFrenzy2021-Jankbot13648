@@ -26,7 +26,7 @@ public class Constants {
 
         // Minimum position of elevator to stop movement
         // TODO: Check Value
-        public static final int MINIMUM_POSITION = 116;
+        public static final int MINIMUM_POSITION = 50;
 
         // Maximum position of elevator
         public static final int MAXIMUM_POSITION = 2500;
@@ -53,7 +53,7 @@ public class Constants {
             // Stores angle to not hit duck spinner
             public static final double LEFT_MAXIMUM_POSITION = 0.9;
 
-            public static final double ZERO_POSITION = 0.52;
+            public static final double ZERO_POSITION = 0.495;
         }
 
         @Config

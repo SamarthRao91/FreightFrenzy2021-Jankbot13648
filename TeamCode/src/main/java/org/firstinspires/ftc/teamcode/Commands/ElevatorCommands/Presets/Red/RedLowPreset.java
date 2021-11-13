@@ -1,20 +1,21 @@
 package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red;
 
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.SuperStructureToPosition;
+import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
+
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class RedLowPreset extends SuperStructureToPosition {
+public class RedLowPreset extends SequentialCommandGroup {
     public RedLowPreset(Elevator elevator, Manipulator manipulator) {
-        super(
-                elevator,
-                manipulator,
-                Constants.Elevator.SAFE_TURRET_POSITION + 200,
-                1,
-                Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS + 0.2,
-                Constants.Manipulator.Claw.CLOSE_POSITION
+        addCommands(
+                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION + 200, 1),
+                new InstantCommand(() -> manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION)),
+                new WaitCommand(500),
+                new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.2))
         );
     }
 }

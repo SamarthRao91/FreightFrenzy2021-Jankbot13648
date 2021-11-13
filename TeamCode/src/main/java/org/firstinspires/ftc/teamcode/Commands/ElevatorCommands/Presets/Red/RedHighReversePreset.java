@@ -10,7 +10,7 @@ public class RedHighReversePreset extends SuperStructureToPosition {
         super(
                 elevator,
                 manipulator,
-                1400 + 200,
+                1400 + 400,
                 1,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS,

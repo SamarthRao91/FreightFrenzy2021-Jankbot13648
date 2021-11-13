@@ -7,7 +7,6 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
-import org.firstinspires.ftc.teamcode.Commands.DuckSpinnerCommands.SpinDuckSpinner;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue.BlueHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue.BlueHighReversePreset;
@@ -53,8 +52,8 @@ public class TeleOpBlue extends CommandOpMode {
                 new DriveDefault(
                         drive,
                         () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_y/4 : driveGamepad.gamepad.left_stick_y,
-                        () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.left_stick_x/4) : -driveGamepad.gamepad.left_stick_x,
-                        () -> driveGamepad.gamepad.left_bumper ? -(driveGamepad.gamepad.right_stick_x/4) : -driveGamepad.gamepad.right_stick_x
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_x/4 : driveGamepad.gamepad.left_stick_x,
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.right_stick_x/4 : driveGamepad.gamepad.right_stick_x
                 )
         );
 
@@ -85,8 +84,8 @@ public class TeleOpBlue extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)));
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CAPSTONE_OPEN_FULLY)));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator, intake));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new SpinDuckSpinner(duckSpinner, false, 0.6, 1));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinSpinner()));
     }
 }

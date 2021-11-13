@@ -45,7 +45,7 @@ public class Drive extends SubsystemBase {
     public void drive(double leftY, double leftX, double rightX) {
 
         Vector2d input = new Vector2d(-leftY, -leftX).rotated(
-                fieldCentric ? getHeading() : 0
+                fieldCentric ? -getHeading() : 0
         );
 
         drive.setWeightedDrivePower(

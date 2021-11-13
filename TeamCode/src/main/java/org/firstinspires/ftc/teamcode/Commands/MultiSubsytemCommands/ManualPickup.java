@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
+import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
 public class ManualPickup extends SequentialCommandGroup {
@@ -20,5 +21,19 @@ public class ManualPickup extends SequentialCommandGroup {
         );
 
         addRequirements(elevator, manipulator);
+    }
+
+    public ManualPickup(Elevator elevator, Manipulator manipulator, Intake intake)
+    {
+        addCommands(
+                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
+                new WaitCommand(250),
+                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION, 1),
+                new InstantCommand(() -> intake.setIntake(-0.66)),
+                new WaitCommand(1000),
+                new InstantCommand(() -> intake.setIntake(0))
+        );
+
+        addRequirements(elevator, manipulator, intake);
     }
 }
