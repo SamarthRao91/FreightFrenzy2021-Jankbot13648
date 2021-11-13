@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 
+@Disabled
 @TeleOp(name = "Test Tele-Op")
 public class TestTeleOp extends LinearOpMode {
 

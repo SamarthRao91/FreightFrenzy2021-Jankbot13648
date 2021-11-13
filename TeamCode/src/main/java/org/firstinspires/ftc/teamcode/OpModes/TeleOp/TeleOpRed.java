@@ -24,7 +24,7 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-@TeleOp(name = "Tele-Op Red")
+@TeleOp(name = "RED | Tele-Op", group = "Red")
 public class TeleOpRed extends CommandOpMode {
     Drive drive;
     Elevator elevator;

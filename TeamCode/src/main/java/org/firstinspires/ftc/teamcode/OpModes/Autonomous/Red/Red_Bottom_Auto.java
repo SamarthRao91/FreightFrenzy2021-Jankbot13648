@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 
-@Autonomous(name = "Red Bottom Auto")
+@Autonomous(name = "RED | Bottom Auto", group = "Red", preselectTeleOp = "RED | Tele-Op")
 public class Red_Bottom_Auto extends LinearOpMode {
 
     Drive drive;
