@@ -48,7 +48,8 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new RedHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9),
+                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
                 );
                 break;
             case CENTER:
@@ -73,7 +74,8 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new RedHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9),
+                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
                 );
                 break;
             case RIGHT:
@@ -98,11 +100,10 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new RedHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9),
+                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
                 );
                 break;
         }
-
-        HeadingStorage.setHeading(90);
     }
 }

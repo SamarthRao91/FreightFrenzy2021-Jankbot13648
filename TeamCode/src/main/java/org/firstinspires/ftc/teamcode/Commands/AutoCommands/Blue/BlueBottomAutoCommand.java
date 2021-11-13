@@ -50,7 +50,8 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new BlueHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10),
+                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
                 );
                 break;
             case CENTER:
@@ -76,7 +77,8 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new BlueHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10),
+                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
                 );
                 break;
             case RIGHT:
@@ -102,11 +104,10 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new BlueHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10),
+                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
                 );
                 break;
         }
-
-        HeadingStorage.setHeading(270);
     }
 }

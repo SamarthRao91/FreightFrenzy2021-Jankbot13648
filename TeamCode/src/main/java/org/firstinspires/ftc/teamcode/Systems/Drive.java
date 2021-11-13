@@ -117,6 +117,6 @@ public class Drive extends SubsystemBase {
 
     public void addToHeadingOffset(double newValue)
     {
-        addToHeadingOffset(newValue);
+        drive.setHeadingOffset(newValue);
     }
 }
