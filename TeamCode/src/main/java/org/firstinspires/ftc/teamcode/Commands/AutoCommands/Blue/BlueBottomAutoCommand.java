@@ -20,7 +20,6 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
-import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class BlueBottomAutoCommand extends SequentialCommandGroup {
     public BlueBottomAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, DuckSpinner duckSpinner, CapstonePipeline.CapstonePosition capstonePosition)
@@ -50,8 +49,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new BlueHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10),
-                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
                 );
                 break;
             case CENTER:
@@ -77,8 +75,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new BlueHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10),
-                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
                 );
                 break;
             case RIGHT:
@@ -104,8 +101,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new BlueHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10),
-                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10)
                 );
                 break;
         }

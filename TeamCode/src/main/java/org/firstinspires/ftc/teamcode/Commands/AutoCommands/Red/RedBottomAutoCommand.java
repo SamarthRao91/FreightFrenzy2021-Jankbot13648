@@ -19,7 +19,6 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
-import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class RedBottomAutoCommand extends SequentialCommandGroup {
     public RedBottomAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, DuckSpinner duckSpinner, CapstonePipeline.CapstonePosition capstonePosition)
@@ -48,8 +47,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new RedHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9),
-                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
                 );
                 break;
             case CENTER:
@@ -74,8 +72,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new RedHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9),
-                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
                 );
                 break;
             case RIGHT:
@@ -100,8 +97,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new RedHighPreset(elevator, manipulator),
                         new ScoreGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9),
-                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9)
                 );
                 break;
         }

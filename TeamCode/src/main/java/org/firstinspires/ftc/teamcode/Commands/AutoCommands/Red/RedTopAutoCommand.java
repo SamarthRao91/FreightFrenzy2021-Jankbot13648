@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
-import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class RedTopAutoCommand extends SequentialCommandGroup {
     public RedTopAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, CapstonePipeline.CapstonePosition capstonePosition)
@@ -68,11 +67,10 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15),/*
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15)/*,
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj14),
                         new RedHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
-                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
                 );
                 break;
             case CENTER:
@@ -118,11 +116,10 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15),/*
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15)/*,
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj14),
                         new RedHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
-                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
                 );
                 break;
             case RIGHT:
@@ -167,11 +164,10 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15),/*
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15)/*,
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj14),
                         new RedHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
-                        new InstantCommand(() -> HeadingStorage.setHeading(-270))
                 );
                 break;
         }

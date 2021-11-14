@@ -138,12 +138,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     }
 
     public void resetHeading() {
-        setHeadingOffset(imu.getAngularOrientation().firstAngle);
-    }
-
-    public void setHeadingOffset(double newValue)
-    {
-        headingOffset += newValue;
+headingOffset = imu.getAngularOrientation().firstAngle;
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
