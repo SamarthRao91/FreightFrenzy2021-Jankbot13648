@@ -13,9 +13,9 @@ public class RedLowPreset extends SequentialCommandGroup {
     public RedLowPreset(Elevator elevator, Manipulator manipulator) {
         addCommands(
                 new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION + 200, 1),
-                new InstantCommand(() -> manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION)),
+                new InstantCommand(() -> manipulator.setTurretPosition(Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION + 0.0625)),
                 new WaitCommand(500),
-                new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.2))
+                new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.15))
         );
     }
 }

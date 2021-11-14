@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
-import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class BlueTopAutoCommand extends SequentialCommandGroup {
     
@@ -69,11 +68,10 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Blue_Top_Path.BT_traj15),/*
+                        new FollowTrajectory(drive, Blue_Top_Path.BT_traj15)/*,
                         new FollowTrajectory(drive, Blue_Top_Path.BT_traj14),
                         new BlueHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
-                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
                 );
                 break;
             case CENTER:
@@ -119,11 +117,10 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Blue_Top_Path.BT_traj15),/*
+                        new FollowTrajectory(drive, Blue_Top_Path.BT_traj15)/*,
                         new FollowTrajectory(drive, Blue_Top_Path.BT_traj14),
                         new BlueHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
-                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
                 );
                 break;
             case RIGHT:
@@ -168,11 +165,10 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Blue_Top_Path.BT_traj15),/*
+                        new FollowTrajectory(drive, Blue_Top_Path.BT_traj15)/*,
                         new FollowTrajectory(drive, Blue_Top_Path.BT_traj14),
                         new BlueHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
-                        new InstantCommand(() -> HeadingStorage.setHeading(-90))
                 );
                 break;
         }
