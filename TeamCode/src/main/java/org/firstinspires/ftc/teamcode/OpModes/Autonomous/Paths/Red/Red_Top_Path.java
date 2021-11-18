@@ -36,40 +36,26 @@ public class Red_Top_Path {
 
     //align to warehouse
     public static Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end())
-            .splineTo(new Vector2d(-7, -1.5),
-                    0,
-                    MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
-                    MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineTo(new Vector2d(24, -2.5),
-                    0,
+            .lineTo(new Vector2d(-7, -1.5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
     //drive into freight
-    /*public static Trajectory RT_traj4 = BuildTrajectory(RT_traj3.end())
+    public static Trajectory RT_traj4 = BuildTrajectory(RT_traj3.end())
             .lineTo(new Vector2d(24, -2.5),
-                    MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
-                    MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .build();*/
-
-    //back out
-    public static Trajectory RT_traj5 = BuildTrajectory(RT_traj3.end())
-            .splineTo(new Vector2d(18, -3.5),
-                    0,
-                    MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
-                    MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineTo(new Vector2d(-7, -4),
-                    0,
-                    MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
-                    MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineTo(new Vector2d(-16, 24),
-                    0,
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    /*public static Trajectory RT_traj6 = BuildTrajectory(RT_traj5.end())
+    //back out
+    public static Trajectory RT_traj5 = BuildTrajectory(RT_traj4.end())
+            .lineTo(new Vector2d(18, -3.5),
+                    MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
+                    MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
+            .build();
+
+    public static Trajectory RT_traj6 = BuildTrajectory(RT_traj5.end())
             .lineTo(new Vector2d(-7, -4),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -80,10 +66,10 @@ public class Red_Top_Path {
             .lineTo(new Vector2d(-16, 24),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .build();*/
+            .build();
 
     //align to warehouse
-    public static Trajectory RT_traj8 = BuildTrajectory(RT_traj5.end())
+    public static Trajectory RT_traj8 = BuildTrajectory(RT_traj7.end())
             .lineTo(new Vector2d(-7, -4.5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, Math.toRadians(60), TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
