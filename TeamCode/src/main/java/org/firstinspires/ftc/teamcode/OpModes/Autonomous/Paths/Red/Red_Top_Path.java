@@ -27,7 +27,7 @@ public class Red_Top_Path {
             .build();
 
     //align to warehouse
-    public static Trajectory RT_traj3 = BuildTrajectory(RT_traj1.end())
+    public static Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end())
             .splineToConstantHeading(new Vector2d(-7, -1.5),
                     Math.toRadians(0))
             .splineToConstantHeading(new Vector2d(24, -2.5),
@@ -35,7 +35,7 @@ public class Red_Top_Path {
             .build();
 
     //back out
-    public static Trajectory RT_traj5 = BuildTrajectory(RT_traj3.end())
+    public static Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end())
             .splineToConstantHeading(new Vector2d(18, -3.5),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(-7, -4),
@@ -45,7 +45,7 @@ public class Red_Top_Path {
             .build();
 
     //align to warehouse
-    public static Trajectory RT_traj8 = BuildTrajectory(RT_traj5.end())
+    public static Trajectory RT_traj4 = BuildTrajectory(RT_traj3.end())
             .splineToConstantHeading(new Vector2d(-7, -4.5),
                     Math.toRadians(0))
             .splineToConstantHeading(new Vector2d(30, -5),
@@ -53,7 +53,7 @@ public class Red_Top_Path {
             .build();
 
     //back out
-    public static Trajectory RT_traj10 = BuildTrajectory(RT_traj8.end())
+    public static Trajectory RT_traj5 = BuildTrajectory(RT_traj4.end())
             .splineToConstantHeading(new Vector2d(18, -6),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(-7, -6.5),
@@ -63,7 +63,7 @@ public class Red_Top_Path {
             .build();
 
     //align to warehouse
-    public static Trajectory RT_traj13 = BuildTrajectory(RT_traj10.end())
+    public static Trajectory RT_traj6 = BuildTrajectory(RT_traj5.end())
             .splineToConstantHeading(new Vector2d(-7, -7),
                     Math.toRadians(0))
             .splineToConstantHeading(new Vector2d(32, -7.5),
@@ -71,12 +71,12 @@ public class Red_Top_Path {
             .build();
 
     //exit freight pile but remain parked
-    public static Trajectory RT_traj15 = BuildTrajectory(RT_traj13.end())
+    public static Trajectory RT_traj7 = BuildTrajectory(RT_traj6.end())
             .lineTo(new Vector2d(28, -8))
             .build();
 
     //align to goal
-    public static Trajectory RT_traj16 = BuildTrajectory(RT_traj15.end())
+    public static Trajectory RT_traj8 = BuildTrajectory(RT_traj7.end())
             .lineTo(new Vector2d(-20, 22))
             .build();
 

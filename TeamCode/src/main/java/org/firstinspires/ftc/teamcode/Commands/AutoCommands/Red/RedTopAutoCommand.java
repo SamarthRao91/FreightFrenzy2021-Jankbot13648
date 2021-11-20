@@ -32,7 +32,17 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
 
                         // Cycle #1
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj3).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
+                        new WaitCommand(250),
+                        new InstantCommand(() -> intake.setIntake(-0.66)),
+                        new WaitCommand(250),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj3).alongWith(new RedHighPreset(elevator, manipulator)),
+                        new DropGamePiece(elevator, manipulator),
+
+                        // Cycle #2
+                        new InstantCommand(() -> intake.setIntake(1)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj4).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
@@ -40,24 +50,14 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj5).alongWith(new RedHighPreset(elevator, manipulator)),
                         new DropGamePiece(elevator, manipulator),
 
-                        // Cycle #2
-                        new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj8).alongWith(new ResetMechanisms(elevator, manipulator)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.66)),
-                        new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj10).alongWith(new RedHighPreset(elevator, manipulator)),
-                        new DropGamePiece(elevator, manipulator),
-
                         // Cycle #3
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj13).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj6).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15)/*,
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj7)/*,
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj14),
                         new RedHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
@@ -71,7 +71,17 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
 
                         // Cycle #1
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj3).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
+                        new WaitCommand(250),
+                        new InstantCommand(() -> intake.setIntake(-0.66)),
+                        new WaitCommand(250),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj3).alongWith(new RedHighPreset(elevator, manipulator)),
+                        new DropGamePiece(elevator, manipulator),
+
+                        // Cycle #2
+                        new InstantCommand(() -> intake.setIntake(1)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj4).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
@@ -79,24 +89,14 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj5).alongWith(new RedHighPreset(elevator, manipulator)),
                         new DropGamePiece(elevator, manipulator),
 
-                        // Cycle #2
-                        new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj8).alongWith(new ResetMechanisms(elevator, manipulator)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.66)),
-                        new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj10).alongWith(new RedHighPreset(elevator, manipulator)),
-                        new DropGamePiece(elevator, manipulator),
-
                         // Cycle #3
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj13).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj6).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15)/*,
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj7)/*,
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj14),
                         new RedHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
@@ -110,7 +110,17 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
 
                         // Cycle #1
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj3).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
+                        new WaitCommand(250),
+                        new InstantCommand(() -> intake.setIntake(-0.66)),
+                        new WaitCommand(250),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj3).alongWith(new RedHighPreset(elevator, manipulator)),
+                        new DropGamePiece(elevator, manipulator),
+
+                        // Cycle #2
+                        new InstantCommand(() -> intake.setIntake(1)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj4).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
@@ -118,24 +128,14 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj5).alongWith(new RedHighPreset(elevator, manipulator)),
                         new DropGamePiece(elevator, manipulator),
 
-                        // Cycle #2
-                        new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj8).alongWith(new ResetMechanisms(elevator, manipulator)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.66)),
-                        new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj10).alongWith(new RedHighPreset(elevator, manipulator)),
-                        new DropGamePiece(elevator, manipulator),
-
                         // Cycle #3
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj13).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj6).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.66)),
                         new WaitCommand(250),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj15)/*,
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj7)/*,
                         new FollowTrajectory(drive, Red_Top_Path.RT_traj14),
                         new RedHighPreset(elevator, manipulator),
                         new DropGamePiece(elevator, manipulator),*/
