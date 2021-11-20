@@ -27,9 +27,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(0)))),
-                        new RedHighPreset(elevator, manipulator),
-                        new RedAutoReverseLowPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj1),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj1).alongWith(new RedAutoReverseLowPreset(elevator, manipulator)),
                         new DropGamePiece(elevator, manipulator),
 
                         // Cycle #1
@@ -68,9 +66,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
             case CENTER:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(0)))),
-                        new RedHighPreset(elevator, manipulator),
-                        new RedAutoReverseMiddlePreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj1),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj1).alongWith(new RedAutoReverseMiddlePreset(elevator, manipulator)),
                         new DropGamePiece(elevator, manipulator),
 
                         // Cycle #1
@@ -109,8 +105,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
             case RIGHT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(0)))),
-                        new RedHighPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Top_Path.RT_traj1),
+                        new FollowTrajectory(drive, Red_Top_Path.RT_traj1).alongWith(new RedHighPreset(elevator, manipulator)),
                         new DropGamePiece(elevator, manipulator),
 
                         // Cycle #1
