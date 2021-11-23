@@ -33,11 +33,13 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.util.LynxModuleUtil;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
@@ -77,8 +79,14 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
     double headingOffset;
 
+    private DistanceSensor leftDistanceSensor;
+    private DistanceSensor rightDistanceSensor;
+
     public MecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
+
+        leftDistanceSensor = hardwareMap.get(DistanceSensor.class, Constants.DriveBase.LEFT_DISTANCE_SENSOR_NAME);
+        rightDistanceSensor = hardwareMap.get(DistanceSensor.class, Constants.DriveBase.RIGHT_DISTANCE_SENSOR_NAME);
 
         headingOffset = 0;
 
@@ -330,5 +338,15 @@ headingOffset = imu.getAngularOrientation().firstAngle;
 
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
+    }
+
+    public double getLeftDistance()
+    {
+        return leftDistanceSensor.getDistance(DistanceUnit.CM);
+    }
+
+    public double getRightDistance()
+    {
+        return rightDistanceSensor.getDistance(DistanceUnit.CM);
     }
 }

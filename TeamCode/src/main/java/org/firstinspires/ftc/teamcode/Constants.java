@@ -11,6 +11,9 @@ public class Constants {
         public static final String FRONT_RIGHT_DRIVE_MOTOR_NAME = "fr";
         public static final String REAR_LEFT_DRIVE_MOTOR_NAME = "rl";
         public static final String REAR_RIGHT_DRIVE_MOTOR_NAME = "rr";
+
+        public static final String LEFT_DISTANCE_SENSOR_NAME = "ds1";
+        public static final String RIGHT_DISTANCE_SENSOR_NAME = "ds2";
     }
 
     @Config

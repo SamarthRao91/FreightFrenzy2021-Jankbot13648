@@ -114,4 +114,14 @@ public class Drive extends SubsystemBase {
     {
         drive.resetHeading();
     }
+
+    public double getLeftDistance()
+    {
+        return drive.getLeftDistance();
+    }
+
+    public double getRightDistance()
+    {
+        return drive.getRightDistance();
+    }
 }
