@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Red.Red_Top_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -60,7 +61,14 @@ public class Red_Top_Auto extends LinearOpMode {
         }
 
         schedule(
-                new RedTopAutoCommand(drive, elevator, manipulator, intake, capstonePosition)
+                new RedTopAutoCommand(
+                        drive,
+                        elevator,
+                        manipulator,
+                        intake,
+                        capstonePosition,
+                        new Red_Top_Path(drive)
+                )
         );
 
         while (!isStopRequested() && opModeIsActive())

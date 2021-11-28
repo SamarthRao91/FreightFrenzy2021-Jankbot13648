@@ -12,14 +12,13 @@ public class Constants {
         public static final String REAR_LEFT_DRIVE_MOTOR_NAME = "rl";
         public static final String REAR_RIGHT_DRIVE_MOTOR_NAME = "rr";
 
-        public static final String LEFT_DISTANCE_SENSOR_NAME = "ds1";
-        public static final String RIGHT_DISTANCE_SENSOR_NAME = "ds2";
+        public static final String LEFT_DISTANCE_SENSOR_NAME = "ds2";
+        public static final String RIGHT_DISTANCE_SENSOR_NAME = "ds1";
     }
 
     @Config
     public static final class Intake {
         public static final String INTAKE_MOTOR_NAME = "im";
-        //public static final String INTAKE_DEPLOYER_SERVO_NAME = "id";
         public static final String DISTANCE_SENSOR_NAME = "ds";
     }
 

@@ -342,11 +342,11 @@ headingOffset = imu.getAngularOrientation().firstAngle;
 
     public double getLeftDistance()
     {
-        return leftDistanceSensor.getDistance(DistanceUnit.CM);
+        return leftDistanceSensor.getDistance(DistanceUnit.INCH);
     }
 
     public double getRightDistance()
     {
-        return rightDistanceSensor.getDistance(DistanceUnit.CM);
+        return rightDistanceSensor.getDistance(DistanceUnit.INCH);
     }
 }

@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Blue.BlueTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Blue.Blue_Top_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -64,7 +65,8 @@ public class Blue_Top_Auto extends LinearOpMode {
                         elevator,
                         manipulator,
                         intake,
-                        capstonePosition
+                        capstonePosition,
+                        new Blue_Top_Path(drive)
                 )
         );
 
