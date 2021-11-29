@@ -65,8 +65,7 @@ public class Blue_Top_Auto extends LinearOpMode {
                         elevator,
                         manipulator,
                         intake,
-                        capstonePosition,
-                        new Blue_Top_Path(drive)
+                        capstonePosition
                 )
         );
 

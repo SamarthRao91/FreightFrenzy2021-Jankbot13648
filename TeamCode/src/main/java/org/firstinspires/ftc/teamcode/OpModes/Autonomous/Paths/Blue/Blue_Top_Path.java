@@ -14,21 +14,12 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MecanumVelocityConstra
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 
-import org.firstinspires.ftc.teamcode.Systems.Drive;
-
 import java.util.Arrays;
 
 public class Blue_Top_Path {
 
-    private Drive drive;
-
-    public Blue_Top_Path(Drive drive)
-    {
-        this.drive = drive;
-    }
-
     //clear bumps
-    public Trajectory BT_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(0)))
+    public static  Trajectory BT_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(0)))
             .splineToConstantHeading(new Vector2d(-7, -0.25),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(-14, -22),
@@ -36,7 +27,7 @@ public class Blue_Top_Path {
             .build();
 
     //align to warehouse
-    public Trajectory BT_traj2 = BuildTrajectory(BT_traj1.end())
+    public static  Trajectory BT_traj2 = BuildTrajectory(BT_traj1.end())
             .splineToConstantHeading(new Vector2d(-7, 1.5),
                     Math.toRadians(0))
             .splineToConstantHeading(new Vector2d(24, 2.5),
@@ -44,7 +35,7 @@ public class Blue_Top_Path {
             .build();
 
     //back out
-    public Trajectory BT_traj3 = BuildTrajectory(BT_traj2.end())
+    public static  Trajectory BT_traj3 = BuildTrajectory(BT_traj2.end())
             .splineToConstantHeading(new Vector2d(18, 3.5),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(-7, 4),
@@ -54,7 +45,7 @@ public class Blue_Top_Path {
             .build();
 
     //align to warehouse
-    public Trajectory BT_traj4 = BuildTrajectory(BT_traj3.end())
+    public static  Trajectory BT_traj4 = BuildTrajectory(BT_traj3.end())
             .splineToConstantHeading(new Vector2d(-7, 4.5),
                     Math.toRadians(0))
             .splineToConstantHeading(new Vector2d(30, 5),
@@ -62,7 +53,7 @@ public class Blue_Top_Path {
             .build();
 
     //back out
-    public Trajectory BT_traj5 = BuildTrajectory(BT_traj4.end())
+    public static  Trajectory BT_traj5 = BuildTrajectory(BT_traj4.end())
             .splineToConstantHeading(new Vector2d(18, 6),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(-7, 6.5),
@@ -72,7 +63,7 @@ public class Blue_Top_Path {
             .build();
 
     //align to warehouse
-    public Trajectory BT_traj6 = BuildTrajectory(BT_traj5.end())
+    public static  Trajectory BT_traj6 = BuildTrajectory(BT_traj5.end())
             .splineToConstantHeading(new Vector2d(-7, 7),
                     Math.toRadians(0))
             .splineToConstantHeading(new Vector2d(32, 7.5),
@@ -80,16 +71,16 @@ public class Blue_Top_Path {
             .build();
 
     //exit freight pile but remain parked
-    public Trajectory BT_traj7 = BuildTrajectory(BT_traj6.end())
+    public static  Trajectory BT_traj7 = BuildTrajectory(BT_traj6.end())
             .lineTo(new Vector2d(28, 8))
             .build();
 
     //align to goal
-    public Trajectory BT_traj8 = BuildTrajectory(BT_traj7.end())
+    public static  Trajectory BT_traj8 = BuildTrajectory(BT_traj7.end())
             .lineTo(new Vector2d(-20, -22))
             .build();
 
-    private TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
+    public static  TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
                 new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)

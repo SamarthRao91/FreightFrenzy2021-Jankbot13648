@@ -20,15 +20,8 @@ import java.util.Arrays;
 
 public class Red_Top_Path {
 
-    private Drive drive;
-
-    public Red_Top_Path(Drive drive)
-    {
-        this.drive = drive;
-    }
-
     //clear bumps
-    public Trajectory RT_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(0)))
+    public static Trajectory RT_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(0)))
             .splineToConstantHeading(new Vector2d(-7, 0.125),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(-13, 27),
@@ -36,7 +29,7 @@ public class Red_Top_Path {
             .build();
 
     //align to warehouse
-    public Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end(), true)
+    public static Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end(), true)
             .splineToConstantHeading(new Vector2d(-14, 26.9),
                     Math.toRadians(270))
             .splineToConstantHeading(new Vector2d(-6, 3),
@@ -47,7 +40,7 @@ public class Red_Top_Path {
                     Math.toRadians(90))*/
             .build();
 
-    public Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end())
+    public static Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end())
             .splineToConstantHeading(new Vector2d(32.9, .25),
                     Math.toRadians(180))
             .splineToConstantHeading(new Vector2d(4, 1),
@@ -61,14 +54,14 @@ public class Red_Top_Path {
                       Math.toRadians(90))*/
             .build();
 
-    private TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
+    public static TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
                 new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
         )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL));
     }
 
-    private TrajectoryBuilder BuildTrajectory(Pose2d startPose, boolean reversed) {
+    public static TrajectoryBuilder BuildTrajectory(Pose2d startPose, boolean reversed) {
         return new TrajectoryBuilder(startPose, reversed, new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
                 new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
