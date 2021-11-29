@@ -6,6 +6,7 @@ import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConsta
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.TRACK_WIDTH;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.trajectory.constraints.AngularVelocityConstraint;
@@ -40,20 +41,20 @@ public class Red_Top_Path {
                     Math.toRadians(270))
             .splineToConstantHeading(new Vector2d(-6, 3),
                     Math.toRadians(0))
-            .splineToConstantHeading(new Vector2d(33, .75),
+            .splineToConstantHeading(new Vector2d(38, 1),
                     Math.toRadians(0))
           /*  .splineToConstantHeading(new Vector2d(-14, 27),
                     Math.toRadians(90))*/
             .build();
 
     public Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end())
-            .splineToConstantHeading(new Vector2d(32.9, .75),
+            .splineToConstantHeading(new Vector2d(32.9, .25),
                     Math.toRadians(180))
-            .splineToConstantHeading(new Vector2d(-6, 3),
+            .splineToConstantHeading(new Vector2d(4, 1),
                     Math.toRadians(180))
-            .splineToConstantHeading(new Vector2d(-10, 26.9),
-                    Math.toRadians(110))
-            .splineToConstantHeading(new Vector2d(-10, 27),
+            .splineToConstantHeading(new Vector2d(-1, 26.9),
+                    Math.toRadians(90))
+            .splineToConstantHeading(new Vector2d(-1, 27),
                     Math.toRadians(90))
 
             /*  .splineToConstantHeading(new Vector2d(-14, 27),

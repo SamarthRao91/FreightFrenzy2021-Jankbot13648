@@ -32,7 +32,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                 new FollowTrajectory(drive, paths.RT_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                 // new FollowTrajectory(drive, paths.RT_traj3),
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                new ReLocalizeDriveBase(drive, true),
+                //new ReLocalizeDriveBase(drive, true),
                 new WaitCommand(250),
                 new InstantCommand(() -> intake.setIntake(-0.66)),
 
