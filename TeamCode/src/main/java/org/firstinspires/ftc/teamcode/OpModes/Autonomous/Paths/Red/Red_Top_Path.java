@@ -14,8 +14,6 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MecanumVelocityConstra
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 
-import org.firstinspires.ftc.teamcode.Systems.Drive;
-
 import java.util.Arrays;
 
 public class Red_Top_Path {
@@ -23,32 +21,77 @@ public class Red_Top_Path {
     //clear bumps
     public static Trajectory RT_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(0)))
             .splineToConstantHeading(new Vector2d(-7, 0.125),
-                    Math.toRadians(180))
+                    Math.toRadians(180),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .splineToConstantHeading(new Vector2d(-13, 27),
-                    Math.toRadians(90))
+                    Math.toRadians(90),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .build();
 
     //align to warehouse
     public static Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end(), true)
             .splineToConstantHeading(new Vector2d(-14, 26.9),
-                    Math.toRadians(270))
+                    Math.toRadians(270),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .splineToConstantHeading(new Vector2d(-6, 3),
-                    Math.toRadians(0))
+                    Math.toRadians(0),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .splineToConstantHeading(new Vector2d(38, 1),
-                    Math.toRadians(0))
+                    Math.toRadians(0),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
           /*  .splineToConstantHeading(new Vector2d(-14, 27),
                     Math.toRadians(90))*/
             .build();
 
     public static Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end())
             .splineToConstantHeading(new Vector2d(32.9, .25),
-                    Math.toRadians(180))
+                    Math.toRadians(180),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .splineToConstantHeading(new Vector2d(4, 1),
-                    Math.toRadians(180))
+                    Math.toRadians(180),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .splineToConstantHeading(new Vector2d(-1, 26.9),
-                    Math.toRadians(90))
+                    Math.toRadians(90),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
             .splineToConstantHeading(new Vector2d(-1, 27),
-                    Math.toRadians(90))
+                    Math.toRadians(90),
+                    new MinVelocityConstraint(Arrays.asList(
+                            new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
+                            new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
+                    )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL)
+            )
 
             /*  .splineToConstantHeading(new Vector2d(-14, 27),
                       Math.toRadians(90))*/
