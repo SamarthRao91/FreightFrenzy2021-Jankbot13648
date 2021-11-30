@@ -48,15 +48,14 @@ public class Red_Top_Auto extends LinearOpMode {
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
 
-        while(!isStarted())
-        {
-          /*  capstonePosition = capstoneDetectionCamera.getPosition();
+        while (!isStarted()) {
+            capstonePosition = capstoneDetectionCamera.getPosition();
 
             telemetry.addData("Capstone Position", capstonePosition);
             telemetry.addData("Left Analysis", capstoneDetectionCamera.getAnalysis()[0]);
             telemetry.addData("Middle Analysis", capstoneDetectionCamera.getAnalysis()[1]);
             telemetry.addData("Right Analysis", capstoneDetectionCamera.getAnalysis()[2]);
-            telemetry.update();*/
+            telemetry.update();
         }
 
         schedule(
@@ -69,26 +68,22 @@ public class Red_Top_Auto extends LinearOpMode {
                 )
         );
 
-        while (!isStopRequested() && opModeIsActive())
-        {
+        while (!isStopRequested() && opModeIsActive()) {
             getCommandScheduler().run();
         }
 
         getCommandScheduler().reset();
     }
 
-    public CommandScheduler getCommandScheduler()
-    {
+    public CommandScheduler getCommandScheduler() {
         return CommandScheduler.getInstance();
     }
 
-    public void register(Subsystem... subsystems)
-    {
+    public void register(Subsystem... subsystems) {
         getCommandScheduler().registerSubsystem(subsystems);
     }
 
-    public void schedule(Command... commands)
-    {
+    public void schedule(Command... commands) {
         getCommandScheduler().schedule(commands);
     }
 }

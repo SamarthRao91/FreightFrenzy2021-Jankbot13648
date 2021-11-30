@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue.Blu
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ManualPickup;
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ScoreGamePiece;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Drive;

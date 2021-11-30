@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Blue;
+package org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Red;
 
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.AUTO_MAX_ACCEL;
 import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.AUTO_MAX_ANG_VEL;
@@ -18,8 +18,9 @@ import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 
 import java.util.Arrays;
 
-public class Blue_Top_Path {
-    public static Trajectory BT_traj1 = BuildTrajectory(new Pose2d(0, 0, 0))
+public class Red_Top_Path {
+
+    public static Trajectory RT_traj1 = BuildTrajectory(new Pose2d(0, 0, 0))
             .lineToConstantHeading(new Vector2d(-7, 1),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -29,7 +30,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj2 = BuildTrajectory(BT_traj1.end(), true)
+    public static Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end(), true)
             .splineToConstantHeading(new Vector2d(-13, 26.9), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -41,7 +42,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj3 = BuildTrajectory(BT_traj2.end(), false)
+    public static Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end(), false)
             .lineToConstantHeading(new Vector2d(13, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -50,7 +51,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj4 = BuildTrajectory(BT_traj3.end(), true)
+    public static Trajectory RT_traj4 = BuildTrajectory(RT_traj3.end(), true)
             .splineToConstantHeading(new Vector2d(9, 26.8), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -62,7 +63,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj5 = BuildTrajectory(BT_traj4.end(), false)
+    public static Trajectory RT_traj5 = BuildTrajectory(RT_traj4.end(), false)
             .lineToConstantHeading(new Vector2d(29, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -71,7 +72,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj6 = BuildTrajectory(BT_traj5.end(), true)
+    public static Trajectory RT_traj6 = BuildTrajectory(RT_traj5.end(), true)
             .splineToConstantHeading(new Vector2d(23, 26.8), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -83,7 +84,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj7 = BuildTrajectory(BT_traj6.end(), false)
+    public static Trajectory RT_traj7 = BuildTrajectory(RT_traj6.end(), false)
             .lineToConstantHeading(new Vector2d(44, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
@@ -92,7 +93,7 @@ public class Blue_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static Trajectory BT_traj8 = BuildTrajectory(BT_traj7.end(), true)
+    public static Trajectory RT_traj8 = BuildTrajectory(RT_traj7.end(), true)
             .splineToConstantHeading(new Vector2d(32, 26.8), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
