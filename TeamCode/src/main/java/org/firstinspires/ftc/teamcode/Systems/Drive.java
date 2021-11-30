@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_ANG_ACCEL;
+import static org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.DriveConstants.MAX_ANG_VEL;
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.localization.Localizer;
@@ -10,6 +13,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 
 import java.util.List;
 public class Drive extends SubsystemBase {
@@ -82,8 +87,17 @@ public class Drive extends SubsystemBase {
         return drive.trajectoryBuilder(startPose, startHeading);
     }
 
+    public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose) {
+        return drive.trajectorySequenceBuilder(startPose);
+    }
+
     public void followTrajectory(Trajectory trajectory) {
         drive.followTrajectoryAsync(trajectory);
+    }
+
+    public void followTrajectorySequence(TrajectorySequence trajectorySequence)
+    {
+        drive.followTrajectorySequence(trajectorySequence);
     }
 
     public boolean isBusy() {

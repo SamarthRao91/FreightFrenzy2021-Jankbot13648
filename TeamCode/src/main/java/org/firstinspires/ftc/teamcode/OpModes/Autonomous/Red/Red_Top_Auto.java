@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Red.Red_Top_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -51,13 +50,13 @@ public class Red_Top_Auto extends LinearOpMode {
 
         while(!isStarted())
         {
-            capstonePosition = capstoneDetectionCamera.getPosition();
+          /*  capstonePosition = capstoneDetectionCamera.getPosition();
 
             telemetry.addData("Capstone Position", capstonePosition);
             telemetry.addData("Left Analysis", capstoneDetectionCamera.getAnalysis()[0]);
             telemetry.addData("Middle Analysis", capstoneDetectionCamera.getAnalysis()[1]);
             telemetry.addData("Right Analysis", capstoneDetectionCamera.getAnalysis()[2]);
-            telemetry.update();
+            telemetry.update();*/
         }
 
         schedule(

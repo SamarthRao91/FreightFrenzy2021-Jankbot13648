@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.CommandBase;
 
@@ -29,11 +30,16 @@ public class ReLocalizeDriveBase extends CommandBase {
 
     @Override
     public void end(boolean isInterrupted) {
-        drive.setPoseEstimate(new Pose2d(
+
+        Pose2d newPose = new Pose2d(
                 drive.getPoseEstimate().getX(),
-                distance - (2.6 - (3.0/16.0)),
-                drive.getHeading())
-        );
+                distance - (2.6 - (3.0/16.0)) + 0.25,
+                drive.getHeading());
+
+        FtcDashboard.getInstance().getTelemetry().addData("New Pose", newPose.toString());
+        FtcDashboard.getInstance().getTelemetry().update();
+
+        drive.setPoseEstimate(newPose);
     }
 
     @Override
