@@ -8,7 +8,6 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajectory;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoLowPreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoMiddlePreset;
-import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighReversePreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.DropGamePiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ManualPickup;
