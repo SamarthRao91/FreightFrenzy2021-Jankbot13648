@@ -13,7 +13,7 @@ public class BlueAutoMiddlePreset extends SuperStructureToPosition {
                 900,
                 1,
                 Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
+                Constants.Manipulator.Extender.MAX_POS + .18,
                 Constants.Manipulator.Claw.CLOSE_POSITION
         );
     }

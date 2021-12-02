@@ -72,9 +72,9 @@ public class DuckSpinner extends SubsystemBase {
         FtcDashboard.getInstance().getTelemetry().update();
         while(spinner.getCurrentPosition() < 1000) {
             if (spinner.getCurrentPosition() >= 675) {
-                spinner.setPower(0.2);
-            } else {
                 spinner.setPower(0.4);
+            } else {
+                spinner.setPower(0.35);
 
             }
         }
@@ -92,7 +92,7 @@ public class DuckSpinner extends SubsystemBase {
         FtcDashboard.getInstance().getTelemetry().update();
         while(spinner.getCurrentPosition() > -1000) {
             if (spinner.getCurrentPosition() <= -675) {
-                spinner.setPower(-0.4);
+                spinner.setPower(-0.35);
             } else {
                 spinner.setPower(-0.4);
 

@@ -10,10 +10,10 @@ public class RedAutoReverseMiddlePreset extends SuperStructureToPosition {
         super(
                 elevator,
                 manipulator,
-                950,
+                960,
                 1,
                 Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
+                Constants.Manipulator.Extender.MAX_POS + .11,
                 Constants.Manipulator.Claw.CLOSE_POSITION
         );
     }

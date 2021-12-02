@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajector
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.ReLocalizeDriveBase;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoMiddlePreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoReverseLowPreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoReverseMiddlePreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.DropGamePiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.RedBiasedResetMechanisms;
@@ -26,6 +27,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new RedAutoReverseLowPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
                         new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
@@ -61,7 +63,8 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                 break;
             case CENTER:
                 addCommands(
-                        new RedAutoMiddlePreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new RedAutoReverseMiddlePreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
                         new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
@@ -98,6 +101,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
             case RIGHT:
                 addCommands(
                         new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
                         new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),

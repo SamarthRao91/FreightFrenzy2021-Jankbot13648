@@ -21,7 +21,7 @@ public class RedBiasedResetMechanisms extends SequentialCommandGroup {
                 new InstantCommand(() -> manipulator.setTurretPosition(0.52)),
                 new WaitCommand(750),
                 new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION, 1),
-                new WaitCommand(250),
+                new WaitCommand(175),
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION))
         );
 

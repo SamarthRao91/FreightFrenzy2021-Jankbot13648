@@ -78,7 +78,7 @@ public class Constants {
             public static final String DISTANCE_SENSOR_NAME = "sdc";
 
             public static double OPEN_POSITION = 0.47;
-            public static double CLOSE_POSITION = 0.35;
+            public static double CLOSE_POSITION = 0.32;
             public static final double CAPSTONE_OPEN_FULLY = 0.7;
         }
     }

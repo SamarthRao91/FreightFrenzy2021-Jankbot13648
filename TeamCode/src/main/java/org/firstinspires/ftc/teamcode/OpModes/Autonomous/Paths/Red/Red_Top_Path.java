@@ -31,10 +31,10 @@ public class Red_Top_Path {
             .build();
 
     public static Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end(), true)
-            .splineToConstantHeading(new Vector2d(-13, 26.9), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(-9, 26.9), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(-6, .5), Math.toRadians(0),
+            .splineToConstantHeading(new Vector2d(-4, .5), Math.toRadians(0),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .splineToConstantHeading(new Vector2d(41, .25), Math.toRadians(0),
@@ -46,7 +46,7 @@ public class Red_Top_Path {
             .lineToConstantHeading(new Vector2d(13, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(7, 29), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(7, 30), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
@@ -58,7 +58,7 @@ public class Red_Top_Path {
             .splineToConstantHeading(new Vector2d(14, .5), Math.toRadians(0),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(63, .25), Math.toRadians(0),
+            .splineToConstantHeading(new Vector2d(58, .25), Math.toRadians(0),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
@@ -67,19 +67,19 @@ public class Red_Top_Path {
             .lineToConstantHeading(new Vector2d(29, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(24, 29), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(24, 30), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
     public static Trajectory RT_traj6 = BuildTrajectory(RT_traj5.end(), true)
-            .splineToConstantHeading(new Vector2d(23, 26.8), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(24, 26.8), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(28, .5), Math.toRadians(0),
+            .splineToConstantHeading(new Vector2d(29, .5), Math.toRadians(0),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(85, .25), Math.toRadians(0),
+            .splineToConstantHeading(new Vector2d(80, .25), Math.toRadians(0),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
@@ -88,16 +88,16 @@ public class Red_Top_Path {
             .lineToConstantHeading(new Vector2d(44, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(39, 29), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(39, 30), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
     public static Trajectory RT_traj8 = BuildTrajectory(RT_traj7.end(), true)
-            .splineToConstantHeading(new Vector2d(32, 26.8), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(39, 26.8), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(37, .5), Math.toRadians(0),
+            .splineToConstantHeading(new Vector2d(34, .5), Math.toRadians(0),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .splineToConstantHeading(new Vector2d(90, .25), Math.toRadians(0),
