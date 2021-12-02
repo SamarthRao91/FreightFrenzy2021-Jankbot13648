@@ -27,13 +27,11 @@ public class Manipulator extends SubsystemBase {
         turret.setPosition(newPos);
     }
 
-    public void setExtenderPosition(double newValue)
-    {
+    public void setExtenderPosition(double newValue) {
         extender.setPosition(newValue);
     }
 
-    public void setClawPosition(double newValue)
-    {
+    public void setClawPosition(double newValue) {
         claw.setPosition(newValue);
     }
 
@@ -50,32 +48,32 @@ public class Manipulator extends SubsystemBase {
         }
     }
 
-    public double getExtenderPosition()
-    {
+    public double getExtenderPosition() {
         return extender.getPosition();
     }
 
     public void moveExtenderPosition(double amount) {
         if (amount != 0) {
-            if (getExtenderPosition() + amount < Constants.Manipulator.Extender.MIN_POS) {
+
+            if (getExtenderPosition() + amount > Constants.Manipulator.Extender.MIN_POS) {
                 extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
-            } else
-                extender.setPosition(Math.min(getExtenderPosition() + amount, Constants.Manipulator.Extender.MAX_POS));
+            } else if (getExtenderPosition() + amount < Constants.Manipulator.Extender.MAX_POS) {
+                extender.setPosition(Constants.Manipulator.Extender.MAX_POS);
+            } else {
+                extender.setPosition(extender.getPosition() + amount);
+            }
         }
     }
 
-    public double getClawPosition()
-    {
+    public double getClawPosition() {
         return claw.getPosition();
     }
 
-    public boolean dsTripped()
-    {
+    public boolean dsTripped() {
         return scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 2.7;
     }
 
-    public double getDsDistance()
-    {
+    public double getDsDistance() {
         return scoringDetectionDS.getDistance(DistanceUnit.INCH);
     }
 }
