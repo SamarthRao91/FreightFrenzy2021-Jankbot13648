@@ -57,11 +57,8 @@ public class Manipulator extends SubsystemBase {
 
             if (getExtenderPosition() + amount > Constants.Manipulator.Extender.MIN_POS) {
                 extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
-            } else if (getExtenderPosition() + amount < Constants.Manipulator.Extender.MAX_POS) {
-                extender.setPosition(Constants.Manipulator.Extender.MAX_POS);
-            } else {
-                extender.setPosition(extender.getPosition() + amount);
-            }
+            } else
+                extender.setPosition(Math.max(getExtenderPosition() + amount, Constants.Manipulator.Extender.MAX_POS));
         }
     }
 
