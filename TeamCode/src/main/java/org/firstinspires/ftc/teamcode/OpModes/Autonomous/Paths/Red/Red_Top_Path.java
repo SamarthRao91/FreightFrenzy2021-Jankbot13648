@@ -105,14 +105,14 @@ public class Red_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
-    public static TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
+    private static TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
         return new TrajectoryBuilder(startPose, new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
                 new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)
         )), new ProfileAccelerationConstraint(AUTO_MAX_ACCEL));
     }
 
-    public static TrajectoryBuilder BuildTrajectory(Pose2d startPose, boolean reversed) {
+    private static TrajectoryBuilder BuildTrajectory(Pose2d startPose, boolean reversed) {
         return new TrajectoryBuilder(startPose, reversed, new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(AUTO_MAX_ANG_VEL),
                 new MecanumVelocityConstraint(AUTO_MAX_VEL, TRACK_WIDTH)

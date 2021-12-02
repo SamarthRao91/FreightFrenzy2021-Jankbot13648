@@ -8,11 +8,17 @@ import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajector
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.ReLocalizeDriveBase;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Blue.BlueAutoReverseLowPreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Blue.BlueAutoMiddlePreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Blue.BlueAutoReverseMiddlePreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoReverseLowPreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoReverseMiddlePreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue.BlueHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.DropGamePiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.BlueBiasedResetMechanisms;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.RedBiasedResetMechanisms;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Blue.Blue_Top_Path;
+import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Red.Red_Top_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
@@ -20,13 +26,13 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 
 public class BlueTopAutoCommand extends SequentialCommandGroup {
-    
-    public BlueTopAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, CapstonePipeline.CapstonePosition capstonePosition)
-    {
+
+    public BlueTopAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, CapstonePipeline.CapstonePosition capstonePosition) {
         switch (capstonePosition) {
             case LEFT:
                 addCommands(
                         new BlueAutoReverseLowPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
                         new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj2)),
@@ -53,16 +59,13 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new BlueHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new ReLocalizeDriveBase(drive, true),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.9))
+                        new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8))
                 );
                 break;
             case CENTER:
                 addCommands(
-                        new BlueAutoMiddlePreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new BlueAutoReverseMiddlePreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
                         new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj2)),
@@ -89,16 +92,13 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new BlueHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new ReLocalizeDriveBase(drive, true),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.9))
+                        new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8))
                 );
                 break;
             case RIGHT:
                 addCommands(
                         new BlueHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
                         new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj2)),
@@ -125,11 +125,7 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new BlueHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new ReLocalizeDriveBase(drive, true),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.9))
+                        new BlueBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8))
                 );
                 break;
         }

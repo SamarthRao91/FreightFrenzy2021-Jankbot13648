@@ -54,11 +54,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new ReLocalizeDriveBase(drive, true),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.9))
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8))
                 );
                 break;
             case CENTER:
@@ -91,11 +87,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new ReLocalizeDriveBase(drive, true),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.9))
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8))
                 );
                 break;
             case RIGHT:
@@ -128,11 +120,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8)),
-                        new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
-                        new ReLocalizeDriveBase(drive, true),
-                        new WaitCommand(250),
-                        new InstantCommand(() -> intake.setIntake(-0.9))
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8))
                 );
                 break;
         }
