@@ -28,7 +28,7 @@ public class Constants {
 
         // Minimum position of elevator to stop movement
         // TODO: Check Value
-        public static final int MINIMUM_POSITION = 50;
+        public static final int MINIMUM_POSITION = 25;
 
         // Maximum position of elevator
         public static final int MAXIMUM_POSITION = 2500;

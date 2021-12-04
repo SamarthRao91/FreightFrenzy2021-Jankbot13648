@@ -36,7 +36,7 @@ public class Blue_Top_Auto extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap);
         intake = new Intake(hardwareMap);
         duckSpinner = new DuckSpinner(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, false);
+        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
 
         register(
                 drive,

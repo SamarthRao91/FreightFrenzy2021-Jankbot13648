@@ -31,10 +31,23 @@ public class ReLocalizeDriveBase extends CommandBase {
     @Override
     public void end(boolean isInterrupted) {
 
-        Pose2d newPose = new Pose2d(
-                drive.getPoseEstimate().getX(),
-                distance - (2.6 - (3.0/16.0)) + 0.25,
-                drive.getHeading());
+        Pose2d newPose;
+
+        if(runOnRed)
+        {
+            newPose = new Pose2d(
+                    drive.getPoseEstimate().getX(),
+                    distance - (2.6 - (3.0/16.0)) + 0.25,
+                    drive.getHeading());
+        }
+
+        else
+        {
+            newPose = new Pose2d(
+                    drive.getPoseEstimate().getX(),
+                    -(distance - (2.6 - (3.0/16.0)) + 0.25),
+                    drive.getHeading());
+        }
 
         FtcDashboard.getInstance().getTelemetry().addData("New Pose", newPose.toString());
         FtcDashboard.getInstance().getTelemetry().update();
