@@ -18,7 +18,7 @@ public class BlueBiasedResetMechanisms extends SequentialCommandGroup {
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                 new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
                 new ElevatorToPosition(elevator, Constants.Elevator.SAFE_EXTENDER_POSITION + 200, 1),
-                new InstantCommand(() -> manipulator.setTurretPosition(0.2)),
+                new InstantCommand(() -> manipulator.setTurretPosition(0.51)),
                 new WaitCommand(750),
                 new ElevatorToPosition(elevator, Constants.Elevator.MINIMUM_POSITION, 1),
                 new WaitCommand(175),

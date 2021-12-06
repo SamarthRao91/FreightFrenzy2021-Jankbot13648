@@ -13,7 +13,7 @@ public class BlueAutoReverseLowPreset extends SuperStructureToPosition {
                 445,
                 1,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
-                Constants.Manipulator.Extender.MAX_POS,
+                Constants.Manipulator.Extender.MAX_POS + 0.16,
                 Constants.Manipulator.Claw.CLOSE_POSITION
         );
     }

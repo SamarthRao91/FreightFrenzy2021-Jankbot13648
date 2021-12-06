@@ -46,11 +46,6 @@ public class Manipulator extends SubsystemBase {
             } else
                 turret.setPosition(Math.max(amount + getTurretPosition(), Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION));
         }
-
-        else
-        {
-            turret.setPosition(getTurretPosition());
-        }
     }
 
     public double getExtenderPosition() {
@@ -64,11 +59,6 @@ public class Manipulator extends SubsystemBase {
                 extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
             } else
                 extender.setPosition(Math.max(getExtenderPosition() + amount, Constants.Manipulator.Extender.MAX_POS));
-        }
-
-        else
-        {
-            extender.setPosition(getExtenderPosition());
         }
     }
 
