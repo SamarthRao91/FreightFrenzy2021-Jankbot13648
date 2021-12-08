@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -13,14 +14,17 @@ public class Manipulator extends SubsystemBase {
     private Servo turret;
     private Servo extender;
     private Servo claw;
-    private DistanceSensor scoringDetectionDS;
+
+    private ColorSensor detectionCS;
+    private DistanceSensor detectionDS;
 
     public Manipulator(HardwareMap hardwareMap) {
         turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
         extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
 
-        scoringDetectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
+        detectionCS = hardwareMap.get(ColorSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
+        detectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
     }
 
     public void setTurretPosition(double newPos) {
@@ -67,10 +71,26 @@ public class Manipulator extends SubsystemBase {
     }
 
     public boolean dsTripped() {
-        return scoringDetectionDS.getDistance(DistanceUnit.INCH) <= 2.7;
+        return getDsDistance() <= 2.7;
     }
 
     public double getDsDistance() {
-        return scoringDetectionDS.getDistance(DistanceUnit.INCH);
+        return detectionDS.getDistance(DistanceUnit.INCH);
+    }
+
+    public int getCSAlpha() {
+        return detectionCS.alpha();
+    }
+
+    public int getCSRed() {
+        return detectionCS.red();
+    }
+
+    public int getCSGreen() {
+        return detectionCS.green();
+    }
+
+    public int getCSBlue() {
+        return detectionCS.blue();
     }
 }
