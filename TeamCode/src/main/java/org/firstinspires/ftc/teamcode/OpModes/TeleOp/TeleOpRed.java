@@ -6,6 +6,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.CapstoneGrabberDefault;
+import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.MoveCapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Red.RedHighPreset;
@@ -50,10 +52,9 @@ public class TeleOpRed extends CommandOpMode {
         driveGamepad = new GamepadEx(gamepad1);
         mechGamepad = new GamepadEx(gamepad2);
 
-        register(drive, elevator, manipulator, intake, duckSpinner);
+        register(drive, elevator, manipulator, intake, duckSpinner, capstoneGrabber);
 
         drive.setHeadingOffset(HeadingStorage.STORED_HEADING);
-        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
 
         drive.setDefaultCommand(
                 new DriveDefault(
@@ -67,6 +68,7 @@ public class TeleOpRed extends CommandOpMode {
         intake.setDefaultCommand(new IntakeDefault(intake, () -> driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
         elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_y));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -mechGamepad.gamepad.left_stick_x, () -> -mechGamepad.gamepad.left_stick_y));
+        capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
         // Binding ---------------------------------------------------------------------------------
 
@@ -95,6 +97,7 @@ public class TeleOpRed extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator, intake));
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinReverseSpinner()));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new MoveCapstoneGrabber(capstoneGrabber));
     }
 
 }

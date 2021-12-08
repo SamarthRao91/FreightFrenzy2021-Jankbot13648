@@ -6,6 +6,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.CapstoneGrabberDefault;
+import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.MoveCapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue.BlueHighPreset;
@@ -17,6 +19,7 @@ import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ManualPicku
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ScoreGamePiece;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -32,6 +35,7 @@ public class TeleOpBlue extends CommandOpMode {
     Manipulator manipulator;
     Intake intake;
     DuckSpinner duckSpinner;
+    CapstoneGrabber capstoneGrabber;
 
     GamepadEx driveGamepad;
     GamepadEx mechGamepad;
@@ -43,14 +47,14 @@ public class TeleOpBlue extends CommandOpMode {
         manipulator = new Manipulator(hardwareMap);
         intake = new Intake(hardwareMap);
         duckSpinner = new DuckSpinner(hardwareMap);
+        capstoneGrabber = new CapstoneGrabber(hardwareMap);
 
         driveGamepad = new GamepadEx(gamepad1);
         mechGamepad = new GamepadEx(gamepad2);
 
-        register(drive, elevator, manipulator, intake, duckSpinner);
+        register(drive, elevator, manipulator, intake, duckSpinner, capstoneGrabber);
 
         drive.setHeadingOffset(HeadingStorage.STORED_HEADING);
-        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
 
         drive.setDefaultCommand(
                 new DriveDefault(
@@ -64,6 +68,7 @@ public class TeleOpBlue extends CommandOpMode {
         intake.setDefaultCommand(new IntakeDefault(intake, () -> driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
         elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_y));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, manipulator::dsTripped, () -> -mechGamepad.gamepad.left_stick_x, () -> -mechGamepad.gamepad.left_stick_y));
+        capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
         // Binding ---------------------------------------------------------------------------------
 
@@ -92,5 +97,6 @@ public class TeleOpBlue extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(elevator, manipulator, intake));
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinSpinner()));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new MoveCapstoneGrabber(capstoneGrabber));
     }
 }

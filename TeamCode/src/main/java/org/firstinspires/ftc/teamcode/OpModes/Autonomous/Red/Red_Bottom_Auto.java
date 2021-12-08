@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedBottomAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -26,6 +27,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
     Manipulator manipulator;
     Intake intake;
     DuckSpinner duckSpinner;
+    CapstoneGrabber capstoneGrabber;
     CapstoneDetectionCamera capstoneDetectionCamera;
 
     CapstonePipeline.CapstonePosition capstonePosition;
@@ -37,6 +39,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
         manipulator = new Manipulator(hardwareMap);
         intake = new Intake(hardwareMap);
         duckSpinner = new DuckSpinner(hardwareMap);
+        capstoneGrabber = new CapstoneGrabber(hardwareMap);
         capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
 
         register(
@@ -44,13 +47,16 @@ public class Red_Bottom_Auto extends LinearOpMode {
                 elevator,
                 manipulator,
                 intake,
-                duckSpinner
+                duckSpinner,
+                capstoneGrabber
         );
 
         HeadingStorage.STORED_HEADING = 0;
         drive.setHeadingOffset(0);
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
+        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
+        capstoneGrabber.setCapstonePosition(Constants.CapstoneGrabber.CAPSTONE_GRABBER_POSITIONS[0]);
 
         while(!isStarted())
         {

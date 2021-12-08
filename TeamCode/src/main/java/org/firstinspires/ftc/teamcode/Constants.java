@@ -106,5 +106,6 @@ public class Constants {
     public static  class CapstoneGrabber {
         public static final String CAPSTONE_GRABBER_NAME = "cas";
 
+        public static double[] CAPSTONE_GRABBER_POSITIONS = {0.55, 1, 0.4, 0.3};
     }
 }
