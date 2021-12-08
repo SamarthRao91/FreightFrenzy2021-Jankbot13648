@@ -1,12 +1,10 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 import static org.firstinspires.ftc.teamcode.Constants.Intake.INTAKE_MOTOR_NAME;
-
-import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.technototes.library.subsystem.Subsystem;
 
-public class Intake extends SubsystemBase {
+public class Intake implements Subsystem {
 
     private Motor intake;
 

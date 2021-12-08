@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands;
 
-import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.technototes.library.command.Command;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class SuperStructureToPosition extends CommandBase {
+public class SuperStructureToPosition implements Command {
 
     private final Elevator elevator;
     private final Manipulator manipulator;

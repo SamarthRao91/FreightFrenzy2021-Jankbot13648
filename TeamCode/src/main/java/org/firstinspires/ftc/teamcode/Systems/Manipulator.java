@@ -1,14 +1,14 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
-import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.technototes.library.subsystem.Subsystem;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 
-public class Manipulator extends SubsystemBase {
+public class Manipulator implements Subsystem {
 
     private Servo turret;
     private Servo extender;

@@ -11,13 +11,15 @@ import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.technototes.library.subsystem.Subsystem;
+import com.technototes.path.subsystem.MecanumDrivebaseSubsystem;
 
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 
 import java.util.List;
-public class Drive implements Subsystem {
+//TODO this is wrong
+public class Drive extends MecanumDrivebaseSubsystem {
 
     private final MecanumDrive drive;
     private final boolean fieldCentric;

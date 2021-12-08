@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
+
+import com.technototes.library.command.SequentialCommandGroup;
+import com.technototes.library.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
@@ -13,10 +13,10 @@ public class DropGamePiece extends SequentialCommandGroup {
     public DropGamePiece(Elevator elevator, Manipulator manipulator)
     {
         addCommands(
-                new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)),
-                new WaitCommand(250),
-                new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
-                new WaitCommand(500)
+                () -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION),
+                new WaitCommand(0.250),
+                () -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS),
+                new WaitCommand(0.500)
         );
 
         addRequirements(elevator, manipulator);

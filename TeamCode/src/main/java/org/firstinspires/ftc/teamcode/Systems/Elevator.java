@@ -3,14 +3,13 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 import static org.firstinspires.ftc.teamcode.Constants.Elevator.ELEVATOR_MOTOR_NAME;
 
-import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.technototes.library.subsystem.Subsystem;
 
 import org.firstinspires.ftc.teamcode.Constants;
 
-public class Elevator extends SubsystemBase {
+public class Elevator implements Subsystem {
     private Motor elevatorMotor;
     DigitalChannel ls;
 
