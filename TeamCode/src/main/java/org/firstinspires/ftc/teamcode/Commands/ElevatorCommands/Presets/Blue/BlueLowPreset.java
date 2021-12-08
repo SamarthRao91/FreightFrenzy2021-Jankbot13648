@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 public class BlueLowPreset extends SequentialCommandGroup {
     public BlueLowPreset(Elevator elevator, Manipulator manipulator) {
         addCommands(
-                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION + 200, 1),
+                new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION + 0, 1),
                 new InstantCommand(() -> manipulator.setTurretPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION - 0.0625)),
                 new WaitCommand(500),
                 new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MAX_POS + 0.15))

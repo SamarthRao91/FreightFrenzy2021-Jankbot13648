@@ -8,10 +8,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+
+import org.checkerframework.checker.signedness.qual.Constant;
+import org.firstinspires.ftc.teamcode.Constants;
 
 public class DuckSpinner extends SubsystemBase {
 
     private DcMotorEx spinner;
+    private Servo redDuckWall;
 
     public DuckSpinner(HardwareMap hardwareMap) {
         spinner = hardwareMap.get(DcMotorEx.class, DUCK_SPINNER_MOTOR_NAME);
@@ -19,6 +24,7 @@ public class DuckSpinner extends SubsystemBase {
         spinner.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         spinner.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         spinner.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        redDuckWall = hardwareMap.get(Servo.class, Constants.DuckSpinner.RED_WALL_SERVO);
     }
 
     /*public void setTargetPosition(int targetPosition)
@@ -45,6 +51,7 @@ public class DuckSpinner extends SubsystemBase {
     {
         return spinner.getCurrentPosition();
     }*/
+
 
     public void spinSpinner()
     {

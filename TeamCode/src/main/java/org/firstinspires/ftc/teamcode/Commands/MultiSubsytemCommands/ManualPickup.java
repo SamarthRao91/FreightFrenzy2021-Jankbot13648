@@ -26,10 +26,11 @@ public class ManualPickup extends SequentialCommandGroup {
     public ManualPickup(Elevator elevator, Manipulator manipulator, Intake intake)
     {
         addCommands(
+                new InstantCommand(() -> manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION)),
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                 new WaitCommand(250),
                 new ElevatorToPosition(elevator, Constants.Elevator.SAFE_TURRET_POSITION, 1),
-                new InstantCommand(() -> intake.setIntake(-0.66)),
+                new InstantCommand(() -> intake.setIntake(-0.8)),
                 new WaitCommand(1000),
                 new InstantCommand(() -> intake.setIntake(0))
         );

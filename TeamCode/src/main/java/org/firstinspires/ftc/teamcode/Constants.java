@@ -11,7 +11,6 @@ public class Constants {
         public static final String FRONT_RIGHT_DRIVE_MOTOR_NAME = "fr";
         public static final String REAR_LEFT_DRIVE_MOTOR_NAME = "rl";
         public static final String REAR_RIGHT_DRIVE_MOTOR_NAME = "rr";
-
         public static final String LEFT_DISTANCE_SENSOR_NAME = "ds2";
         public static final String RIGHT_DISTANCE_SENSOR_NAME = "ds1";
     }
@@ -34,7 +33,7 @@ public class Constants {
         public static final int MAXIMUM_POSITION = 2500;
 
         // Position in which turret clears the bottom if extender is retracted // min safe pos
-        public static final int SAFE_TURRET_POSITION = 625;
+        public static final int SAFE_TURRET_POSITION = 550;
 
         // Position in which everything clears duck spinner if extender is extended
         public static final int SAFE_EXTENDER_POSITION = 1224;
@@ -55,7 +54,7 @@ public class Constants {
             // Stores angle to not hit duck spinner
             public static final double LEFT_MAXIMUM_POSITION = 0.9;
 
-            public static final double ZERO_POSITION = 0.495;
+            public static final double ZERO_POSITION = 0.51;
         }
 
         @Config
@@ -77,7 +76,7 @@ public class Constants {
             public static final String CLAW_SERVO_NAME = "cs";
             public static final String DISTANCE_SENSOR_NAME = "sdc";
 
-            public static double OPEN_POSITION = 0.47;
+            public static double OPEN_POSITION = 0.50;
             public static double CLOSE_POSITION = 0.32;
             public static final double CAPSTONE_OPEN_FULLY = 0.7;
         }
@@ -86,6 +85,9 @@ public class Constants {
     @Config
     public static final class DuckSpinner {
         public static final String DUCK_SPINNER_MOTOR_NAME = "qs";
+        public static final String RED_WALL_SERVO = "rws";
+        public static final double rwsUp =1;
+        public static final double rwsDown = 0.4;
     }
 
     @Config
@@ -95,5 +97,10 @@ public class Constants {
 
         public static final int CAMERA_RESOLUTION_WIDTH = 1280;
         public static final int CAMERA_RESOLUTION_HEIGHT = 720;
+    }
+
+    @Config
+    public static  class CapstoneGrabber {
+        public static final String CAPSTONE_GRABBER_NAME = "cas";
     }
 }
