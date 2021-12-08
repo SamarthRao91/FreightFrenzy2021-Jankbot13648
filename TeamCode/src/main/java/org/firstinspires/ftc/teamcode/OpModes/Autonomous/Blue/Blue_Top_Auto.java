@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 @Autonomous(name = "BLUE | Top Auto", group = "Blue", preselectTeleOp = "BLUE | Tele-Op")
 public class Blue_Top_Auto extends LinearOpMode {
@@ -45,6 +46,7 @@ public class Blue_Top_Auto extends LinearOpMode {
                 duckSpinner
         );
 
+        HeadingStorage.STORED_HEADING = 0;
         drive.setHeadingOffset(0);
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
