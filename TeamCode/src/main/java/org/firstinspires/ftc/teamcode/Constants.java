@@ -88,8 +88,9 @@ public class Constants {
     public static final class DuckSpinner {
         public static final String DUCK_SPINNER_MOTOR_NAME = "qs";
         public static final String RED_WALL_SERVO = "rws";
-        public static final double rwsUp =1;
-        public static final double rwsDown = 0.4;
+
+        public static final double RED_WALL_UP = 1;
+        public static final double RED_WALL_DOWN = 0.4;
     }
 
     @Config

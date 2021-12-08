@@ -47,6 +47,7 @@ public class Blue_Top_Auto extends LinearOpMode {
         );
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
+        duckSpinner.SetRedWall(Constants.DuckSpinner.RED_WALL_UP);
 
         while(!isStarted())
         {
