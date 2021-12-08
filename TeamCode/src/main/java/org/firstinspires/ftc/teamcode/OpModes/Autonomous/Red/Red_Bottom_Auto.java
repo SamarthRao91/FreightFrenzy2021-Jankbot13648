@@ -46,6 +46,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
                 duckSpinner
         );
 
+        drive.setHeadingOffset(0);
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
 
         while(!isStarted())

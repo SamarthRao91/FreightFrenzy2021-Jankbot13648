@@ -45,8 +45,8 @@ public class Blue_Bottom_Auto extends LinearOpMode {
                 duckSpinner
         );
 
+        drive.setHeadingOffset(0);
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
-
 
         while(!isStarted())
         {

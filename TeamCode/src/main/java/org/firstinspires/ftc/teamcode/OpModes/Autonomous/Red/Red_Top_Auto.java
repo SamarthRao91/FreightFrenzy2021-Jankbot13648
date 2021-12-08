@@ -46,8 +46,10 @@ public class Red_Top_Auto extends LinearOpMode {
                 duckSpinner
         );
 
+        drive.setHeadingOffset(0);
+
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
-        duckSpinner.SetRedWall(Constants.DuckSpinner.RED_WALL_UP);
+        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
 
         while (!isStarted()) {
             capstonePosition = capstoneDetectionCamera.getPosition();

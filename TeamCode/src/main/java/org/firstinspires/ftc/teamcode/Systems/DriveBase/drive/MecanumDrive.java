@@ -56,7 +56,7 @@ import java.util.List;
 @Config
 public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 1.0, 0.5);
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(  6, 0.5, 0);
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(6, 0.5, 0);
 
     public static double LATERAL_MULTIPLIER = 1;
 
@@ -143,7 +143,12 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     }
 
     public void resetHeading() {
-headingOffset = imu.getAngularOrientation().firstAngle;
+        headingOffset = -imu.getAngularOrientation().firstAngle;
+    }
+
+    public void setHeadingOffset(double newValue)
+    {
+        headingOffset = newValue;
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -292,7 +297,7 @@ headingOffset = imu.getAngularOrientation().firstAngle;
 
     @Override
     public double getRawExternalHeading() {
-        return imu.getAngularOrientation().firstAngle - headingOffset;
+        return imu.getAngularOrientation().firstAngle += headingOffset;
     }
 
     @Override
@@ -329,13 +334,11 @@ headingOffset = imu.getAngularOrientation().firstAngle;
         return new ProfileAccelerationConstraint(maxAccel);
     }
 
-    public double getLeftDistance()
-    {
+    public double getLeftDistance() {
         return leftDistanceSensor.getDistance(DistanceUnit.INCH);
     }
 
-    public double getRightDistance()
-    {
+    public double getRightDistance() {
         return rightDistanceSensor.getDistance(DistanceUnit.INCH);
     }
 }

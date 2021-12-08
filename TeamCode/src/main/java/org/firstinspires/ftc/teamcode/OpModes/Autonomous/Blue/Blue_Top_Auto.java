@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Blue.BlueTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Blue.Blue_Top_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.DuckSpinner;
@@ -46,8 +45,10 @@ public class Blue_Top_Auto extends LinearOpMode {
                 duckSpinner
         );
 
+        drive.setHeadingOffset(0);
+
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
-        duckSpinner.SetRedWall(Constants.DuckSpinner.RED_WALL_UP);
+        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
 
         while(!isStarted())
         {

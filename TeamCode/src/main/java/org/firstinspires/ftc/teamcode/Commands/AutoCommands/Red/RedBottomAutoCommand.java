@@ -21,10 +21,14 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class RedBottomAutoCommand extends SequentialCommandGroup {
     public RedBottomAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, DuckSpinner duckSpinner, CapstonePipeline.CapstonePosition capstonePosition)
     {
+
+        HeadingStorage.STORED_HEADING = Math.toRadians(270);
+
         switch (capstonePosition)
         {
             case LEFT:
@@ -34,7 +38,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         new ScoreGamePiece(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2),
-                        new InstantCommand(()-> duckSpinner.SetRedWall(Constants.DuckSpinner.RED_WALL_UP)),
+                        new InstantCommand(()-> duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP)),
                         new InstantCommand(duckSpinner::spinReverseSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj3),
@@ -63,7 +67,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         new ScoreGamePiece(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2),
-                        new InstantCommand(()-> duckSpinner.SetRedWall(Constants.DuckSpinner.RED_WALL_UP)),
+                        new InstantCommand(()-> duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP)),
                         new InstantCommand(duckSpinner::spinReverseSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj3),
@@ -91,7 +95,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         new ScoreGamePiece(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2),
-                        new InstantCommand(()-> duckSpinner.SetRedWall(Constants.DuckSpinner.RED_WALL_UP)),
+                        new InstantCommand(()-> duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP)),
                         new InstantCommand(duckSpinner::spinReverseSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj3),

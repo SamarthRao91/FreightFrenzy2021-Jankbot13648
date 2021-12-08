@@ -20,9 +20,13 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 public class BlueBottomAutoCommand extends SequentialCommandGroup {
     public BlueBottomAutoCommand(Drive drive, Elevator elevator, Manipulator manipulator, Intake intake, DuckSpinner duckSpinner, CapstonePipeline.CapstonePosition capstonePosition) {
+
+        HeadingStorage.STORED_HEADING = Math.toRadians(90);
+
         switch (capstonePosition) {
             case LEFT:
                 addCommands(
