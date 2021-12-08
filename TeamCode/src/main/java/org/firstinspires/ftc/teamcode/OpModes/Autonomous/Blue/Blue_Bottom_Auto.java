@@ -47,6 +47,7 @@ public class Blue_Bottom_Auto extends LinearOpMode {
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
 
+
         while(!isStarted())
         {
             capstonePosition = capstoneDetectionCamera.getPosition();

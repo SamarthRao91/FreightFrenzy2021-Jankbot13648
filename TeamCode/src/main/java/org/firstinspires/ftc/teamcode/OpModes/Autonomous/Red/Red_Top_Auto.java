@@ -47,6 +47,7 @@ public class Red_Top_Auto extends LinearOpMode {
         );
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
+        duckSpinner.SetRedWall(Constants.DuckSpinner.rwsUp);
 
         while (!isStarted()) {
             capstonePosition = capstoneDetectionCamera.getPosition();

@@ -27,6 +27,10 @@ public class DuckSpinner extends SubsystemBase {
         redDuckWall = hardwareMap.get(Servo.class, Constants.DuckSpinner.RED_WALL_SERVO);
     }
 
+    public void SetRedWall(double position)
+    {
+        redDuckWall.setPosition(position);
+    }
     /*public void setTargetPosition(int targetPosition)
     {
         spinner.setTargetPosition(targetPosition);

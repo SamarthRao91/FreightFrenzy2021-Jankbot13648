@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 
+import java.lang.reflect.Array;
+
 @Config
 public class Constants {
 
@@ -102,5 +104,6 @@ public class Constants {
     @Config
     public static  class CapstoneGrabber {
         public static final String CAPSTONE_GRABBER_NAME = "cas";
+
     }
 }
