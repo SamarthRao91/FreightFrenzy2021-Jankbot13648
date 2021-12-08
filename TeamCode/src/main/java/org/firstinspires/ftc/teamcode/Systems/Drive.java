@@ -8,16 +8,16 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.localization.Localizer;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
-import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.technototes.library.subsystem.Subsystem;
 
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 
 import java.util.List;
-public class Drive extends SubsystemBase {
+public class Drive implements Subsystem {
 
     private final MecanumDrive drive;
     private final boolean fieldCentric;

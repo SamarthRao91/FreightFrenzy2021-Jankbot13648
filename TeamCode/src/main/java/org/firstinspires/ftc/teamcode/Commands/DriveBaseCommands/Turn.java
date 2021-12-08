@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands;
 
-import com.arcrobotics.ftclib.command.CommandBase;
+import com.technototes.library.command.Command;
 
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 
-public class Turn extends CommandBase {
+public class Turn implements Command {
 
     private final Drive drive;
     private final double angle;

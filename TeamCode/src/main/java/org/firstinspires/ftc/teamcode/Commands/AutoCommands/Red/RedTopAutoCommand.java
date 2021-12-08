@@ -1,10 +1,9 @@
 package org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red;
 
-import com.arcrobotics.ftclib.command.InstantCommand;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
-import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajectory;
+import com.technototes.library.command.SequentialCommandGroup;
+import com.technototes.library.command.WaitCommand;
+
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.ReLocalizeDriveBase;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoReverseLowPreset;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPresets.Red.RedAutoReverseMiddlePreset;
@@ -25,101 +24,101 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
         switch (capstonePosition) {
             case LEFT:
                 addCommands(
-                        new RedAutoReverseLowPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new RedAutoReverseLowPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj1)),
                         new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj2)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj3)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj4)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj4)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj5)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj5)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj6)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj6)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8))
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj8))
                 );
                 break;
             case CENTER:
                 addCommands(
-                        new RedAutoReverseMiddlePreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new RedAutoReverseMiddlePreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj1)),
                         new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj2)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj3)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj4)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj4)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj5)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj5)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj6)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj6)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8))
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj8))
                 );
                 break;
             case RIGHT:
                 addCommands(
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj1)),
                         new WaitCommand(250),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj2)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj3)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj4)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj4)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj5)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj5)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj6)),
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj6)),
                         new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION)),
                         new ReLocalizeDriveBase(drive, true),
                         new WaitCommand(250),
                         new InstantCommand(() -> intake.setIntake(-0.9)),
-                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj7)),
                         new DropGamePiece(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(1)),
-                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8))
+                        new RedBiasedResetMechanisms(elevator, manipulator).alongWith(new TrajectoryCommand(drive, Red_Top_Path.RT_traj8))
                 );
                 break;
         }

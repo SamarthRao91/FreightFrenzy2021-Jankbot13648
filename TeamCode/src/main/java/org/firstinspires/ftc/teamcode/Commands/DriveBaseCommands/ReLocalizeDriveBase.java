@@ -2,11 +2,11 @@ package org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.CommandBase;
+import com.technototes.library.command.Command;
 
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 
-public class ReLocalizeDriveBase extends CommandBase {
+public class ReLocalizeDriveBase implements Command {
 
     private final Drive drive;
     private final boolean runOnRed;
@@ -26,6 +26,11 @@ public class ReLocalizeDriveBase extends CommandBase {
         } else {
             distance = drive.getLeftDistance();
         }
+    }
+
+    @Override
+    public void execute() {
+
     }
 
     @Override
