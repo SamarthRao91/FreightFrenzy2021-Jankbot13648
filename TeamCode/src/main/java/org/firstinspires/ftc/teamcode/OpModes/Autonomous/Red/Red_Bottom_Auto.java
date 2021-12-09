@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedBottomAutoCommand;
+import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.CapstoneGrabberDefault;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -56,7 +57,8 @@ public class Red_Bottom_Auto extends LinearOpMode {
 
         manipulator.setClawPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
         duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
-        capstoneGrabber.setCapstonePosition(Constants.CapstoneGrabber.CAPSTONE_GRABBER_POSITIONS[0]);
+
+        capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
         while(!isStarted())
         {

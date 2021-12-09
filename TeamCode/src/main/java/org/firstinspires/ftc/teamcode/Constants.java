@@ -51,12 +51,12 @@ public class Constants {
             public static final String TURRET_SERVO_NAME = "ts";
 
             // Storage angle to not hit capstone
-            public static final double RIGHT_MAXIMUM_POSITION = 0.09;
+            public static final double RIGHT_MAXIMUM_POSITION = 0.15;
 
             // Stores angle to not hit duck spinner
             public static final double LEFT_MAXIMUM_POSITION = 0.9;
 
-            public static final double ZERO_POSITION = 0.51;
+            public static final double ZERO_POSITION = 0.54;
         }
 
         @Config
@@ -67,7 +67,7 @@ public class Constants {
             public static double MAX_POS = 0.31;
 
             // Minimum rotation of extender
-            public static double MIN_POS = 0.75;
+            public static double MIN_POS = 0.74;
 
             // Stores position of capstone
             public static final double CAPSTONE_POSITION = 0;
@@ -89,7 +89,7 @@ public class Constants {
         public static final String DUCK_SPINNER_MOTOR_NAME = "qs";
         public static final String RED_WALL_SERVO = "rws";
 
-        public static final double RED_WALL_UP = 0.4;
+        public static final double RED_WALL_UP = 0;
         public static final double RED_WALL_DOWN = 1;
     }
 
@@ -106,6 +106,6 @@ public class Constants {
     public static  class CapstoneGrabber {
         public static final String CAPSTONE_GRABBER_NAME = "cas";
 
-        public static double[] CAPSTONE_GRABBER_POSITIONS = {0.55, 1, 0.4, 0.3};
+        public static double[] CAPSTONE_GRABBER_POSITIONS = {0.5, 1, 0.7, 0.8};
     }
 }

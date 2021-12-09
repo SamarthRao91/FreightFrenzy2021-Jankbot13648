@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Systems.Elevator;

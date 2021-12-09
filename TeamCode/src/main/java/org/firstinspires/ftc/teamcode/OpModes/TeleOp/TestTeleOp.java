@@ -10,14 +10,16 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.DriveDefault;
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.ReLocalizeDriveBase;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
+import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "Test Tele-Op")
 public class TestTeleOp extends LinearOpMode {
 
@@ -42,6 +44,8 @@ public class TestTeleOp extends LinearOpMode {
             packet.put("CS Blue", manipulator.getCSBlue());
 
             FtcDashboard.getInstance().sendTelemetryPacket(packet);
+
+            manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
         }
     }
 }

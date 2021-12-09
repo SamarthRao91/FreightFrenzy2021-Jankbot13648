@@ -55,6 +55,7 @@ public class TeleOpBlue extends CommandOpMode {
         register(drive, elevator, manipulator, intake, duckSpinner, capstoneGrabber);
 
         drive.setHeadingOffset(HeadingStorage.STORED_HEADING);
+        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
 
         drive.setDefaultCommand(
                 new DriveDefault(

@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.AutoPres
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.Presets.Blue.BlueHighReversePreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.DropGamePiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ManualPickup;
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.ResetMechanisms;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.BlueBiasedResetMechanisms;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Blue.Blue_Bottom_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -34,7 +34,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new BlueAutoLowPreset(elevator, manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
                         new DropGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new BlueBiasedResetMechanisms(elevator, manipulator)),
                         new InstantCommand(duckSpinner::spinSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj3),
@@ -43,7 +43,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj6),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj71),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj72),
+                       // new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj72),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj73),
                         // new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8),
                         new WaitCommand(250),
@@ -53,7 +53,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj9).alongWith(new BlueHighReversePreset(elevator, manipulator)),
                         new InstantCommand(() -> intake.setIntake(0)),
                         new DropGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new BlueBiasedResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11)
                 );
                 break;
@@ -63,7 +63,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new BlueAutoMiddlePreset(elevator, manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
                         new DropGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new BlueBiasedResetMechanisms(elevator, manipulator)),
                         new InstantCommand(duckSpinner::spinSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj3),
@@ -72,7 +72,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj6),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj71),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj72),
+                     //   new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj72),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj73),
                         // new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8),
                         new WaitCommand(250),
@@ -82,7 +82,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj9).alongWith(new BlueHighReversePreset(elevator, manipulator)),
                         new InstantCommand(() -> intake.setIntake(0)),
                         new DropGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new BlueBiasedResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11)
                 );
                 break;
@@ -92,7 +92,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new BlueHighReversePreset(elevator, manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
                         new DropGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new BlueBiasedResetMechanisms(elevator, manipulator)),
                         new InstantCommand(duckSpinner::spinSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj3),
@@ -101,7 +101,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj6),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj7),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj71),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj72),
+                      //  new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj72),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj73),
                         // new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj8),
                         new WaitCommand(250),
@@ -111,7 +111,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj9).alongWith(new BlueHighReversePreset(elevator, manipulator)),
                         new InstantCommand(() -> intake.setIntake(0)),
                         new DropGamePiece(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new ResetMechanisms(elevator, manipulator)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new BlueBiasedResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11)
                 );
                 break;

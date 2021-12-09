@@ -57,12 +57,12 @@ public class Blue_Bottom_Path {
     public static Trajectory BB_traj72 = BuildTrajectory(BB_traj71.end())
             .lineToSplineHeading(new Pose2d(-15, -8, Math.toRadians(90)))
             .build();
-    public static Trajectory BB_traj73 = BuildTrajectory(BB_traj72.end())
+    public static Trajectory BB_traj73 = BuildTrajectory(BB_traj71.end())
             .lineToSplineHeading(new Pose2d(12, -11, Math.toRadians(90)))
             .build();
     //align to goal for the second time
     public static Trajectory BB_traj9 = BuildTrajectory(BB_traj73.end())
-            .lineToSplineHeading(new Pose2d(24.5, -22.5, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(24.5, -24.5, Math.toRadians(180)))
             .build();
 
     //park
@@ -70,7 +70,7 @@ public class Blue_Bottom_Path {
             .lineToSplineHeading(new Pose2d(-5, -13,  Math.toRadians(0)))
             .build();
     public static Trajectory BB_traj11 = BuildTrajectory(BB_traj10.end())
-            .lineTo(new Vector2d(-19, -34))
+            .lineTo(new Vector2d(-19, -36))
             .build();
 
     private static TrajectoryBuilder BuildTrajectory(Pose2d startPose) {
