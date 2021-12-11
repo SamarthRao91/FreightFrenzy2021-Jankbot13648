@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -19,33 +22,28 @@ import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
-@Disabled
-@TeleOp(name = "Test Tele-Op")
+//@Disabled
+@Autonomous(name = "Drive Forward")
 public class TestTeleOp extends LinearOpMode {
 
-    Manipulator manipulator;
+    Drive drive = new Drive(new MecanumDrive(hardwareMap), true);
+    CapstoneGrabber capstoneGrabber = new CapstoneGrabber(hardwareMap);
 
     @Override
     public void runOpMode() {
 
-        manipulator = new Manipulator(hardwareMap);
+        Trajectory forward = drive.trajectoryBuilder(new Pose2d(0,0,0)).forward(20).build();
 
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested())
         {
-            TelemetryPacket packet = new TelemetryPacket();
-            packet.put("DS Tripped", manipulator.dsTripped());
-            packet.put("DS Distance", manipulator.getDsDistance());
+            capstoneGrabber.setCapstonePosition(Constants.CapstoneGrabber.CAPSTONE_GRABBER_POSITIONS[0]);
+            drive.followTrajectory(forward);
 
-            packet.put("CS Alpha", manipulator.getCSAlpha());
-            packet.put("CS Red", manipulator.getCSRed());
-            packet.put("CS Green", manipulator.getCSGreen());
-            packet.put("CS Blue", manipulator.getCSBlue());
-
-            FtcDashboard.getInstance().sendTelemetryPacket(packet);
-
-            manipulator.setTurretPosition(Constants.Manipulator.Turret.ZERO_POSITION);
+            break;
         }
+
+        requestOpModeStop();
     }
 }

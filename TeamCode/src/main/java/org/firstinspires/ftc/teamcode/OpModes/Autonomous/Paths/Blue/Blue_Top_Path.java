@@ -69,7 +69,7 @@ public class Blue_Top_Path {
             .build();
 
     public static Trajectory BT_traj7 = BuildTrajectory(BT_traj6.end(), false)
-            .lineToConstantHeading(new Vector2d(10, 5),
+            .lineToConstantHeading(new Vector2d(10, 6),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .splineToConstantHeading(new Vector2d(7, -8), Math.toRadians(90),

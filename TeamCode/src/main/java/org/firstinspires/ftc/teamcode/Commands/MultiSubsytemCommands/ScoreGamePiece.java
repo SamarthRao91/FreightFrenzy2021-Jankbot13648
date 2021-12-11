@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsytemCommands.ResetMechanisms.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
@@ -15,6 +16,7 @@ public class ScoreGamePiece extends SequentialCommandGroup {
     {
         addCommands(
                 new InstantCommand(() -> manipulator.setClawPosition(Constants.Manipulator.Claw.OPEN_POSITION)),
+                new ElevatorToPosition(elevator, 1400 + 450 + 400, 1),
                 new WaitCommand(250),
                 new InstantCommand(() -> manipulator.setExtenderPosition(Constants.Manipulator.Extender.MIN_POS)),
                 new WaitCommand(500),

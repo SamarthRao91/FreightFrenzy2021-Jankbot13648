@@ -88,13 +88,13 @@ public class Red_Top_Path {
             .lineToConstantHeading(new Vector2d(44, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(37, 33), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(37, 32), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
     public static Trajectory RT_traj8 = BuildTrajectory(RT_traj7.end(), true)
-            .splineToConstantHeading(new Vector2d(37, 32.8), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(37, 31.8), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .splineToConstantHeading(new Vector2d(46, .5), Math.toRadians(0),
