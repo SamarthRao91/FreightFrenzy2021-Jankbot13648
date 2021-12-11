@@ -41,7 +41,7 @@ public class Red_Bottom_Auto extends LinearOpMode {
         intake = new Intake(hardwareMap);
         duckSpinner = new DuckSpinner(hardwareMap);
         capstoneGrabber = new CapstoneGrabber(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, true);
+        capstoneDetectionCamera =   new CapstoneDetectionCamera(hardwareMap, true);
 
         register(
                 drive,

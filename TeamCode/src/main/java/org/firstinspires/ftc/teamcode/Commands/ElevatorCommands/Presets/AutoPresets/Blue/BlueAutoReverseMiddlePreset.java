@@ -10,7 +10,7 @@ public class BlueAutoReverseMiddlePreset extends SuperStructureToPosition {
         super(
                 elevator,
                 manipulator,
-                960,
+                975,
                 1,
                 Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION,
                 Constants.Manipulator.Extender.MAX_POS+0.11,

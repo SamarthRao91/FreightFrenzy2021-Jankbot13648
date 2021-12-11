@@ -15,8 +15,7 @@ public class ManipulatorDefault extends CommandBase {
     private final DoubleSupplier leftStickX;
     private final DoubleSupplier leftStickY;
 
-    public ManipulatorDefault(Manipulator manipulator, BooleanSupplier dsStatus, DoubleSupplier leftStickX, DoubleSupplier leftStickY)
-    {
+    public ManipulatorDefault(Manipulator manipulator, BooleanSupplier dsStatus, DoubleSupplier leftStickX, DoubleSupplier leftStickY) {
         this.manipulator = manipulator;
 
         this.dsStatus = dsStatus;
@@ -28,7 +27,9 @@ public class ManipulatorDefault extends CommandBase {
 
     @Override
     public void execute() {
-        manipulator.moveTurretPosition(leftStickX.getAsDouble() / 250);
+        if (Math.abs(leftStickX.getAsDouble()) > 0.25) {
+            manipulator.moveTurretPosition(leftStickX.getAsDouble() / 250);
+        }
         manipulator.moveExtenderPosition(-leftStickY.getAsDouble() / 200);
     }
 }

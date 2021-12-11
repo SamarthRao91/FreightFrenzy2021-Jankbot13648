@@ -60,9 +60,9 @@ public class TeleOpBlue extends CommandOpMode {
         drive.setDefaultCommand(
                 new DriveDefault(
                         drive,
-                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_y/4 : driveGamepad.gamepad.left_stick_y,
-                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_x/4 : driveGamepad.gamepad.left_stick_x,
-                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.right_stick_x/4 : driveGamepad.gamepad.right_stick_x
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_y/3 : driveGamepad.gamepad.left_stick_y,
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.left_stick_x/3 : driveGamepad.gamepad.left_stick_x,
+                        () -> driveGamepad.gamepad.left_bumper ? driveGamepad.gamepad.right_stick_x/3 : driveGamepad.gamepad.right_stick_x
                 )
         );
 
@@ -72,6 +72,7 @@ public class TeleOpBlue extends CommandOpMode {
         capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
         // Binding ---------------------------------------------------------------------------------
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> duckSpinner.spinSlow()));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));

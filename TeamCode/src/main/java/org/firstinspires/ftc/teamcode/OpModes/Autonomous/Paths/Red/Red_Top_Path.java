@@ -25,7 +25,7 @@ public class Red_Top_Path {
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
 
-            .splineToConstantHeading(new Vector2d(-9, 33.25), Math.toRadians(90),
+            .splineToConstantHeading(new Vector2d(-9, 34.25), Math.toRadians(90),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
@@ -46,7 +46,7 @@ public class Red_Top_Path {
             .lineToConstantHeading(new Vector2d(12, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(7.5, 33), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(9.5, 33.5), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
@@ -67,7 +67,7 @@ public class Red_Top_Path {
             .lineToConstantHeading(new Vector2d(26, .5),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
-            .splineToConstantHeading(new Vector2d(22, 33), Math.toRadians(270),
+            .splineToConstantHeading(new Vector2d(22, 33.5), Math.toRadians(270),
                     MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
