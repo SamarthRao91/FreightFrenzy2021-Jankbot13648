@@ -21,7 +21,7 @@ public class MotorWithVeloLimit extends Motor {
                 motor.setPower(Math.min(output * error, output));
             }
             else if (output <=0){
-                motor.setPower(Math.max(output * error, output));
+                motor.setPower(Math.min(output * error, output));
             }
             else {
                 motor.setPower(output);

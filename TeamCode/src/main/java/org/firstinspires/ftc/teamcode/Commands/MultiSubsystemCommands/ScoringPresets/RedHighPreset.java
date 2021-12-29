@@ -9,13 +9,14 @@ import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class BlueLowPreset extends ParallelCommandGroup {
+public class RedHighPreset extends ParallelCommandGroup {
 
-    public BlueLowPreset(Elevator elevator, Manipulator manipulator) {
+    public RedHighPreset(Elevator elevator, Manipulator manipulator) {
         addCommands(
-                new ElevatorToPosition(elevator, 50, 1),
-                new InstantCommand(() -> manipulator.setArm(0.25)),
-                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 125, .1)
+                new ElevatorToPosition(elevator, 1000, 1),
+                new InstantCommand(() -> manipulator.setArm(0.55)),
+                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, .33),
+                new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
         );
 
