@@ -2,23 +2,45 @@ package org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPr
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
+import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
+import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class RedHighPreset extends ParallelCommandGroup {
+public class RedHighPreset extends SequentialCommandGroup {
 
     public RedHighPreset(Elevator elevator, Manipulator manipulator) {
-        addCommands(
-                new ElevatorToPosition(elevator, 1000, 1),
-                new InstantCommand(() -> manipulator.setArm(0.55)),
-                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, .5),
-                new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
-        );
+        if(manipulator.manualPickUp)
+        {
+            addCommands(
+                    new ManualPickup(manipulator),
+                    new WaitCommand(175),
+                    new ParallelCommandGroup(
+                            new ElevatorToPosition(elevator, 1000, 1),
+                            new InstantCommand(() -> manipulator.setArm(0.55)),
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, .5),
+                            new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
+                    )
+            );
+        }
+
+        else
+        {
+            addCommands(
+                    new ParallelCommandGroup(
+                            new ElevatorToPosition(elevator, 1000, 1),
+                            new InstantCommand(() -> manipulator.setArm(0.55)),
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, .5),
+                            new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
+                    )
+            );
+        }
 
         addRequirements(elevator, manipulator);
     }

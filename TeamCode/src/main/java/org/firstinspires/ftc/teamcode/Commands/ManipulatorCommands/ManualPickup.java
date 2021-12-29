@@ -16,6 +16,8 @@ public class ManualPickup extends SequentialCommandGroup {
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.2))
         );
 
+        manipulator.manualPickUp = true;
+
         addRequirements(manipulator);
     }
 }
