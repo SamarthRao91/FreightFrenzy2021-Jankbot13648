@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCommands.IntakeDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.BlueHighPreset;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -72,6 +73,9 @@ public class TeleOpBlue extends CommandOpMode {
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(manipulator));
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new BlueHighPreset(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new BlueHighPreset(elevator, manipulator));
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinSpinner()));
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> duckSpinner.spinSlow()));
