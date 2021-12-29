@@ -23,7 +23,7 @@ public class Elevator extends SubsystemBase {
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
         elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         elevatorMotor.setRunMode(Motor.RunMode.RawPower);
-        elevatorMotor.setPositionCoefficient(0.1);
+        elevatorMotor.setPositionCoefficient(0.05);
         elevatorMotor.setPositionTolerance(10);
     }
 

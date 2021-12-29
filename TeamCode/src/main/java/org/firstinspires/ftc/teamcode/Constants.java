@@ -48,15 +48,13 @@ public class Constants {
 
         @Config
         public static final class Turret {
-            public static final String TURRET_SERVO_NAME = "tm";
+            public static final String TURRET_MOTOR_NAME = "tm";
 
-            // Storage angle to not hit capstone
-            public static final double RIGHT_MAXIMUM_POSITION = 880;
+            public static final int RIGHT_MAXIMUM_POSITION = 880;
 
-            // Stores angle to not hit duck spinner
-            public static final double LEFT_MAXIMUM_POSITION = -880;
+            public static final int LEFT_MAXIMUM_POSITION = -880;
 
-            public static final double ZERO_POSITION = 0;
+            public static final int ZERO_POSITION = 0;
         }
 
         @Config
@@ -65,7 +63,7 @@ public class Constants {
             public static final String ARM2_NAME = "as2";
 
             public static final double ARM1_UPPER_BOUND = 0.1;
-            public static final double ARM1_LOWER_BOUND = .975;
+            public static final double ARM1_LOWER_BOUND = .98;
         }
 
         @Config
