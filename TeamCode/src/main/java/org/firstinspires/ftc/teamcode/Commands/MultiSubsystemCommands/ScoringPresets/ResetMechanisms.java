@@ -22,6 +22,8 @@ public class ResetMechanisms extends SequentialCommandGroup {
                 new InstantCommand(() -> manipulator.openClaw())
         );
 
+        manipulator.manualPickUp = false;
+
         addRequirements(elevator, manipulator);
     }
 }

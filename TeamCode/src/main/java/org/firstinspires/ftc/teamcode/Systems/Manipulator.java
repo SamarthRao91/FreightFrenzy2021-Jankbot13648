@@ -19,6 +19,8 @@ public class Manipulator extends SubsystemBase {
     public Servo claw;
     public Servo pusher;
 
+    public boolean manualPickUp = false;
+
     public Manipulator(HardwareMap hardwareMap) {
         arm1 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM1_NAME);
         arm2 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM2_NAME);
@@ -45,6 +47,8 @@ public class Manipulator extends SubsystemBase {
     {
         if(amount != 0)
         {
+            manualPickUp = false;
+
             if(amount + getArm1Position() > Constants.Manipulator.Arm.ARM1_LOWER_BOUND)
             {
                 setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND);
