@@ -43,6 +43,16 @@ public class Manipulator extends SubsystemBase {
         }
     }
 
+    public void closeClaw()
+    {
+        claw.setPosition(Constants.Manipulator.Claw.CLOSE_POSITION);
+    }
+
+    public void openClaw()
+    {
+        claw.setPosition(Constants.Manipulator.Claw.OPEN_POSITION);
+    }
+
     public double getArm1Position()
     {
         return arm1.getPosition();
