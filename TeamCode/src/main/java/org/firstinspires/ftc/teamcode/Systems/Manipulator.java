@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Turret.TURRET_MOTOR_NAME;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.MotorWithVeloLimit;
+import org.firstinspires.ftc.teamcode.Util.MotorWithVeloLimit;
 
 public class Manipulator extends SubsystemBase {
 

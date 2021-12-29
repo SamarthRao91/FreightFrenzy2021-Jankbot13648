@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.MotorWithVeloLimit;
+import org.firstinspires.ftc.teamcode.Util.MotorWithVeloLimit;
 
 public class Elevator extends SubsystemBase {
     private MotorWithVeloLimit elevatorMotor;
