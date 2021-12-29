@@ -15,7 +15,7 @@ public class BlueLowPreset extends ParallelCommandGroup {
         addCommands(
                 new ElevatorToPosition(elevator, 50, 1),
                 new InstantCommand(() -> manipulator.setArm(0.25)),
-                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 125, .1)
+                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 125, .66)
 
         );
 

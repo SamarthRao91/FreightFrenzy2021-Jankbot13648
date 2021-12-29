@@ -15,7 +15,7 @@ public class RedHighPreset extends ParallelCommandGroup {
         addCommands(
                 new ElevatorToPosition(elevator, 1000, 1),
                 new InstantCommand(() -> manipulator.setArm(0.55)),
-                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, .33),
+                new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, .5),
                 new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
         );

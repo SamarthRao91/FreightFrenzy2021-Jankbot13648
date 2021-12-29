@@ -17,11 +17,11 @@ public class MotorWithVeloLimit extends Motor {
             motor.setPower(velocity / ACHIEVABLE_MAX_TICKS_PER_SECOND);
         } else if (runmode == RunMode.PositionControl) {
             double error = positionController.calculate(getDistance());
-            if(output >= 0) {
+            if(output * error >= 0) {
                 motor.setPower(Math.min(output * error, output));
             }
-            else if (output <=0){
-                motor.setPower(Math.min(output * error, output));
+            else if (output * error <=0){
+                motor.setPower(Math.max(output * error, -output));
             }
             else {
                 motor.setPower(output);
