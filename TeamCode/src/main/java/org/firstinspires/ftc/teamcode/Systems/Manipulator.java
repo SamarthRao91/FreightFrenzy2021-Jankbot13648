@@ -33,13 +33,13 @@ public class Manipulator extends SubsystemBase {
     {
         if(amount != 0)
         {
-            if(amount + getArm1Position() > Constants.Manipulator.Arm.ARM1_UPPER_BOUND)
+            if(amount + getArm1Position() > Constants.Manipulator.Arm.ARM1_LOWER_BOUND)
             {
-                setArm(Constants.Manipulator.Arm.ARM1_UPPER_BOUND);
+                setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND);
             }
 
             else
-                setArm(Math.max(amount + getArm1Position(), Constants.Manipulator.Arm.ARM1_LOWER_BOUND));
+                setArm(Math.max(amount + getArm1Position(), Constants.Manipulator.Arm.ARM1_UPPER_BOUND));
         }
     }
 

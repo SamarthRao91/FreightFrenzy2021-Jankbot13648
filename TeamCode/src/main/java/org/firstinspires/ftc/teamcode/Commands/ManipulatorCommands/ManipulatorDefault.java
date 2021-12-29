@@ -18,10 +18,11 @@ public class ManipulatorDefault extends CommandBase {
         this.manipulator = manipulator;
 
         this.leftStickY = leftStickY;
+        addRequirements(manipulator);
     }
 
     @Override
     public void execute() {
-        manipulator.moveArm(leftStickY.getAsDouble());
+        manipulator.moveArm(-leftStickY.getAsDouble()/100);
     }
 }

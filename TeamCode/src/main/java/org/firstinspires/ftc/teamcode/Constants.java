@@ -64,8 +64,8 @@ public class Constants {
             public static final String ARM1_NAME = "as1";
             public static final String ARM2_NAME = "as2";
 
-            public static final double ARM1_LOWER_BOUND = 0.3;
-            public static final double ARM1_UPPER_BOUND = 0.7;
+            public static final double ARM1_UPPER_BOUND = 0.1;
+            public static final double ARM1_LOWER_BOUND = 1.0;
         }
 
         @Config
