@@ -13,7 +13,7 @@ public class BlueHighPreset extends ParallelCommandGroup {
     public BlueHighPreset(Elevator elevator, Manipulator manipulator) {
         addCommands(
                 new ElevatorToPosition(elevator, 1000, 1),
-                new InstantCommand(() -> manipulator.setArm(0.5))
+                new InstantCommand(() -> manipulator.setArm(0.55))
         );
 
         addRequirements(elevator, manipulator);

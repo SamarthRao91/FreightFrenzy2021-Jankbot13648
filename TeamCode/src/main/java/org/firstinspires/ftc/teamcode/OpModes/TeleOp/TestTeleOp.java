@@ -7,6 +7,7 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -19,29 +20,28 @@ import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
 import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
 //@Disabled
-@Autonomous(name = "Drive Forward")
+@TeleOp(name = "Test Teleop")
 public class TestTeleOp extends LinearOpMode {
 
-    Drive drive = new Drive(new MecanumDrive(hardwareMap), true);
-    CapstoneGrabber capstoneGrabber = new CapstoneGrabber(hardwareMap);
+    Elevator elevator;
 
     @Override
     public void runOpMode() {
 
-        Trajectory forward = drive.trajectoryBuilder(new Pose2d(0,0,0)).forward(20).build();
+        elevator = new Elevator(hardwareMap);
+        elevator.setRunMode(Motor.RunMode.PositionControl);
 
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested())
         {
-            capstoneGrabber.setCapstonePosition(Constants.CapstoneGrabber.CAPSTONE_GRABBER_POSITIONS[0]);
-            drive.followTrajectory(forward);
-
-            break;
+            telemetry.addData("Elevator Position", elevator.getPosition());
+            telemetry.update();
         }
 
         requestOpModeStop();

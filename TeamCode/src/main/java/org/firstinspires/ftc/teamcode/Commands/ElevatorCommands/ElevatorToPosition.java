@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.ElevatorCommands;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
@@ -28,6 +29,9 @@ public class ElevatorToPosition extends CommandBase {
     @Override
     public void execute()
     {
+        FtcDashboard.getInstance().getTelemetry().addData("Elevator Position", elevator.getPosition());
+        FtcDashboard.getInstance().getTelemetry().update();
+
         elevator.setSpeed(speed);
     }
 

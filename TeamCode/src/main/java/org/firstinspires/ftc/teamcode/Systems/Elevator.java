@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 import static org.firstinspires.ftc.teamcode.Constants.Elevator.ELEVATOR_MOTOR_NAME;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
@@ -16,6 +17,8 @@ public class Elevator extends SubsystemBase {
 
     public Elevator(HardwareMap hardwareMap) {
         elevatorMotor = new Motor(hardwareMap, ELEVATOR_MOTOR_NAME);
+        elevatorMotor.setInverted(true);
+        elevatorMotor.encoder.setDirection(Motor.Direction.FORWARD);
         elevatorMotor.resetEncoder();
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
         elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
@@ -49,5 +52,7 @@ public class Elevator extends SubsystemBase {
     {
         return elevatorMotor.getCurrentPosition();
     }
+
+
 }
 
