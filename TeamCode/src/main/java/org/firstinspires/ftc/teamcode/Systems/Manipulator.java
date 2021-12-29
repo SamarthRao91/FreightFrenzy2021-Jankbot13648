@@ -42,6 +42,10 @@ public class Manipulator extends SubsystemBase {
                 setArm(Math.max(amount + getArm1Position(), Constants.Manipulator.Arm.ARM1_UPPER_BOUND));
         }
     }
+    public void setPusher(double newPos)
+    {
+        pusher.setPosition(newPos);;
+    }
 
     public void closeClaw()
     {

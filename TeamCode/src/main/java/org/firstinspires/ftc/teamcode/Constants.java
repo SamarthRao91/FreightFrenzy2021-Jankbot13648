@@ -78,6 +78,14 @@ public class Constants {
             public static double CLOSE_POSITION = 0.1;
             public static final double CAPSTONE_OPEN_FULLY = 0.7;
         }
+        @Config
+        public static final class Pusher {
+            public static final String PUSHER_NAME = "ps";
+
+            public static final double PUSHER_UP_POS = 0.8;
+            public static final double PUSHER_PREP_POS = 0.15;
+            public static final double PUSHER_PUSH_POS = 0;
+        }
     }
 
     @Config
