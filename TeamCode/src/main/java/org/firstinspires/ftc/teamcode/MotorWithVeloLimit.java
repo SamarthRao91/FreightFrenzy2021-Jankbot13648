@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class motorWithVeloLimit extends Motor {
-    public motorWithVeloLimit(@NonNull HardwareMap hMap, String id) {
+public class MotorWithVeloLimit extends Motor {
+    public MotorWithVeloLimit(@NonNull HardwareMap hMap, String id) {
         super(hMap, id);
     }
 

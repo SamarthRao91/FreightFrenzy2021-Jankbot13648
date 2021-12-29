@@ -3,20 +3,17 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Turret.TURRET_MOTOR_NAME;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.motorWithVeloLimit;
+import org.firstinspires.ftc.teamcode.MotorWithVeloLimit;
 
 public class Manipulator extends SubsystemBase {
 
-    private motorWithVeloLimit turretMotor;
-    public DcMotorEx turret;
+    private MotorWithVeloLimit turretMotor;
     public Servo arm1;
     public Servo arm2;
     public Servo claw;
@@ -28,13 +25,13 @@ public class Manipulator extends SubsystemBase {
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
 
-        turretMotor = new motorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
+        turretMotor = new MotorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
         turretMotor.setInverted(true);
         turretMotor.encoder.setDirection(Motor.Direction.FORWARD);
         turretMotor.resetEncoder();
         turretMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         turretMotor.setRunMode(Motor.RunMode.RawPower);
-        turretMotor.setPositionCoefficient(0.005);
+        turretMotor.setPositionCoefficient(0.1);
         turretMotor.setPositionTolerance(10);
     }
 

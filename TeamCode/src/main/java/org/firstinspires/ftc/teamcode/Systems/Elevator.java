@@ -3,29 +3,27 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 import static org.firstinspires.ftc.teamcode.Constants.Elevator.ELEVATOR_MOTOR_NAME;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.motorWithVeloLimit;
-import org.firstinspires.ftc.teamcode.motorWithVeloLimit;
+import org.firstinspires.ftc.teamcode.MotorWithVeloLimit;
 
 public class Elevator extends SubsystemBase {
-    private motorWithVeloLimit elevatorMotor;
+    private MotorWithVeloLimit elevatorMotor;
     DigitalChannel ls;
 
     public Elevator(HardwareMap hardwareMap) {
-        elevatorMotor = new motorWithVeloLimit(hardwareMap, ELEVATOR_MOTOR_NAME);
+        elevatorMotor = new MotorWithVeloLimit(hardwareMap, ELEVATOR_MOTOR_NAME);
         elevatorMotor.setInverted(true);
         elevatorMotor.encoder.setDirection(Motor.Direction.FORWARD);
         elevatorMotor.resetEncoder();
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
         elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         elevatorMotor.setRunMode(Motor.RunMode.RawPower);
-        elevatorMotor.setPositionCoefficient(0.05);
+        elevatorMotor.setPositionCoefficient(0.1);
         elevatorMotor.setPositionTolerance(10);
     }
 
