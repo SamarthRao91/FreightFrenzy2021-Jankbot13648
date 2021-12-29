@@ -15,6 +15,8 @@ import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDe
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.PushGamepiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.BlueHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.BlueLowPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.DefenseHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.PushAndReset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Constants;
@@ -85,6 +87,13 @@ public class TeleOpBlue extends CommandOpMode {
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new PushAndReset(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new PushAndReset(elevator, manipulator));
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new BlueLowPreset(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new BlueLowPreset(elevator, manipulator));
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new DefenseHighPreset(elevator, manipulator));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new DefenseHighPreset(elevator, manipulator));
+
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinSpinner()));
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> duckSpinner.spinSlow()));
