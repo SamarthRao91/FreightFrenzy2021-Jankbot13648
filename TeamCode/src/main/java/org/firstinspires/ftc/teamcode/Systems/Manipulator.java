@@ -1,96 +1,50 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Constants;
 
 public class Manipulator extends SubsystemBase {
 
-    private Servo turret;
-    private Servo extender;
-    private Servo claw;
-
-    private ColorSensor detectionCS;
-    private DistanceSensor detectionDS;
+    public DcMotorEx turret;
+    public Servo arm1;
+    public Servo arm2;
+    public Servo claw;
+    public Servo pusher;
 
     public Manipulator(HardwareMap hardwareMap) {
-        turret = hardwareMap.get(Servo.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
-        extender = hardwareMap.get(Servo.class, Constants.Manipulator.Extender.EXTENDER_SERVO_NAME);
+        turret = hardwareMap.get(DcMotorEx.class, Constants.Manipulator.Turret.TURRET_SERVO_NAME);
+        arm1 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM1_NAME);
+        arm2 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM2_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
-
-        detectionCS = hardwareMap.get(ColorSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
-        detectionDS = hardwareMap.get(DistanceSensor.class, Constants.Intake.DISTANCE_SENSOR_NAME);
+        pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
     }
 
-    public void setTurretPosition(double newPos) {
-        turret.setPosition(newPos);
+    public void setArm(double newPos)
+    {
+        arm1.setPosition(newPos);
+        arm2.setPosition(1-newPos);
     }
 
-    public void setExtenderPosition(double newValue) {
-        extender.setPosition(newValue);
-    }
+    public void moveArm(double amount)
+    {
+        if(amount != 0)
+        {
+            if(amount + getArm1Position() > Constants.Manipulator.Arm.ARM1_UPPER_BOUND)
+            {
+                setArm(Constants.Manipulator.Arm.ARM1_UPPER_BOUND);
+            }
 
-    public void setClawPosition(double newValue) {
-        claw.setPosition(newValue);
-    }
-
-    public double getTurretPosition() {
-        return turret.getPosition();
-    }
-
-    public void moveTurretPosition(double amount) {
-        if (amount != 0) {
-            if (amount + getTurretPosition() > Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION) {
-                turret.setPosition(Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION);
-            } else
-                turret.setPosition(Math.max(amount + getTurretPosition(), Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION));
+            else
+                setArm(Math.max(amount + getArm1Position(), Constants.Manipulator.Arm.ARM1_LOWER_BOUND));
         }
     }
 
-    public double getExtenderPosition() {
-        return extender.getPosition();
-    }
-
-    public void moveExtenderPosition(double amount) {
-        if (amount != 0) {
-
-            if (getExtenderPosition() + amount > Constants.Manipulator.Extender.MIN_POS) {
-                extender.setPosition(Constants.Manipulator.Extender.MIN_POS);
-            } else
-                extender.setPosition(Math.max(getExtenderPosition() + amount, Constants.Manipulator.Extender.MAX_POS));
-        }
-    }
-
-    public double getClawPosition() {
-        return claw.getPosition();
-    }
-
-    public boolean dsTripped() {
-        return getDsDistance() <= 2.7;
-    }
-
-    public double getDsDistance() {
-        return detectionDS.getDistance(DistanceUnit.INCH);
-    }
-
-    public int getCSAlpha() {
-        return detectionCS.alpha();
-    }
-
-    public int getCSRed() {
-        return detectionCS.red();
-    }
-
-    public int getCSGreen() {
-        return detectionCS.green();
-    }
-
-    public int getCSBlue() {
-        return detectionCS.blue();
+    public double getArm1Position()
+    {
+        return arm1.getPosition();
     }
 }

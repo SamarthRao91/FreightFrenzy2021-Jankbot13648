@@ -48,34 +48,30 @@ public class Constants {
 
         @Config
         public static final class Turret {
-            public static final String TURRET_SERVO_NAME = "ts";
+            public static final String TURRET_SERVO_NAME = "tm";
 
             // Storage angle to not hit capstone
-            public static final double RIGHT_MAXIMUM_POSITION = 0.15;
+            public static final double RIGHT_MAXIMUM_POSITION = 880;
 
             // Stores angle to not hit duck spinner
-            public static final double LEFT_MAXIMUM_POSITION = 0.9;
+            public static final double LEFT_MAXIMUM_POSITION = -880;
 
-            public static final double ZERO_POSITION = 0.54;
+            public static final double ZERO_POSITION = 0;
         }
 
         @Config
-        public static final class Extender {
-            public static final String EXTENDER_SERVO_NAME = "es";
+        public static final class Arm {
+            public static final String ARM1_NAME = "as1";
+            public static final String ARM2_NAME = "as2";
 
-            // Maximum rotation of extender
-            public static double MAX_POS = 0.31;
-
-            // Minimum rotation of extender
-            public static double MIN_POS = 0.74;
-
-            // Stores position of capstone
-            public static final double CAPSTONE_POSITION = 0;
+            public static final double ARM1_LOWER_BOUND = 0.3;
+            public static final double ARM1_UPPER_BOUND = 0.7;
         }
 
         @Config
         public static final class Claw {
             public static final String CLAW_SERVO_NAME = "cs";
+            public static final String PUSHER_SERVO = "ps";
             public static final String DISTANCE_SENSOR_NAME = "sdc";
 
             public static double OPEN_POSITION = 0.50;
