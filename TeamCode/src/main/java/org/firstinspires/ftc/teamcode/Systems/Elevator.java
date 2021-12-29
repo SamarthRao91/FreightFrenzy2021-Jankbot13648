@@ -10,13 +10,15 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.motorWithVeloLimit;
+import org.firstinspires.ftc.teamcode.motorWithVeloLimit;
 
 public class Elevator extends SubsystemBase {
-    private Motor elevatorMotor;
+    private motorWithVeloLimit elevatorMotor;
     DigitalChannel ls;
 
     public Elevator(HardwareMap hardwareMap) {
-        elevatorMotor = new Motor(hardwareMap, ELEVATOR_MOTOR_NAME);
+        elevatorMotor = new motorWithVeloLimit(hardwareMap, ELEVATOR_MOTOR_NAME);
         elevatorMotor.setInverted(true);
         elevatorMotor.encoder.setDirection(Motor.Direction.FORWARD);
         elevatorMotor.resetEncoder();

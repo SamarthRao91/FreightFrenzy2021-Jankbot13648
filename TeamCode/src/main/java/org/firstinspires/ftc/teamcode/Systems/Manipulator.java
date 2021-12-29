@@ -11,10 +11,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Turret.TURRET_MOTOR_NAME;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.motorWithVeloLimit;
 
 public class Manipulator extends SubsystemBase {
 
-    private Motor turretMotor;
+    private motorWithVeloLimit turretMotor;
     public DcMotorEx turret;
     public Servo arm1;
     public Servo arm2;
@@ -27,7 +28,7 @@ public class Manipulator extends SubsystemBase {
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
 
-        turretMotor = new Motor(hardwareMap, TURRET_MOTOR_NAME);
+        turretMotor = new motorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
         turretMotor.setInverted(true);
         turretMotor.encoder.setDirection(Motor.Direction.FORWARD);
         turretMotor.resetEncoder();
