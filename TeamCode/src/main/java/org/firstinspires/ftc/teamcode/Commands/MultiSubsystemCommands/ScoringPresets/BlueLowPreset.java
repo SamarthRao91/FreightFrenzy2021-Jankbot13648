@@ -16,7 +16,7 @@ public class BlueLowPreset extends SequentialCommandGroup {
 
     public BlueLowPreset(Elevator elevator, Manipulator manipulator) {
 
-        if(manipulator.manualPickUp)
+        if(!manipulator.manualPickUp)
         {
             addCommands(
                     new ManualPickup(manipulator),

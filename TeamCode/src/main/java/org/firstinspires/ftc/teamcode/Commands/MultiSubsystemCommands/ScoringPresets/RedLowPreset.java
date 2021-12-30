@@ -16,7 +16,7 @@ public class RedLowPreset extends SequentialCommandGroup {
 
     public RedLowPreset(Elevator elevator, Manipulator manipulator) {
 
-        if(manipulator.manualPickUp)
+        if(!manipulator.manualPickUp)
         {
             addCommands(
                     new ManualPickup(manipulator),

@@ -16,7 +16,8 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 public class DefenseHighPreset extends SequentialCommandGroup {
 
     public DefenseHighPreset(Elevator elevator, Manipulator manipulator) {
-        if(manipulator.manualPickUp)
+
+        if(!manipulator.manualPickUp)
         {
             addCommands(
                     new ManualPickup(manipulator),
