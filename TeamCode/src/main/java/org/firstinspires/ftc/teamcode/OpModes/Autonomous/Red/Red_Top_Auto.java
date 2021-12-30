@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
+package org.firstinspires.ftc.teamcode.OpModes.Autonomous.Red;
 
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.CapstoneGrabberDefault;
-import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.turrettest;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -21,8 +20,8 @@ import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
-@Autonomous(name = "turret test")
-public class TestTeleOp extends LinearOpMode {
+@Autonomous(name = "RED | Top Auto", group = "Red", preselectTeleOp = "RED | Tele-Op")
+public class Red_Top_Auto extends LinearOpMode {
 
     Drive drive;
     Elevator elevator;
@@ -59,7 +58,7 @@ public class TestTeleOp extends LinearOpMode {
         drive.setHeadingOffset(0);
 
         manipulator.closeClaw();
-        manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.3);
+        manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.15);
         duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
 
         capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
@@ -76,7 +75,12 @@ public class TestTeleOp extends LinearOpMode {
 
 
         schedule(
-                new turrettest(manipulator
+                new RedTopAutoCommand(
+                        drive,
+                        elevator,
+                        manipulator,
+                        intake,
+                        capstonePosition
                 )
         );
 

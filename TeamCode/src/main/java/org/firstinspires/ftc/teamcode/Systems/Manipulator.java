@@ -33,7 +33,7 @@ public class Manipulator extends SubsystemBase {
         turretMotor.resetEncoder();
         turretMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         turretMotor.setRunMode(Motor.RunMode.RawPower);
-        turretMotor.setPositionCoefficient(0.1);
+        turretMotor.setPositionCoefficient(0.006);
         turretMotor.setPositionTolerance(10);
     }
 

@@ -18,10 +18,10 @@ public class MotorWithVeloLimit extends Motor {
         } else if (runmode == RunMode.PositionControl) {
             double error = positionController.calculate(getDistance());
             if(output * error >= 0) {
-                motor.setPower(Math.min(output * error, output));
+                motor.setPower(.9*Math.min(output * error, output) + .1*output); //very hacky fix, this needs PI controller
             }
             else if (output * error <=0){
-                motor.setPower(Math.max(output * error, -output));
+                motor.setPower(.9*Math.max(output * error, -output) - .1*output);
             }
             else {
                 motor.setPower(output);

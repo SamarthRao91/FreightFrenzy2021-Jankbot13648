@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPr
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
@@ -13,9 +14,8 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
 public class ResetMechanisms extends SequentialCommandGroup {
     public ResetMechanisms(Elevator elevator, Manipulator manipulator) {
-        addCommands(
+        addCommands(                new ElevatorToPosition(elevator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - .2))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())).alongWith(new TurretToPosition(manipulator, 0, .5)),//slows turret if slides are far away
 
-                new ElevatorToPosition(elevator, -5, 1).alongWith(new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - .2))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())).alongWith(new TurretToPosition(manipulator, 0, .5)),//slows turret if slides are far away
                 new WaitCommand(500),
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
                 new WaitCommand(250),
@@ -27,3 +27,5 @@ public class ResetMechanisms extends SequentialCommandGroup {
         addRequirements(elevator, manipulator);
     }
 }
+
+

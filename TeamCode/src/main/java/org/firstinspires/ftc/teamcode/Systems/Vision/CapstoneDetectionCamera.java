@@ -21,7 +21,7 @@ public class CapstoneDetectionCamera {
     WebcamName webcam2;
     OpenCvSwitchableWebcam switchableWebcam;
     CapstonePipeline pipeline;
-    Telemetry telemetry;
+    //Telemetry telemetry;
 
     public CapstoneDetectionCamera(HardwareMap hardwareMap, boolean useWebCam2) {
         webcam1 = hardwareMap.get(WebcamName.class, CAPSTONE_DETECTION_CAMERA_NAME_LEFT);
@@ -49,7 +49,7 @@ public class CapstoneDetectionCamera {
                                                    @Override
                                                    public void onError(int errorCode) {
                                                        System.out.println("error" + errorCode);
-                                                       telemetry.addData("Error has occured. Error code - ", errorCode);
+                                                       //telemetry.addData("Error has occured. Error code - ", errorCode);
                                                    }
                                                }
         );
