@@ -14,13 +14,11 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MecanumVelocityConstra
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 
-import org.firstinspires.ftc.teamcode.Systems.DriveBase.drive.MecanumDrive;
-
 import java.util.Arrays;
 
 public class Blue_Bottom_Path {
     public static Trajectory BB_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(180)))
-            .lineTo(new Vector2d(22, -23))
+            .lineTo(new Vector2d(0.1, 0))
             .build();
 
     //brings the robot close to the duck wheel (TUNE THIS POSITION CAREFULLY)
@@ -62,7 +60,7 @@ public class Blue_Bottom_Path {
             .build();
     //align to goal for the second time
     public static Trajectory BB_traj9 = BuildTrajectory(BB_traj73.end())
-            .lineToSplineHeading(new Pose2d(27.5, -21.5, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(0.1, 0, Math.toRadians(180)))
             .build();
 
     //park

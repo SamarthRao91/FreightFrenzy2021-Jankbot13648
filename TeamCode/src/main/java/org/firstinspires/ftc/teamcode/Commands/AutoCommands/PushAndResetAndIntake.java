@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red;
+package org.firstinspires.ftc.teamcode.Commands.AutoCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -7,8 +7,6 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.PushGamepiece;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosition;
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.PushAndReset;
-import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;

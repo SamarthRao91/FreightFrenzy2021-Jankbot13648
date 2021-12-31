@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
 
-import java.lang.reflect.Array;
-
 @Config
 public class Constants {
 
