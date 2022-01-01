@@ -4,6 +4,8 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajectory;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedAutoLowPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedAutoMidPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.PushAndResetAndIntake;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Red.Red_Top_Path;
@@ -23,7 +25,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
         switch (capstonePosition) {
             case LEFT:
                 addCommands(
-                        new RedHighPreset(elevator, manipulator),
+                        new RedAutoLowPreset(elevator, manipulator),
                         new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
                         new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
                         new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
@@ -42,14 +44,38 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                 break;
             case CENTER:
                 addCommands(
-                        new WaitCommand(11)
-
-
+                        new RedAutoMidPreset(elevator, manipulator),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj4)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj5)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj6)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj9)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj10)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj11)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj12)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj13))
                 );
                 break;
             case RIGHT:
                 addCommands(
-                        new WaitCommand(12)
+                        new RedHighPreset(elevator, manipulator),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj4)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj5)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj6)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj9)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj10)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj11)),
+                        new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj12)),
+                        new PushAndResetAndIntake(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj13))
                 );
                 break;
         }

@@ -9,6 +9,8 @@ import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajector
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.PushGamepiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.BlueBottomHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedAutoLowPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedAutoMidPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Blue.Blue_Bottom_Path;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -28,7 +30,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(180)))),
-                        new BlueBottomHighPreset(elevator, manipulator),
+                        new RedAutoLowPreset(elevator, manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
                         new PushGamepiece(manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
@@ -58,7 +60,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
             case CENTER:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(180)))),
-                        new BlueBottomHighPreset(elevator, manipulator),
+                        new RedAutoMidPreset(elevator, manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
                         new PushGamepiece(manipulator),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),

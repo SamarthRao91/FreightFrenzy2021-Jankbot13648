@@ -9,6 +9,9 @@ import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajector
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.PushGamepiece;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedBottomHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedReverseAutoLowPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedReverseAutoMidPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.ResetMechanisms;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Paths.Red.Red_Bottom_Path;
@@ -31,7 +34,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        new RedBottomHighPreset(elevator, manipulator),
+                        new RedReverseAutoLowPreset(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         new PushGamepiece(manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
@@ -62,7 +65,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case CENTER:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        new RedBottomHighPreset(elevator, manipulator),
+                        new RedReverseAutoMidPreset(elevator, manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
                         new PushGamepiece(manipulator),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),

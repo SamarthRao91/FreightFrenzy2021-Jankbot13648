@@ -10,13 +10,13 @@ import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class BlueBottomHighPreset extends SequentialCommandGroup {
+public class BlueBottomHighPreset extends SequentialCommandGroup { //for use in blue bottom auto only
 
     public BlueBottomHighPreset(Elevator elevator, Manipulator manipulator) {
 
         addCommands(
                 new ParallelCommandGroup(
-                        new InstantCommand(() -> manipulator.setArm(0.55)),
+                        new InstantCommand(() -> manipulator.setArm(0.45)),
                         new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, 1),
                         new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
                 ),

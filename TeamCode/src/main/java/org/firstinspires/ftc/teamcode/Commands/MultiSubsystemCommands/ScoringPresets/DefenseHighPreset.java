@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
+import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
@@ -22,9 +23,10 @@ public class DefenseHighPreset extends SequentialCommandGroup {
                     new WaitCommand(175),
                     new ParallelCommandGroup(
                             new ElevatorToPosition(elevator, 0, 1),
-                            new InstantCommand(() -> manipulator.setArm(0.4)),
+                            new InstantCommand(() -> manipulator.setArm(0.45)),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
-                    )
+                    ),
+                    new TurretToPosition(manipulator, 0, 1)
             );
         }
 
@@ -32,9 +34,12 @@ public class DefenseHighPreset extends SequentialCommandGroup {
             addCommands(
                     new ParallelCommandGroup(
                             new ElevatorToPosition(elevator, 0, 1),
-                            new InstantCommand(() -> manipulator.setArm(0.4)),
+                            new InstantCommand(() -> manipulator.setArm(0.45)),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
-                    )
+
+                    ),
+                    new TurretToPosition(manipulator, 0, 1)
+
             );
         }
 
