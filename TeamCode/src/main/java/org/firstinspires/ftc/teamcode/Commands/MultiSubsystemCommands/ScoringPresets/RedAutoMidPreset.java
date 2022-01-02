@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPr
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosition;
@@ -21,6 +22,7 @@ public class RedAutoMidPreset extends SequentialCommandGroup { //only to be used
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
+                    new WaitCommand(375),
                     new ElevatorToPosition(elevator, 1000, 1)
             );
 

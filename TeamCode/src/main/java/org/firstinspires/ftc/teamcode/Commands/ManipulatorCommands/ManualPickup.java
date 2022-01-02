@@ -13,7 +13,7 @@ public class ManualPickup extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(manipulator::closeClaw),
                 new WaitCommand(100),
-                new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.2))
+                new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.4))
         );
 
         manipulator.manualPickUp = true;

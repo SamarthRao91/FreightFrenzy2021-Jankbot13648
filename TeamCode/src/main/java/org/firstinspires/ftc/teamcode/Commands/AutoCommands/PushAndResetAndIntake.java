@@ -15,17 +15,15 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 public class PushAndResetAndIntake extends SequentialCommandGroup {
     public PushAndResetAndIntake(Elevator elevator, Manipulator manipulator, Intake intake) {
         addCommands(
-                new PushGamepiece(manipulator),
-                new WaitCommand(125),
-                new ElevatorToPosition(elevator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())),//slows turret if slides are far away
-                new TurretToPosition(manipulator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - .2)))
-                ,
-                new WaitCommand(50),
+                new PushGamepiece(manipulator).alongWith(new InstantCommand(() -> intake.setIntake(.2))),
+                new ElevatorToPosition(elevator, 200, 1).alongWith(new InstantCommand(() -> manipulator.setArm(.6))),//slows turret if slides are far away
+                new TurretToPosition(manipulator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - .2))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())).alongWith(new ElevatorToPosition(elevator, 0, 1)).alongWith(new InstantCommand(() -> intake.setIntake(-.2))),
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
                 new WaitCommand(375),
                 new InstantCommand(() -> manipulator.openClaw()),
-                new WaitCommand(50),
-                new InstantCommand(() -> intake.setIntake(1))
+                new InstantCommand(() -> intake.setIntake(1)),
+                new WaitCommand(250)
+
 
         );
     }

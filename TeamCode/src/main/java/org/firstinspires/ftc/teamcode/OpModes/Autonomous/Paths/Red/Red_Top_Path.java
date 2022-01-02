@@ -21,8 +21,8 @@ import java.util.Arrays;
 
 public class Red_Top_Path {
 
-    static double step = 0; //slight offsets per cycle to counteract drift
-    static double intakestep = 2.5 + step; //drives bot furhter in each time
+    static double step = .5; //slight offsets per cycle to counteract drift
+    static double intakestep = 3.5 + step; //drives bot furhter in each time
     public static Trajectory RT_traj1 = BuildTrajectory(new Pose2d(0, 0, Math.toRadians(0))) //drive into warehouse
             .lineTo(new Vector2d(26, 0), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_SLOW_ACCEL))

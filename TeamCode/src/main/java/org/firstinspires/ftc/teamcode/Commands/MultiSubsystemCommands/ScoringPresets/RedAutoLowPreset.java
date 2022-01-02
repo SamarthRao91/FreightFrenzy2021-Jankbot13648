@@ -23,6 +23,7 @@ public class RedAutoLowPreset extends SequentialCommandGroup { //only to be used
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
+                    new WaitCommand(375),
                     new ElevatorToPosition(elevator, 1000, 1)
             );
 

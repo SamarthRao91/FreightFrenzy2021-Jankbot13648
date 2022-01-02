@@ -61,7 +61,7 @@ public class Constants {
             public static final String ARM2_NAME = "as2";
 
             public static final double ARM1_UPPER_BOUND = 0.1;
-            public static final double ARM1_LOWER_BOUND = .98;
+            public static final double ARM1_LOWER_BOUND = .99;
         }
 
         @Config
@@ -70,8 +70,8 @@ public class Constants {
             public static final String PUSHER_SERVO = "ps";
             public static final String DISTANCE_SENSOR_NAME = "sdc";
 
-            public static double OPEN_POSITION = 0.18;
-            public static double CLOSE_POSITION = 0.1;
+            public static double OPEN_POSITION = 0.20;
+            public static double CLOSE_POSITION = 0.05;
             public static final double CAPSTONE_OPEN_FULLY = 0.7;
         }
         @Config
