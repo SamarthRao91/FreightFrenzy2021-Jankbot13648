@@ -17,7 +17,8 @@ public class PickupAndHighPresetRed extends SequentialCommandGroup {
     public PickupAndHighPresetRed(Elevator elevator, Manipulator manipulator, Intake intake) {
         addCommands(
                 new ManualPickup(manipulator),
-                new WaitCommand(375),
+                new InstantCommand(() -> intake.setIntake(0)),
+                new WaitCommand(250),
                 new InstantCommand(() -> intake.setIntake(-.75)),
                 new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, 1).alongWith(new InstantCommand(() -> manipulator.setArm(0.48))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))).alongWith(new ElevatorToPosition(elevator, 150, 1)),
                 new ElevatorToPosition(elevator, 1000, 1),
