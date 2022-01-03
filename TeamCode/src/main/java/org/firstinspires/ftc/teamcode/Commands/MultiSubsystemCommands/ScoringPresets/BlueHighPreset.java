@@ -22,24 +22,24 @@ public class BlueHighPreset extends SequentialCommandGroup {
                     new ManualPickup(manipulator),
                     new WaitCommand(175),
                     new ParallelCommandGroup(
-                            new InstantCommand(() -> manipulator.setArm(0.45)),
+                            new InstantCommand(() -> manipulator.setArm(0.50)),
                             new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 250, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
-                new ElevatorToPosition(elevator, 1000, 1)
+                new ElevatorToPosition(elevator, 1025, 1)
             );
         }
 
         else {
             addCommands(
                     new ParallelCommandGroup(
-                            new InstantCommand(() -> manipulator.setArm(0.45)),
+                            new InstantCommand(() -> manipulator.setArm(0.50)),
                             new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 250, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
-                    new ElevatorToPosition(elevator, 1000, 1)
+                    new ElevatorToPosition(elevator, 1025, 1)
             );
         }
 

@@ -22,8 +22,8 @@ public class DefenseHighPreset extends SequentialCommandGroup {
                     new ManualPickup(manipulator),
                     new WaitCommand(175),
                     new ParallelCommandGroup(
-                            new ElevatorToPosition(elevator, 0, 1),
-                            new InstantCommand(() -> manipulator.setArm(0.45)),
+                            new ElevatorToPosition(elevator, 200, 1),
+                            new InstantCommand(() -> manipulator.setArm(0.50)),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
                     ),
                     new TurretToPosition(manipulator, 0, 1)
@@ -33,8 +33,8 @@ public class DefenseHighPreset extends SequentialCommandGroup {
         else {
             addCommands(
                     new ParallelCommandGroup(
-                            new ElevatorToPosition(elevator, 0, 1),
-                            new InstantCommand(() -> manipulator.setArm(0.45)),
+                            new ElevatorToPosition(elevator, 200, 1),
+                            new InstantCommand(() -> manipulator.setArm(0.50)),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
                     ),

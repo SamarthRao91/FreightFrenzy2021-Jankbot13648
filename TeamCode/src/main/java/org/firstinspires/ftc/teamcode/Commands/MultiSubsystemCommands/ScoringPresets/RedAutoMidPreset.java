@@ -17,7 +17,7 @@ public class RedAutoMidPreset extends SequentialCommandGroup { //only to be used
 
             addCommands(
                     new ParallelCommandGroup(
-                            new InstantCommand(() -> manipulator.setArm(0.32)),
+                            new InstantCommand(() -> manipulator.setArm(0.40)),
                             new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 250, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
