@@ -17,13 +17,13 @@ public class RedReverseAutoMidPreset extends SequentialCommandGroup { //only to 
 
             addCommands(
                     new ParallelCommandGroup(
-                            new InstantCommand(() -> manipulator.setArm(0.40)),
-                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 250, 1),
+                            new InstantCommand(() -> manipulator.setArm(0.33)),
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 150, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
                     new WaitCommand(375),
-                    new ElevatorToPosition(elevator, 1000, 1)
+                    new ElevatorToPosition(elevator, 875, 1)
             );
 
         addRequirements(elevator, manipulator);

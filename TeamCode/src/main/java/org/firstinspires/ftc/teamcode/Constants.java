@@ -79,7 +79,7 @@ public class Constants {
             public static final String PUSHER_NAME = "ps";
 
             public static final double PUSHER_UP_POS = 0.8;
-            public static final double PUSHER_PREP_POS = 0.15;
+            public static final double PUSHER_PREP_POS = 0.12;
             public static final double PUSHER_PUSH_POS = 0;
         }
     }
