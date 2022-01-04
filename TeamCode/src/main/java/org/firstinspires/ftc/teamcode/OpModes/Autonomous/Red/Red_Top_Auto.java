@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes.Autonomous.Red;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
@@ -56,6 +57,7 @@ public class Red_Top_Auto extends LinearOpMode {
 
         HeadingStorage.STORED_HEADING = 0;
         drive.setHeadingOffset(0);
+        drive.setPoseEstimate(new Pose2d(11, -.25, Math.toRadians(0)));
 
         manipulator.closeClaw();
         manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.15);

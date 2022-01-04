@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 public class ResetMechanisms extends SequentialCommandGroup {
     public ResetMechanisms(Elevator elevator, Manipulator manipulator) {
         addCommands(
-                new ElevatorToPosition(elevator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - .2))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())),//slows turret if slides are far away
+                new ElevatorToPosition(elevator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - .35))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())),//slows turret if slides are far away
                 new TurretToPosition(manipulator, 0, 1),
                 new WaitCommand(500),
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),

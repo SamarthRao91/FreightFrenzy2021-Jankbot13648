@@ -12,19 +12,19 @@ import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Intake;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
-public class PushAndResetAndIntake extends SequentialCommandGroup {
-    public PushAndResetAndIntake(Elevator elevator, Manipulator manipulator, Intake intake) {
+public class PushAndResetAndIntakeRed extends SequentialCommandGroup {
+    public PushAndResetAndIntakeRed(Elevator elevator, Manipulator manipulator, Intake intake) {
         addCommands(
                 new PushGamepiece(manipulator).alongWith(new InstantCommand(() -> intake.setIntake(.2))),
                 new WaitCommand(10),
-                new ElevatorToPosition(elevator, 200, 1).alongWith(new InstantCommand(() -> manipulator.setArm(.65))),//slows turret if slides are far away
-                new TurretToPosition(manipulator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())).alongWith(new ElevatorToPosition(elevator, 0, 1)).alongWith(new InstantCommand(() -> intake.setIntake(-.2))),
-                new WaitCommand(1),
+                new ElevatorToPosition(elevator, 200, 1).alongWith(new InstantCommand(() -> manipulator.setArm(.65))).alongWith(new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 400, .5)),//slows turret if slides are far away
+                new TurretToPosition(manipulator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(.8))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())).alongWith(new ElevatorToPosition(elevator, 0, 1)).alongWith(new InstantCommand(() -> intake.setIntake(-.2))),
+                new WaitCommand(375),
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
                 new WaitCommand(250),
                 new InstantCommand(() -> manipulator.openClaw()),
                 new InstantCommand(() -> intake.setIntake(1)),
-                new WaitCommand(500)
+                new WaitCommand(750)
 
 
         );
