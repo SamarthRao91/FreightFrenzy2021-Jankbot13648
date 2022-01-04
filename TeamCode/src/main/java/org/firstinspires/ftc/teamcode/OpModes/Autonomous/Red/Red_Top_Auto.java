@@ -57,7 +57,7 @@ public class Red_Top_Auto extends LinearOpMode {
 
         HeadingStorage.STORED_HEADING = 0;
         drive.setHeadingOffset(0);
-        drive.setPoseEstimate(new Pose2d(11, -.25, Math.toRadians(0)));
+        drive.setPoseEstimate(new Pose2d(13, -.25, Math.toRadians(0)));
 
         manipulator.closeClaw();
         manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.15);
