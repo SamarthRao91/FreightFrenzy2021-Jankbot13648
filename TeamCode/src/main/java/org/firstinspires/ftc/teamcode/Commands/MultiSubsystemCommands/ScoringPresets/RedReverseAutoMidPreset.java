@@ -23,7 +23,7 @@ public class RedReverseAutoMidPreset extends SequentialCommandGroup { //only to 
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
                     new WaitCommand(375),
-                    new ElevatorToPosition(elevator, 875, 1)
+                    new ElevatorToPosition(elevator, 890, 1)
             );
 
         addRequirements(elevator, manipulator);
