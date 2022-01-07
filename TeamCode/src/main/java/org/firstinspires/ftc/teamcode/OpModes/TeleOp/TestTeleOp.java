@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.CapstoneGrabberDefault;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.turrettest;
@@ -37,67 +39,13 @@ public class TestTeleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         drive = new Drive(new MecanumDrive(hardwareMap), true);
-        elevator = new Elevator(hardwareMap);
-        manipulator = new Manipulator(hardwareMap);
-        intake = new Intake(hardwareMap);
-        duckSpinner = new DuckSpinner(hardwareMap);
-        capstoneGrabber = new CapstoneGrabber(hardwareMap);
-        capstoneDetectionCamera = new CapstoneDetectionCamera(hardwareMap, false);
 
+        waitForStart();
 
-        register(
-                drive,
-                elevator,
-                manipulator,
-                intake,
-                duckSpinner,
-                capstoneGrabber
-        );
+        telemetry.addData("Left Distance Sensor", drive.getLeftDistance());
+        telemetry.update();
 
-
-        HeadingStorage.STORED_HEADING = 0;
-        drive.setHeadingOffset(0);
-
-        manipulator.closeClaw();
-        manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.3);
-        duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_UP);
-
-        capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
-
-        while (!isStarted()) {
-            capstonePosition = capstoneDetectionCamera.getPosition();
-
-            telemetry.addData("Capstone Position", capstonePosition);
-            telemetry.addData("Left Analysis", capstoneDetectionCamera.getAnalysis()[0]);
-            telemetry.addData("Middle Analysis", capstoneDetectionCamera.getAnalysis()[1]);
-            telemetry.addData("Right Analysis", capstoneDetectionCamera.getAnalysis()[2]);
-            telemetry.update();
-        }
-
-
-        schedule(
-                new turrettest(manipulator
-                )
-        );
-
-        while (!isStopRequested() && opModeIsActive()) {
-            getCommandScheduler().run();
-        }
-
-        getCommandScheduler().reset();
-
-
-    }
-
-    public CommandScheduler getCommandScheduler() {
-        return CommandScheduler.getInstance();
-    }
-
-    public void register(Subsystem... subsystems) {
-        getCommandScheduler().registerSubsystem(subsystems);
-    }
-
-    public void schedule(Command... commands) {
-        getCommandScheduler().schedule(commands);
+        FtcDashboard.getInstance().getTelemetry().addData("Left Distance Sensors", drive.getLeftDistance());
+        FtcDashboard.getInstance().getTelemetry().update();
     }
 }

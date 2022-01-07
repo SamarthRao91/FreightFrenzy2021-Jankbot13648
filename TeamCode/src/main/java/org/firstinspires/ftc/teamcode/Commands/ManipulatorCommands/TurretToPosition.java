@@ -22,30 +22,23 @@ public class TurretToPosition extends CommandBase {
     }
 
     @Override
-    public void initialize()
-    {
+    public void initialize() {
+        manipulator.setControllerBounds(speed);
         manipulator.setTurretTargetPosition(target);
     }
 
     @Override
-    public void execute()
-    {
-        FtcDashboard.getInstance().getTelemetry().addData("Turret Position", manipulator.getPosition());
-        FtcDashboard.getInstance().getTelemetry().update();
-
-        manipulator.setSpeed(speed);
+    public void execute() {
+        manipulator.setSpeed(manipulator.update());
     }
 
     @Override
-    public void end(boolean isInterrupted)
-    {
+    public void end(boolean isInterrupted) {
         manipulator.setSpeed(0);
-        manipulator.setRunMode(Motor.RunMode.RawPower);
     }
 
     @Override
-    public boolean isFinished()
-    {
+    public boolean isFinished() {
         return manipulator.atTargetPosition();
     }
 }
