@@ -52,7 +52,7 @@ public class Elevator extends SubsystemBase {
     }
 
     public boolean atTargetPosition() {
-        return elevatorController.getTargetPosition() < Constants.Elevator.ELEVATOR_PID_TOLERANCE;
+        return elevatorController.getLastError() < Constants.Elevator.ELEVATOR_PID_TOLERANCE;
     }
 
     public void setRunMode(Motor.RunMode runMode) {
@@ -64,6 +64,16 @@ public class Elevator extends SubsystemBase {
     }
 
     public double update() { return elevatorController.update(elevatorMotor.getCurrentPosition()); }
+
+    public double getTarget()
+    {
+        return elevatorController.getTargetPosition();
+    }
+
+    public double getLastError()
+    {
+        return elevatorController.getLastError();
+    }
 
     public void setControllerBounds(double bound)
     {

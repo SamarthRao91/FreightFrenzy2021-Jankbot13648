@@ -97,6 +97,16 @@ public class Manipulator extends SubsystemBase {
         turretController.setTargetPosition(targetPosition);
     }
 
+    public double getTarget()
+    {
+        return turretController.getTargetPosition();
+    }
+
+    public double getLastError()
+    {
+        return turretController.getLastError();
+    }
+
     public void setSpeed(double speed)
     {
         turretMotor.set(speed);

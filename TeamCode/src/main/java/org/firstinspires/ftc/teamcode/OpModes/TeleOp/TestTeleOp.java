@@ -28,14 +28,6 @@ import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 public class TestTeleOp extends LinearOpMode {
 
     Drive drive;
-    Elevator elevator;
-    Manipulator manipulator;
-    Intake intake;
-    DuckSpinner duckSpinner;
-    CapstoneGrabber capstoneGrabber;
-    CapstoneDetectionCamera capstoneDetectionCamera;
-
-    CapstonePipeline.CapstonePosition capstonePosition;
 
     @Override
     public void runOpMode() throws InterruptedException {
