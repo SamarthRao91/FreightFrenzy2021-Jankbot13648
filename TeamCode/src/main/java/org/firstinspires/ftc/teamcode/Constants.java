@@ -39,8 +39,8 @@ public class Constants {
 
         public static String LIMIT_SWITCH_NAME = "ls";
 
-        public static double ELEVATOR_P_COEFF = 0.01;
-        public static double ELEVATOR_I_COEFF = 0.0001;
+        public static double ELEVATOR_P_COEFF = 0.1;
+        public static double ELEVATOR_I_COEFF = 0.1;
         public static double ELEVATOR_D_COEFF = 0.0001;
 
         public static double ELEVATOR_PID_TOLERANCE = 10;
@@ -59,8 +59,8 @@ public class Constants {
 
             public static int ZERO_POSITION = 0;
 
-            public static double TURRET_P_COEFF = 0.01;
-            public static double TURRET_I_COEFF = 0.0001;
+            public static double TURRET_P_COEFF = 0.003;
+            public static double TURRET_I_COEFF = 0.001;
             public static double TURRET_D_COEFF = 0.0001;
 
             public static double TURRET_PID_TOLERANCE = 10;
