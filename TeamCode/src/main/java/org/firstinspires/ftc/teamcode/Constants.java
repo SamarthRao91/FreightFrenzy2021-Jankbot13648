@@ -39,7 +39,7 @@ public class Constants {
 
         public static String LIMIT_SWITCH_NAME = "ls";
 
-        public static double ELEVATOR_P_COEFF = 0.1;
+        public static double ELEVATOR_P_COEFF = 0.0005;
         public static double ELEVATOR_I_COEFF = 0.1;
         public static double ELEVATOR_D_COEFF = 0.0001;
 
