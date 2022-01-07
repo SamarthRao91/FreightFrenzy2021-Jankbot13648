@@ -23,7 +23,7 @@ public class RedAutoMidPreset extends SequentialCommandGroup { //only to be used
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
                     new WaitCommand(375),
-                    new ElevatorToPosition(elevator, 875, 1)
+                    new ElevatorToPosition(elevator, 890, 1)
             );
 
         addRequirements(elevator, manipulator);

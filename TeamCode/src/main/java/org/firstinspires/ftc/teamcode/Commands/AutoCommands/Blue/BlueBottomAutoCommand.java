@@ -30,9 +30,9 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(180)))),
-                        new RedAutoLowPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
+                        new RedAutoLowPreset(elevator, manipulator).alongWith( new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(duckSpinner::spinSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
@@ -53,6 +53,7 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new BlueBottomHighPreset(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(0)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11)
                 );
@@ -60,9 +61,9 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
             case CENTER:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(180)))),
-                        new RedAutoMidPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
+                        new RedAutoMidPreset(elevator, manipulator).alongWith( new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(duckSpinner::spinSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
@@ -83,17 +84,17 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new BlueBottomHighPreset(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(0)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new ResetMechanisms(elevator, manipulator)),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11),
-                        new WaitCommand(11)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11)
                 );
                 break;
             case RIGHT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(180)))),
-                        new BlueBottomHighPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
+                        new BlueBottomHighPreset(elevator, manipulator).alongWith( new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(duckSpinner::spinSlow),
                         new InstantCommand(() -> intake.setIntake(0.75)),
@@ -114,9 +115,9 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
                         new BlueBottomHighPreset(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(0)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj10).alongWith(new ResetMechanisms(elevator, manipulator)),
-                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11),
-                        new WaitCommand(12)
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj11)
                 );
                 break;
         }

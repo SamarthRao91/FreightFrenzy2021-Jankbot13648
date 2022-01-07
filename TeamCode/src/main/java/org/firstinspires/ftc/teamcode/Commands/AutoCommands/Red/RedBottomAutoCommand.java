@@ -34,9 +34,9 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case LEFT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        new RedReverseAutoLowPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
+                        new RedReverseAutoLowPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(()-> duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_DOWN)),
                         new InstantCommand(duckSpinner::spinReverseSlow),
@@ -57,6 +57,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new WaitCommand(125),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj10)
 
@@ -65,9 +66,9 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case CENTER:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        new RedReverseAutoMidPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
+                        new RedReverseAutoMidPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(()-> duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_DOWN)),
                         new InstantCommand(duckSpinner::spinReverseSlow),
@@ -88,6 +89,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new WaitCommand(125),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj10),
                         new WaitCommand(11)
@@ -96,9 +98,9 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
             case RIGHT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0,0, Math.toRadians(180)))),
-                        new RedBottomHighPreset(elevator, manipulator),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1),
+                        new RedBottomHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Bottom_Path.RB_traj1)),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new InstantCommand(()-> duckSpinner.setRedDuckWall(Constants.DuckSpinner.RED_WALL_DOWN)),
                         new InstantCommand(duckSpinner::spinReverseSlow),
@@ -119,6 +121,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> intake.setIntake(0)),
                         new WaitCommand(125),
                         new PushGamepiece(manipulator),
+                        new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj10),
                         new WaitCommand(12)
