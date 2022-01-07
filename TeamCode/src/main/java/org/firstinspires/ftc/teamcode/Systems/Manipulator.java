@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 
+import com.acmerobotics.roadrunner.control.PIDCoefficients;
+import com.acmerobotics.roadrunner.control.PIDFController;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -21,11 +23,23 @@ public class Manipulator extends SubsystemBase {
 
     public boolean manualPickUp = false;
 
+    public PIDFController turretController;
+
     public Manipulator(HardwareMap hardwareMap) {
         arm1 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM1_NAME);
         arm2 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM2_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
+
+        turretController = new PIDFController(
+                new PIDCoefficients(
+                        Constants.Manipulator.Turret.TURRET_P_COEFF,
+                        Constants.Manipulator.Turret.TURRET_I_COEFF,
+                        Constants.Manipulator.Turret.TURRET_D_COEFF
+                )
+        );
+
+        turretController.setOutputBounds(-1.0, 1.0);
 
         turretMotor = new MotorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
         turretMotor.setInverted(true);
@@ -80,8 +94,7 @@ public class Manipulator extends SubsystemBase {
 
     public void setTurretTargetPosition(int targetPosition)
     {
-        turretMotor.setRunMode(Motor.RunMode.PositionControl);
-        turretMotor.setTargetPosition(targetPosition);
+        turretController.setTargetPosition(targetPosition);
     }
 
     public void setSpeed(double speed)
@@ -91,12 +104,12 @@ public class Manipulator extends SubsystemBase {
 
     public boolean atTargetPosition()
     {
-        return turretMotor.atTargetPosition();
+        return turretController.getLastError() < Constants.Manipulator.Turret.TURRET_PID_TOLERANCE;
     }
 
-    public void setRunMode(Motor.RunMode runMode)
+    public double update()
     {
-        turretMotor.setRunMode(runMode);
+        return turretController.update(getPosition());
     }
 
     public int getPosition()
@@ -104,5 +117,13 @@ public class Manipulator extends SubsystemBase {
         return turretMotor.getCurrentPosition();
     }
 
+    public void setControllerBounds(double bound)
+    {
+        turretController.setOutputBounds(-bound, bound);
+    }
 
+    @Override
+    public void periodic() {
+        update();
+    }
 }
