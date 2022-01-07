@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Commands.AutoCommands.Blue;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.PushAndResetAndIntakeBlue;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.PushAndResetAndIntakeRed;
 import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.FollowTrajectory;
+import org.firstinspires.ftc.teamcode.Commands.DriveBaseCommands.ReLocalizeDriveBase;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.BlueHighPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedReverseAutoLowPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedReverseAutoMidPreset;
@@ -27,14 +29,29 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                 addCommands(
                         new RedReverseAutoLowPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj0)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj2)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj3)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj4)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj5)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj6)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj7)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj9)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))
                       /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj12)),
@@ -45,14 +62,29 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                 addCommands(
                         new RedReverseAutoMidPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj0)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj2)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj3)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj4)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj5)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj6)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj7)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj9)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))
                       /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj12)),
@@ -63,14 +95,29 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                 addCommands(
                         new BlueHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj0)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj2)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj3)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj4)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj5)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj6)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj7)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj9)),
+                        new ReLocalizeDriveBase(drive, false),
+                        //new WaitCommand(100),
+
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))
                       /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj12)),
