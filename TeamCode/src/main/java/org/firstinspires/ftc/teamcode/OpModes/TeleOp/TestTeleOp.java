@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Red.RedTopAutoCommand;
@@ -23,7 +24,7 @@ import org.firstinspires.ftc.teamcode.Systems.Vision.CapstoneDetectionCamera;
 import org.firstinspires.ftc.teamcode.Systems.Vision.Pipelines.CapstonePipeline;
 import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 
-@Autonomous(name = "turret test")
+@TeleOp(name = "Test Teleop")
 public class TestTeleOp extends LinearOpMode {
 
     Drive drive;
@@ -41,11 +42,13 @@ public class TestTeleOp extends LinearOpMode {
         drive = new Drive(new MecanumDrive(hardwareMap), true);
 
         waitForStart();
+        while(!isStopRequested()) {
 
-        telemetry.addData("Left Distance Sensor", drive.getLeftDistance());
-        telemetry.update();
+            telemetry.addData("Left Distance Sensor", drive.getLeftDistance() - .35);
+            telemetry.update();
 
-        FtcDashboard.getInstance().getTelemetry().addData("Left Distance Sensors", drive.getLeftDistance());
-        FtcDashboard.getInstance().getTelemetry().update();
+            FtcDashboard.getInstance().getTelemetry().addData("Left Distance Sensors", drive.getLeftDistance());
+            FtcDashboard.getInstance().getTelemetry().update();
+        }
     }
 }

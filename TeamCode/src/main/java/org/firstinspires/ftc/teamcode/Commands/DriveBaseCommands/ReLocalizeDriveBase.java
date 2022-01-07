@@ -37,7 +37,7 @@ public class ReLocalizeDriveBase extends CommandBase {
         {
             newPose = new Pose2d(
                     drive.getPoseEstimate().getX(),
-                    distance - (2.6 - (3.0/16.0)) + 0.25,
+                    distance - .35,
                     drive.getHeading());
         }
 
@@ -45,7 +45,7 @@ public class ReLocalizeDriveBase extends CommandBase {
         {
             newPose = new Pose2d(
                     drive.getPoseEstimate().getX(),
-                    -(distance - (2.6 - (3.0/16.0)) + 0.25),
+                    -(distance - (.35)),
                     drive.getHeading());
         }
 
