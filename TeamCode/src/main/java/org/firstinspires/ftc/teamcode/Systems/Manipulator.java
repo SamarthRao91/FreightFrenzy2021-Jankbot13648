@@ -114,7 +114,7 @@ public class Manipulator extends SubsystemBase {
 
     public boolean atTargetPosition()
     {
-        return turretController.getLastError() < Constants.Manipulator.Turret.TURRET_PID_TOLERANCE;
+        return Math.abs(turretController.getLastError()) < Math.abs(Constants.Manipulator.Turret.TURRET_PID_TOLERANCE);
     }
 
     public double update()
