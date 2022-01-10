@@ -28,19 +28,23 @@ import org.firstinspires.ftc.teamcode.Util.HeadingStorage;
 public class TestTeleOp extends LinearOpMode {
 
     Drive drive;
+    Manipulator manipulator;
 
     @Override
     public void runOpMode() throws InterruptedException {
         drive = new Drive(new MecanumDrive(hardwareMap), true);
+        manipulator = new Manipulator(hardwareMap);
+
 
         waitForStart();
         while(!isStopRequested()) {
 
-            telemetry.addData("Left Distance Sensor", drive.getLeftDistance() - .35);
+            manipulator.readColorSensor();
+            telemetry.addData("Color sensor", manipulator.readColorSensor());
             telemetry.update();
 
-            FtcDashboard.getInstance().getTelemetry().addData("Left Distance Sensors", drive.getLeftDistance());
-            FtcDashboard.getInstance().getTelemetry().update();
+            /*FtcDashboard.getInstance().getTelemetry().addData("Left Distance Sensors", drive.getLeftDistance());
+            FtcDashboard.getInstance().getTelemetry().update();*/
         }
     }
 }

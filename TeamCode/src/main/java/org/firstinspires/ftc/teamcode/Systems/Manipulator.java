@@ -4,6 +4,9 @@ package org.firstinspires.ftc.teamcode.Systems;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.ColorRangeSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -20,6 +23,7 @@ public class Manipulator extends SubsystemBase {
     public Servo claw;
     public Servo pusher;
     public AnalogInput pot;
+    private ColorSensor cs;
 
     public boolean manualPickUp = false;
 
@@ -29,6 +33,7 @@ public class Manipulator extends SubsystemBase {
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
         pot = hardwareMap.get(AnalogInput.class, "pot");
+        cs = hardwareMap.get(ColorSensor.class, "cs");
 
         turretMotor = new MotorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
         turretMotor.setInverted(true);
@@ -111,6 +116,10 @@ public class Manipulator extends SubsystemBase {
 
     public void resetTurretEncoder(){
         turretMotor.resetEncoder();
+    }
+
+    public int readColorSensor() {
+        return cs.red();
     }
 
 }
