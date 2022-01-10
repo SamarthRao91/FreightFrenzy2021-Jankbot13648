@@ -18,7 +18,7 @@ public class ResetMechanisms extends SequentialCommandGroup {
                 new TurretToPosition(manipulator, 0, .75),
                 new WaitCommand(250),
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
-                new WaitCommand(250),
+                new WaitCommand(375),
                 new InstantCommand(() -> manipulator.openClaw())
         );
 

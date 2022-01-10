@@ -109,17 +109,8 @@ public class Manipulator extends SubsystemBase {
 
     public double getPotValue() { return pot.getVoltage();}
 
-    public void setControllerBounds(double bound)
-    {
-        turretController.setOutputBounds(-bound, bound);
-    }
-
     public void resetTurretEncoder(){
         turretMotor.resetEncoder();
     }
 
-    @Override
-    public void periodic() {
-        update();
-    }
 }
