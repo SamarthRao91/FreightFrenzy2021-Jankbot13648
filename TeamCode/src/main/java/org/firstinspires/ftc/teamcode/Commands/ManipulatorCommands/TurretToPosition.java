@@ -1,10 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
-
-import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
 
 public class TurretToPosition extends CommandBase {

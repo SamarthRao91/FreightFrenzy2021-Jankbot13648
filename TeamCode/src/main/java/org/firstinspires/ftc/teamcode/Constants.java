@@ -43,7 +43,7 @@ public class Constants {
         public static double ELEVATOR_I_COEFF = 0.00;
         public static double ELEVATOR_D_COEFF = 0.0005;
 
-        public static double ELEVATOR_PID_TOLERANCE = 5;
+        public static double ELEVATOR_PID_TOLERANCE = 10;
     }
 
     @Config
@@ -63,7 +63,8 @@ public class Constants {
             public static double TURRET_I_COEFF = 0.0;
             public static double TURRET_D_COEFF = 0.0002;
 
-            public static double TURRET_PID_TOLERANCE = 5;
+            public static double TURRET_PID_TOLERANCE = 10;
+            public static double POT_ZERO_VALUE = 1.260;
         }
 
         @Config

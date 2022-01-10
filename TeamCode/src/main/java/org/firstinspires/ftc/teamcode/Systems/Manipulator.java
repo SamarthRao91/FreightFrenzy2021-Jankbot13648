@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.control.PIDFController;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -20,6 +21,7 @@ public class Manipulator extends SubsystemBase {
     public Servo arm2;
     public Servo claw;
     public Servo pusher;
+    public AnalogInput pot;
 
     public boolean manualPickUp = false;
 
@@ -30,6 +32,7 @@ public class Manipulator extends SubsystemBase {
         arm2 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM2_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
+        pot = hardwareMap.get(AnalogInput.class, "pot");
 
         turretController = new PIDFController(
                 new PIDCoefficients(
@@ -127,9 +130,15 @@ public class Manipulator extends SubsystemBase {
         return turretMotor.getCurrentPosition();
     }
 
+    public double getPotValue() { return pot.getVoltage();}
+
     public void setControllerBounds(double bound)
     {
         turretController.setOutputBounds(-bound, bound);
+    }
+
+    public void resetTurretEncoder(){
+        turretMotor.resetEncoder();
     }
 
     @Override

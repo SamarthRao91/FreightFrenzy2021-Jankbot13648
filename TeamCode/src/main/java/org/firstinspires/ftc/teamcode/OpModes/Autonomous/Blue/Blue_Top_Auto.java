@@ -4,11 +4,13 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Commands.AutoCommands.Blue.BlueTopAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.CapstoneGrabberCommands.CapstoneGrabberDefault;
+import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretResetWithPot;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.CapstoneGrabber;
 import org.firstinspires.ftc.teamcode.Systems.Drive;
@@ -66,6 +68,8 @@ public class Blue_Top_Auto extends LinearOpMode {
 
         capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
+        int loopcount = 0;
+
         while (!isStarted()) {
             capstonePosition = capstoneDetectionCamera.getPosition();
 
@@ -74,6 +78,22 @@ public class Blue_Top_Auto extends LinearOpMode {
             telemetry.addData("Middle Analysis", capstoneDetectionCamera.getAnalysis()[1]);
             telemetry.addData("Right Analysis", capstoneDetectionCamera.getAnalysis()[2]);
             telemetry.update();
+
+            if (manipulator.getPotValue() > Constants.Manipulator.Turret.POT_ZERO_VALUE && loopcount < 500) {
+                manipulator.setSpeed((manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) + .05);
+                loopcount++;
+            }
+            else  if (manipulator.getPotValue() < Constants.Manipulator.Turret.POT_ZERO_VALUE && loopcount < 500) {
+                manipulator.setSpeed((manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) - .05);
+                loopcount++;
+            }
+            else  manipulator.setSpeed(0);
+            if (loopcount == 501) {
+                manipulator.resetTurretEncoder();
+            }
+
+
+
         }
 
 

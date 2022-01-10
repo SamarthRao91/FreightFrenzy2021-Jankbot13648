@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
+import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretResetWithPot;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
