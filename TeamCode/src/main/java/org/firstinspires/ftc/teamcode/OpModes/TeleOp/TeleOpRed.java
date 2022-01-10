@@ -78,22 +78,22 @@ public class TeleOpRed extends CommandOpMode {
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> drive.resetHeading()));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(manipulator));
-        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(manipulator));
+        driveGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(manipulator, intake));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(new ManualPickup(manipulator, intake));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.A).whenPressed(new ResetMechanisms(elevator, manipulator));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new RedHighPreset(elevator, manipulator));
-        mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new RedHighPreset(elevator, manipulator));
+        driveGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new RedHighPreset(elevator, manipulator, intake ));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(new RedHighPreset(elevator, manipulator, intake));
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new PushAndReset(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.X).whenPressed(new PushAndReset(elevator, manipulator));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new RedLowPreset(elevator, manipulator));
-        mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new RedLowPreset(elevator, manipulator));
+        driveGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new RedLowPreset(elevator, manipulator, intake));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.B).whenPressed(new RedLowPreset(elevator, manipulator, intake));
 
-        driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new DefenseHighPreset(elevator, manipulator));
+        driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new DefenseHighPreset(elevator, manipulator, intake ));
         mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new TurretResetWithPot(manipulator));
 
 

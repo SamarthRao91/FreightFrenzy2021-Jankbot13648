@@ -16,7 +16,7 @@ public class PickupAndHighPresetBlue extends SequentialCommandGroup {
 
     public PickupAndHighPresetBlue(Elevator elevator, Manipulator manipulator, Intake intake) {
         addCommands(
-                new ManualPickup(manipulator),
+                new ManualPickup(manipulator,intake),
                 new InstantCommand(() -> intake.setIntake(0)),
                 new WaitCommand(375),
                 new InstantCommand(() -> intake.setIntake(-.75)),

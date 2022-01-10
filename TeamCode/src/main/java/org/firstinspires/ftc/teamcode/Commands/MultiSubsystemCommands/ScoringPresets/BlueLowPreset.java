@@ -11,15 +11,15 @@ import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosit
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
-
+import org.firstinspires.ftc.teamcode.Systems.Intake;
 public class BlueLowPreset extends SequentialCommandGroup {
 
-    public BlueLowPreset(Elevator elevator, Manipulator manipulator) {
+    public BlueLowPreset(Elevator elevator, Manipulator manipulator, Intake intake) {
 
         if(!manipulator.manualPickUp)
         {
             addCommands(
-                    new ManualPickup(manipulator),
+                    new ManualPickup(manipulator, intake),
                     new WaitCommand(175),
                     new SequentialCommandGroup(
                             new ElevatorToPosition(elevator, 50, 1),

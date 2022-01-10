@@ -93,7 +93,7 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                 break;
             case RIGHT:
                 addCommands(
-                        new BlueHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj0)),
+                        new BlueHighPreset(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj0)),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj1)),
                         new ReLocalizeDriveBase(drive, false),
                         //new WaitCommand(100),
