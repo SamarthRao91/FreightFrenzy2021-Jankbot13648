@@ -64,7 +64,7 @@ public class Constants {
             public static double TURRET_D_COEFF = 0.0002;
 
             public static double TURRET_PID_TOLERANCE = 10;
-            public static double POT_ZERO_VALUE = 1.260;
+            public static double POT_ZERO_VALUE = 1.240;
         }
 
         @Config
@@ -82,7 +82,7 @@ public class Constants {
             public static String PUSHER_SERVO = "ps";
             public static String DISTANCE_SENSOR_NAME = "sdc";
 
-            public static double OPEN_POSITION = 0.20;
+            public static double OPEN_POSITION = 0.18;
             public static double CLOSE_POSITION = 0.05;
             public static double CAPSTONE_OPEN_FULLY = 0.7;
         }

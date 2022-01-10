@@ -40,6 +40,6 @@ public class TurretResetWithPot extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        return (Math.abs(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) < .002);
+        return (Math.abs(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) < .001    );
     }
 }
