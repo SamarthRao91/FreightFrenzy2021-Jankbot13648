@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 
-import com.acmerobotics.roadrunner.control.PIDCoefficients;
-import com.acmerobotics.roadrunner.control.PIDFController;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.AnalogInput;
@@ -25,24 +23,12 @@ public class Manipulator extends SubsystemBase {
 
     public boolean manualPickUp = false;
 
-    public PIDFController turretController;
-
     public Manipulator(HardwareMap hardwareMap) {
         arm1 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM1_NAME);
         arm2 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM2_NAME);
         claw = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.CLAW_SERVO_NAME);
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
         pot = hardwareMap.get(AnalogInput.class, "pot");
-
-        turretController = new PIDFController(
-                new PIDCoefficients(
-                        Constants.Manipulator.Turret.TURRET_P_COEFF,
-                        Constants.Manipulator.Turret.TURRET_I_COEFF,
-                        Constants.Manipulator.Turret.TURRET_D_COEFF
-                )
-        );
-
-        turretController.setOutputBounds(-1.0, 1.0);
 
         turretMotor = new MotorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
         turretMotor.setInverted(true);
@@ -97,17 +83,8 @@ public class Manipulator extends SubsystemBase {
 
     public void setTurretTargetPosition(int targetPosition)
     {
-        turretController.setTargetPosition(targetPosition);
-    }
-
-    public double getTarget()
-    {
-        return turretController.getTargetPosition();
-    }
-
-    public double getLastError()
-    {
-        return turretController.getLastError();
+        turretMotor.setRunMode(Motor.RunMode.PositionControl);
+        turretMotor.setTargetPosition(targetPosition);
     }
 
     public void setSpeed(double speed)
@@ -117,12 +94,12 @@ public class Manipulator extends SubsystemBase {
 
     public boolean atTargetPosition()
     {
-        return Math.abs(turretController.getLastError()) < Math.abs(Constants.Manipulator.Turret.TURRET_PID_TOLERANCE);
+        return turretMotor.atTargetPosition();
     }
 
-    public double update()
+    public void setRunMode(Motor.RunMode runMode)
     {
-        return turretController.update(getPosition());
+        turretMotor.setRunMode(runMode);
     }
 
     public int getPosition()

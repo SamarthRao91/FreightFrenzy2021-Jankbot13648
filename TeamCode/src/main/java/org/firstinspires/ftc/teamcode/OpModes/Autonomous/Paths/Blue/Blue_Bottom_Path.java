@@ -60,7 +60,7 @@ public class Blue_Bottom_Path {
             .build();
     //align to goal for the second time
     public static Trajectory BB_traj9 = BuildTrajectory(BB_traj73.end())
-            .lineToSplineHeading(new Pose2d(15, -2, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(14, -2, Math.toRadians(180)))
             .build();
 
     //park
