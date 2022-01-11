@@ -22,7 +22,7 @@ public class TurretToPosition extends CommandBase {
     @Override
     public void initialize()
     {
-        manipulator.setTurretTargetPosition(target);
+        manipulator.setTurretTargetPosition(target, speed);
     }
 
     @Override

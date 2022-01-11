@@ -30,6 +30,7 @@ public class Manipulator extends SubsystemBase {
     private PIDFController turretController;
 
     public boolean manualPickUp = false;
+    private double speedConstraints = 1.0;
 
     public Manipulator(HardwareMap hardwareMap) {
         arm1 = hardwareMap.get(Servo.class, Constants.Manipulator.Arm.ARM1_NAME);
@@ -103,8 +104,9 @@ public class Manipulator extends SubsystemBase {
         return arm1.getPosition();
     }
 
-    public void setTurretTargetPosition(int targetPosition)
+    public void setTurretTargetPosition(int targetPosition, double speed)
     {
+        speedConstraints = speed;
         turretController.setSetPoint(targetPosition);
     }
 
@@ -135,7 +137,7 @@ public class Manipulator extends SubsystemBase {
 
     public double update()
     {
-        return Math.max(Math.min(turretController.calculate(getPosition()), 1), -1);
+        return Math.max(Math.min(turretController.calculate(getPosition()), speedConstraints), -speedConstraints);
     }
 
     @Override
