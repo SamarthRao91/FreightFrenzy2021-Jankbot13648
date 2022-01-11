@@ -29,7 +29,12 @@ public class ElevatorToPosition extends CommandBase {
     @Override
     public void execute()
     {
-        /*FtcDashboard.getInstance().getTelemetry().addData("Elevator Position", elevator.getPosition());
+        double update = elevator.update();
+
+      /*  FtcDashboard.getInstance().getTelemetry().addData("Elevator Target", elevator.getTarget());
+        FtcDashboard.getInstance().getTelemetry().addData("Current Elevator Position", elevator.getPosition());
+        FtcDashboard.getInstance().getTelemetry().addData("Update (Speed To Get To Target)", update);
+        FtcDashboard.getInstance().getTelemetry().addData("Last Error", elevator.getLastError());
         FtcDashboard.getInstance().getTelemetry().update();*/
 
         elevator.setSpeed(elevator.update());

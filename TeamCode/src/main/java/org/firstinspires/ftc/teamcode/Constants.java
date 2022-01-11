@@ -40,12 +40,12 @@ public class Constants {
         public static String LIMIT_SWITCH_NAME = "ls";
 
         public static double ELEVATOR_P_COEFF = 0.06;
-        public static double ELEVATOR_I_COEFF = 0.00;
-        public static double ELEVATOR_D_COEFF = 0.0005;
+        public static double ELEVATOR_I_COEFF = 0.005;
+        public static double ELEVATOR_D_COEFF = 0.000;
         public static double ELEVATOR_F_COEFF = 0.0;
 
-        public static double ELEVATOR_I_COEFF_MIN = -1;
-        public static double ELEVATOR_I_COEFF_MAX = 1;
+        public static double ELEVATOR_I_COEFF_MIN = -40;
+        public static double ELEVATOR_I_COEFF_MAX = 40;
 
         public static double ELEVATOR_PID_TOLERANCE = 10;
     }
@@ -64,15 +64,15 @@ public class Constants {
             public static int ZERO_POSITION = 0;
 
             public static double TURRET_P_COEFF = 0.016;
-            public static double TURRET_I_COEFF = 0.001;
+            public static double TURRET_I_COEFF = 0.006;
             public static double TURRET_D_COEFF = 0.0002;
             public static double TURRET_F_COEFF = 0.0;
 
-            public static double TURRET_I_COEFF_MIN = -300;
-            public static double TURRET_I_COEFF_MAX = 300;
+            public static double TURRET_I_COEFF_MIN = -550;
+            public static double TURRET_I_COEFF_MAX = 550;
 
             public static double TURRET_PID_TOLERANCE = 10;
-            public static double POT_ZERO_VALUE = 1.260;
+            public static double POT_ZERO_VALUE = 1.09;
         }
 
         @Config

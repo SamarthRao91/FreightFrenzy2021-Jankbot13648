@@ -26,6 +26,7 @@ public class Manipulator extends SubsystemBase {
     public Servo pusher;
     public AnalogInput pot;
     private ColorSensor cs;
+    public int offset;
 
     private PIDFController turretController;
 
@@ -39,6 +40,7 @@ public class Manipulator extends SubsystemBase {
         pusher = hardwareMap.get(Servo.class, Constants.Manipulator.Claw.PUSHER_SERVO);
         pot = hardwareMap.get(AnalogInput.class, "pot");
         cs = hardwareMap.get(ColorSensor.class, "cs");
+        offset = 0;
 
         turretController = new PIDFController(
                 Constants.Manipulator.Turret.TURRET_P_COEFF,
@@ -133,6 +135,10 @@ public class Manipulator extends SubsystemBase {
 
     public int readColorSensor() {
         return cs.red();
+    }
+
+    public void setOffset(){
+        offset = this.getPosition();
     }
 
     public double update()

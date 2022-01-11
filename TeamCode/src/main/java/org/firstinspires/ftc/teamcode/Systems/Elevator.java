@@ -68,6 +68,16 @@ public class Elevator extends SubsystemBase {
     public double update()
     {return Math.max(Math.min(elevatorController.calculate(getPosition()), speedConstraints), -speedConstraints);}
 
+    public double getTarget()
+    {
+        return elevatorController.getSetPoint();
+    }
+
+    public double getLastError()
+    {
+        return elevatorController.getPositionError();
+    }
+
     @Override
     public void periodic() {
         update();
