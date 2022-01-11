@@ -93,7 +93,7 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                 break;
             case RIGHT:
                 addCommands(
-                        new RedHighPreset(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj0)),
+                        new RedHighPreset(elevator, manipulator).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj0)),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj1)),
                         new ReLocalizeDriveBase(drive, true),
                         //new WaitCommand(100),

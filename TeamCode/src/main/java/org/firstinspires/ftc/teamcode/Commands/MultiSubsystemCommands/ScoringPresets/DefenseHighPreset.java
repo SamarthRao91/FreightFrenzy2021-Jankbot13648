@@ -11,17 +11,15 @@ import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosit
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Systems.Elevator;
 import org.firstinspires.ftc.teamcode.Systems.Manipulator;
-import org.firstinspires.ftc.teamcode.Systems.Intake;
-
 
 public class DefenseHighPreset extends SequentialCommandGroup {
 
-    public DefenseHighPreset(Elevator elevator, Manipulator manipulator, Intake intake) {
+    public DefenseHighPreset(Elevator elevator, Manipulator manipulator) {
 
         if(!manipulator.manualPickUp)
         {
             addCommands(
-                    new ManualPickup(manipulator, intake),
+                    new ManualPickup(manipulator),
                     new WaitCommand(175),
                     new ParallelCommandGroup(
                             new ElevatorToPosition(elevator, 200, 1),
