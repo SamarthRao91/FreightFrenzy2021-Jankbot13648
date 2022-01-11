@@ -36,8 +36,7 @@ public class TurretResetWithPot extends CommandBase{
     @Override
     public void end(boolean isInterrupted) {
         manipulator.setSpeed(0);
-        //manipulator.resetTurretEncoder();
-        manipulator.setOffset();
+        manipulator.resetTurretEncoder();
     }
 
     @Override

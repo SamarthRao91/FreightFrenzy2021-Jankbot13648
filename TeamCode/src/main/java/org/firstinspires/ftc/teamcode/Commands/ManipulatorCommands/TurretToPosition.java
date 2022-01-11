@@ -13,7 +13,7 @@ public class TurretToPosition extends CommandBase {
 
     public TurretToPosition(Manipulator manipulator, int target, double speed) {
         this.manipulator = manipulator;
-        this.target = target - manipulator.offset;
+        this.target = target;
         this.speed = speed;
 
         addRequirements(manipulator);
@@ -34,8 +34,7 @@ public class TurretToPosition extends CommandBase {
         FtcDashboard.getInstance().getTelemetry().addData("Current Manipulator Position", manipulator.getPosition());
         FtcDashboard.getInstance().getTelemetry().addData("Update (Speed To Get To Target)", update);
         FtcDashboard.getInstance().getTelemetry().addData("Last Error", manipulator.getLastError());
-        FtcDashboard.getInstance().getTelemetry().addData("Offset", manipulator.offset);
-        FtcDashboard.getInstance().getTelemetry().addData("Modified target", this.target - manipulator.offset);
+        FtcDashboard.getInstance().getTelemetry().addData("Offset", manipulator.getEncoderOffset());
 
         FtcDashboard.getInstance().getTelemetry().update();
 
