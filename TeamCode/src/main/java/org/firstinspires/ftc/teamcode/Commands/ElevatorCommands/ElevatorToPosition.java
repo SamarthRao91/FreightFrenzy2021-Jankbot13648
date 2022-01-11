@@ -23,7 +23,7 @@ public class ElevatorToPosition extends CommandBase {
     @Override
     public void initialize()
     {
-        elevator.setTargetPosition(target);
+        elevator.setTargetPosition(target, speed);
     }
 
     @Override
@@ -32,14 +32,13 @@ public class ElevatorToPosition extends CommandBase {
         /*FtcDashboard.getInstance().getTelemetry().addData("Elevator Position", elevator.getPosition());
         FtcDashboard.getInstance().getTelemetry().update();*/
 
-        elevator.setSpeed(speed);
+        elevator.setSpeed(elevator.update());
     }
 
     @Override
     public void end(boolean isInterrupted)
     {
         elevator.setSpeed(0);
-        elevator.setRunMode(Motor.RunMode.RawPower);
     }
 
     @Override
