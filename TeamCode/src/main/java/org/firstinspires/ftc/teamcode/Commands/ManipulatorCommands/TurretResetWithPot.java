@@ -25,18 +25,19 @@ public class TurretResetWithPot extends CommandBase{
 
 
         if (manipulator.getPotValue() > Constants.Manipulator.Turret.POT_ZERO_VALUE) {
-            manipulator.setSpeed(.8*(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) + .14);
+            manipulator.setSpeed(.8*(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) + .10);
         }
         else {
-            manipulator.setSpeed(.8*(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) - .14);
+            manipulator.setSpeed(.8*(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) - .10);
         }
-        //manipulator.resetTurretEncoder();
+
     }
 
     @Override
     public void end(boolean isInterrupted) {
-        manipulator.setSpeed(0);
         manipulator.resetTurretEncoder();
+        manipulator.setSpeed(0);
+        manipulator.setSpeed(manipulator.update());
     }
 
     @Override
