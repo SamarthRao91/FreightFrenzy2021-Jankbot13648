@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -40,6 +41,15 @@ public class ManipulatorDefault extends CommandBase {
             new WaitCommand(250);
             manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.4);
         }
+        double update = manipulator.update();
+
+        FtcDashboard.getInstance().getTelemetry().addData("Manipulator Target", manipulator.getTarget());
+        FtcDashboard.getInstance().getTelemetry().addData("Current Manipulator Position", manipulator.getPosition());
+        FtcDashboard.getInstance().getTelemetry().addData("Update (Speed To Get To Target)", update);
+        FtcDashboard.getInstance().getTelemetry().addData("Last Error", manipulator.getLastError());
+        FtcDashboard.getInstance().getTelemetry().addData("Offset", manipulator.getEncoderOffset());
+
+        FtcDashboard.getInstance().getTelemetry().update();
     }
 
 

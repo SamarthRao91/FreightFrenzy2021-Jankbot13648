@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -129,7 +130,7 @@ public class Manipulator extends SubsystemBase {
     public double getPotValue() { return pot.getVoltage();}
 
     public void resetTurretEncoder(){
-        encoderOffset = turretMotor.getCurrentPosition();
+        turretMotor.resetEncoder();
     }
 
     public int readColorSensor() {

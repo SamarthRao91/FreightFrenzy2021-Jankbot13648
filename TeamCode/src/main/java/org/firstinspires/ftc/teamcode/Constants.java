@@ -64,12 +64,12 @@ public class Constants {
             public static int ZERO_POSITION = 0;
 
             public static double TURRET_P_COEFF = 0.016;
-            public static double TURRET_I_COEFF = 0.006;
+            public static double TURRET_I_COEFF = 0.02;
             public static double TURRET_D_COEFF = 0.0002;
             public static double TURRET_F_COEFF = 0.0;
 
-            public static double TURRET_I_COEFF_MIN = -550;
-            public static double TURRET_I_COEFF_MAX = 550;
+            public static double TURRET_I_COEFF_MIN = -25;
+            public static double TURRET_I_COEFF_MAX = 25;
 
             public static double TURRET_PID_TOLERANCE = 10;
             public static double POT_ZERO_VALUE = 1.09;
