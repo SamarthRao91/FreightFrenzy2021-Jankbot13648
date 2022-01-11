@@ -22,14 +22,14 @@ public class Elevator extends SubsystemBase {
         elevatorMotor.resetEncoder();
         ls = hardwareMap.get(DigitalChannel.class, Constants.Elevator.LIMIT_SWITCH_NAME);
         elevatorMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        elevatorMotor.setRunMode(Motor.RunMode.RawPower);
-        elevatorMotor.setPositionCoefficient(0.4);
+        elevatorMotor.setRunMode(MotorWithVeloLimit.RunMode.RawPower);
+        elevatorMotor.setPositionCoefficient(0.6);
         elevatorMotor.setPositionTolerance(10);
     }
 
     public void setTargetPosition(int targetPosition)
     {
-        elevatorMotor.setRunMode(Motor.RunMode.PositionControl);
+        elevatorMotor.setRunMode(MotorWithVeloLimit.RunMode.PositionControl);
         elevatorMotor.setTargetPosition(targetPosition);
     }
 
@@ -43,7 +43,7 @@ public class Elevator extends SubsystemBase {
         return elevatorMotor.atTargetPosition();
     }
 
-    public void setRunMode(Motor.RunMode runMode)
+    public void setRunMode(MotorWithVeloLimit.RunMode runMode)
     {
         elevatorMotor.setRunMode(runMode);
     }

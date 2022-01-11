@@ -25,10 +25,10 @@ public class TurretResetWithPot extends CommandBase{
 
 
         if (manipulator.getPotValue() > Constants.Manipulator.Turret.POT_ZERO_VALUE) {
-            manipulator.setSpeed((manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) + .12);
+            manipulator.setSpeed(.8*(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) + .10);
         }
         else {
-            manipulator.setSpeed((manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) - .12);
+            manipulator.setSpeed(.8*(manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) - .10);
         }
     }
 

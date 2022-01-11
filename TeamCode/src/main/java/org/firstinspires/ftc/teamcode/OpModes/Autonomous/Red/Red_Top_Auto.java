@@ -91,9 +91,6 @@ public class Red_Top_Auto extends LinearOpMode {
             if (loopcount == 501) {
                 manipulator.resetTurretEncoder();
             }
-
-
-
         }
 
         schedule(

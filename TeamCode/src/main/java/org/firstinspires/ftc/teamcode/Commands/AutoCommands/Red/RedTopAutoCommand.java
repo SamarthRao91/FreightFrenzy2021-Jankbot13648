@@ -99,21 +99,25 @@ public class RedTopAutoCommand extends SequentialCommandGroup {
                         //new WaitCommand(100),
 
                         new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj2)),
+                        new WaitCommand(500),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj3)),
                         new ReLocalizeDriveBase(drive, true),
                         //new WaitCommand(100),
 
                         new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj4)),
+                        new WaitCommand(500),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj5)),
                         new ReLocalizeDriveBase(drive, true),
                         //new WaitCommand(100),
 
                         new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj6)),
+                        new WaitCommand(500),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj7)),
                         new ReLocalizeDriveBase(drive, true),
                         //new WaitCommand(100),
 
                         new PickupAndHighPresetRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj8)),
+                        new WaitCommand(500),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Red_Top_Path.RT_traj9)),
                         new ReLocalizeDriveBase(drive, true),
                         //new WaitCommand(100),

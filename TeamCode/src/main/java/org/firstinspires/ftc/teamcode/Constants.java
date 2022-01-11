@@ -26,7 +26,7 @@ public class Constants {
 
         // Minimum position of elevator to stop movement
         // TODO: Check Value
-        public static int MINIMUM_POSITION = 25;
+        public static int MINIMUM_POSITION = 0;
 
         // Maximum position of elevator
         public static int MAXIMUM_POSITION = 2500;
@@ -60,11 +60,15 @@ public class Constants {
             public static int ZERO_POSITION = 0;
 
             public static double TURRET_P_COEFF = 0.016;
-            public static double TURRET_I_COEFF = 0.0;
+            public static double TURRET_I_COEFF = 0.001;
             public static double TURRET_D_COEFF = 0.0002;
+            public static double TURRET_F_COEFF = 0.0;
+
+            public static double TURRET_I_COEFF_MIN = -300;
+            public static double TURRET_I_COEFF_MAX = 300;
 
             public static double TURRET_PID_TOLERANCE = 10;
-            public static double POT_ZERO_VALUE = 1.240;
+            public static double POT_ZERO_VALUE = 1.260;
         }
 
         @Config

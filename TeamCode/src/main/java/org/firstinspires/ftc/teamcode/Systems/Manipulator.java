@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Systems;
 
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
@@ -14,16 +15,19 @@ import static org.firstinspires.ftc.teamcode.Constants.Manipulator.Turret.TURRET
 
 import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.Util.MotorWithVeloLimit;
+import org.opencv.core.Mat;
 
 public class Manipulator extends SubsystemBase {
 
-    private MotorWithVeloLimit turretMotor;
+    private Motor turretMotor;
     public Servo arm1;
     public Servo arm2;
     public Servo claw;
     public Servo pusher;
     public AnalogInput pot;
     private ColorSensor cs;
+
+    private PIDFController turretController;
 
     public boolean manualPickUp = false;
 
@@ -35,14 +39,26 @@ public class Manipulator extends SubsystemBase {
         pot = hardwareMap.get(AnalogInput.class, "pot");
         cs = hardwareMap.get(ColorSensor.class, "cs");
 
+        turretController = new PIDFController(
+                Constants.Manipulator.Turret.TURRET_P_COEFF,
+                Constants.Manipulator.Turret.TURRET_I_COEFF,
+                Constants.Manipulator.Turret.TURRET_D_COEFF,
+                Constants.Manipulator.Turret.TURRET_F_COEFF
+        );
+
+        turretController.setTolerance(Constants.Manipulator.Turret.TURRET_PID_TOLERANCE);
+
+        turretController.setIntegrationBounds(
+                Constants.Manipulator.Turret.TURRET_I_COEFF_MIN,
+                Constants.Manipulator.Turret.TURRET_I_COEFF_MAX
+        );
+
         turretMotor = new MotorWithVeloLimit(hardwareMap, TURRET_MOTOR_NAME);
         turretMotor.setInverted(true);
         turretMotor.encoder.setDirection(Motor.Direction.FORWARD);
         turretMotor.resetEncoder();
         turretMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         turretMotor.setRunMode(Motor.RunMode.RawPower);
-        turretMotor.setPositionCoefficient(0.006);
-        turretMotor.setPositionTolerance(10);
     }
 
     public void setArm(double newPos)
@@ -66,6 +82,7 @@ public class Manipulator extends SubsystemBase {
                 setArm(Math.max(amount + getArm1Position(), Constants.Manipulator.Arm.ARM1_UPPER_BOUND));
         }
     }
+
     public void setPusher(double newPos)
     {
         pusher.setPosition(newPos);;
@@ -88,8 +105,7 @@ public class Manipulator extends SubsystemBase {
 
     public void setTurretTargetPosition(int targetPosition)
     {
-        turretMotor.setRunMode(Motor.RunMode.PositionControl);
-        turretMotor.setTargetPosition(targetPosition);
+        turretController.setSetPoint(targetPosition);
     }
 
     public void setSpeed(double speed)
@@ -99,12 +115,7 @@ public class Manipulator extends SubsystemBase {
 
     public boolean atTargetPosition()
     {
-        return turretMotor.atTargetPosition();
-    }
-
-    public void setRunMode(Motor.RunMode runMode)
-    {
-        turretMotor.setRunMode(runMode);
+        return turretController.atSetPoint();
     }
 
     public int getPosition()
@@ -122,4 +133,21 @@ public class Manipulator extends SubsystemBase {
         return cs.red();
     }
 
+    public double update()
+    {
+        return Math.max(Math.min(turretController.calculate(getPosition()), 1), -1);
+    }
+
+    @Override
+    public void periodic() {
+        update();
+    }
+
+    public double getTarget() {
+        return turretController.getSetPoint();
+    }
+
+    public double getLastError() {
+        return turretController.getPositionError();
+    }
 }

@@ -28,17 +28,23 @@ public class TurretToPosition extends CommandBase {
     @Override
     public void execute()
     {
-        FtcDashboard.getInstance().getTelemetry().addData("Turret Position", manipulator.getPosition());
+        double update = manipulator.update();
+
+        FtcDashboard.getInstance().getTelemetry().addData("Manipulator Target", manipulator.getTarget());
+        FtcDashboard.getInstance().getTelemetry().addData("Current Manipulator Position", manipulator.getPosition());
+        FtcDashboard.getInstance().getTelemetry().addData("Update (Speed To Get To Target)", update);
+        FtcDashboard.getInstance().getTelemetry().addData("Last Error", manipulator.getLastError());
         FtcDashboard.getInstance().getTelemetry().update();
 
-        manipulator.setSpeed(speed);
+        manipulator.setSpeed(update);
+
+        manipulator.setSpeed(manipulator.update());
     }
 
     @Override
     public void end(boolean isInterrupted)
     {
         manipulator.setSpeed(0);
-        manipulator.setRunMode(Motor.RunMode.RawPower);
     }
 
     @Override
