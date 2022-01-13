@@ -28,6 +28,7 @@ public class Manipulator extends SubsystemBase {
     public AnalogInput pot;
     private ColorSensor cs;
     private int encoderOffset = 0;
+    private double turretError = 0;
 
     private PIDFController turretController;
 
@@ -146,6 +147,10 @@ public class Manipulator extends SubsystemBase {
     public void periodic() {
         update();
     }
+    
+    public void setTurretError(){turretError = this.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE;}
+
+    public double getTurretError() {return this.turretError;}
 
     public double getTarget() {
         return turretController.getSetPoint();

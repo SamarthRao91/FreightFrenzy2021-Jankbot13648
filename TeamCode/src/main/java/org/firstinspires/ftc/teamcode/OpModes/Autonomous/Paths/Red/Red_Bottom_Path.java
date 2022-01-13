@@ -70,7 +70,7 @@ public class Red_Bottom_Path {
 
     //align to goal for the second time
     public static Trajectory RB_traj8 = BuildTrajectory(RB_traj62.end())
-            .lineToSplineHeading(new Pose2d(17, 4, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(15, 4, Math.toRadians(180)))
             .build();
 
     //park

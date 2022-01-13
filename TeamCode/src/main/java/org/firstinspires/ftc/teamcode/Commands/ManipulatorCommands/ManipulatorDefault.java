@@ -49,7 +49,7 @@ public class ManipulatorDefault extends CommandBase {
         FtcDashboard.getInstance().getTelemetry().addData("Last Error", manipulator.getLastError());
         FtcDashboard.getInstance().getTelemetry().addData("Offset", manipulator.getEncoderOffset());*/
 
-        FtcDashboard.getInstance().getTelemetry().update();
+       // FtcDashboard.getInstance().getTelemetry().update();
     }
 
 

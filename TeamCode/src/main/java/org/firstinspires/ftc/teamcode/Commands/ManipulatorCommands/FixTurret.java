@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -15,19 +16,21 @@ public class FixTurret extends SequentialCommandGroup {
         this.manipulator = manipulator;
 
 
-        if ((manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) > .02 || (manipulator.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE) < -.02 ) {
+
+
+
+
             addCommands(
                     new ManualPickup(manipulator),
                     new WaitCommand(500),
                     new TurretResetWithPot(manipulator),
+                    new InstantCommand(() -> manipulator.setSpeed(0)),
                     new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
                     new WaitCommand(30000)
             );
-        }
-        else{
-            addCommands(
-            );
-        }
+
+
+
         addRequirements(manipulator);
     }
 }

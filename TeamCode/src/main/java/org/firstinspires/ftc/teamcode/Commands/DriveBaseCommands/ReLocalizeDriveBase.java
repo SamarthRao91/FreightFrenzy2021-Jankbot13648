@@ -49,8 +49,8 @@ public class ReLocalizeDriveBase extends CommandBase {
                     drive.getHeading());
         }
 
-        FtcDashboard.getInstance().getTelemetry().addData("New Pose", newPose.toString());
-        FtcDashboard.getInstance().getTelemetry().update();
+        /*FtcDashboard.getInstance().getTelemetry().addData("New Pose", newPose.toString());
+        FtcDashboard.getInstance().getTelemetry().update();*/
 
         drive.setPoseEstimate(newPose);
     }
