@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.AutoCommands;
 
+import com.arcrobotics.ftclib.command.ConditionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -23,11 +24,12 @@ public class PushAndResetAndIntakeRed extends SequentialCommandGroup {
                 new ElevatorToPosition(elevator, 200, 1).alongWith(new InstantCommand(() -> manipulator.setArm(.5))).alongWith(new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 400, .5)),//slows turret if slides are far away
                 new TurretToPosition(manipulator, 0, 1).alongWith(new InstantCommand(() -> manipulator.setArm(.8))).alongWith(new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_UP_POS))).alongWith(new InstantCommand(() -> manipulator.closeClaw())).alongWith(new ElevatorToPosition(elevator, 0, 1)).alongWith(new InstantCommand(() -> intake.setIntake(-.2))),
                 new WaitCommand(250),
-                new InstantCommand(() -> manipulator.setTurretError()),
-                new FixTurret(manipulator),
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
                 new WaitCommand(250),
                 new InstantCommand(() -> manipulator.openClaw()),
+                new InstantCommand(() -> manipulator.setTurretError()),
+                new ConditionalCommand(new FixTurret(manipulator), new WaitCommand(1), () -> (manipulator.getTurretError() > .03)
+                ),
                 new InstantCommand(() -> intake.setIntake(1)),
                 new WaitCommand(750)
 

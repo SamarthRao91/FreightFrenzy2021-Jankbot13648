@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Systems;
 
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
@@ -147,10 +148,14 @@ public class Manipulator extends SubsystemBase {
     public void periodic() {
         update();
     }
-    
-    public void setTurretError(){turretError = this.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE;}
 
-    public double getTurretError() {return this.turretError;}
+    public void setTurretError(){turretError = this.getPotValue() - Constants.Manipulator.Turret.POT_ZERO_VALUE;
+        FtcDashboard.getInstance().getTelemetry().addData("Error", this.turretError);
+        FtcDashboard.getInstance().getTelemetry().update();
+
+    }
+
+    public double getTurretError() {return Math.abs(this.turretError);}
 
     public double getTarget() {
         return turretController.getSetPoint();

@@ -13,6 +13,7 @@ public class FixTurret extends SequentialCommandGroup {
     Manipulator manipulator;
 
     public FixTurret(Manipulator manipulator) {
+
         this.manipulator = manipulator;
 
 
@@ -25,8 +26,9 @@ public class FixTurret extends SequentialCommandGroup {
                     new WaitCommand(500),
                     new TurretResetWithPot(manipulator),
                     new InstantCommand(() -> manipulator.setSpeed(0)),
-                    new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
-                    new WaitCommand(30000)
+                    new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND))
+                    // new WaitCommand(30000)
+
             );
 
 

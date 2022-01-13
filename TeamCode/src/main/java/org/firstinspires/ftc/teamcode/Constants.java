@@ -72,7 +72,7 @@ public class Constants {
             public static double TURRET_I_COEFF_MAX = 25;
 
             public static double TURRET_PID_TOLERANCE = 10;
-            public static double POT_ZERO_VALUE = 1.15;
+            public static double POT_ZERO_VALUE = 1.14;
         }
 
         @Config
