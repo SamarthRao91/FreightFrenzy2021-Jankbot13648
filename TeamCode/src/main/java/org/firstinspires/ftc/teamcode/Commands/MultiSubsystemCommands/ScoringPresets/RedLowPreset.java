@@ -22,7 +22,7 @@ public class RedLowPreset extends SequentialCommandGroup {
                     new ManualPickup(manipulator),
                     new WaitCommand(175),
                     new SequentialCommandGroup(
-                            new ElevatorToPosition(elevator, 50, 1),
+                            new ElevatorToPosition(elevator, 150, 1),
                             new InstantCommand(() -> manipulator.setArm(0.25)),
                             new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 125, 1)
                     )
@@ -33,7 +33,7 @@ public class RedLowPreset extends SequentialCommandGroup {
         {
             addCommands(
                     new SequentialCommandGroup(
-                            new ElevatorToPosition(elevator, 50, 1),
+                            new ElevatorToPosition(elevator, 150, 1),
                             new InstantCommand(() -> manipulator.setArm(0.25)),
                             new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 125, 1)
                     )

@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.Commands.AutoCommands;
 
+import com.arcrobotics.ftclib.command.ConditionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.ElevatorCommands.ElevatorToPosition;
+import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.FixTurret;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.PushGamepiece;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretToPosition;
 import org.firstinspires.ftc.teamcode.Constants;
@@ -23,6 +25,9 @@ public class PushAndResetAndIntakeBlue extends SequentialCommandGroup {
                 new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
                 new WaitCommand(250),
                 new InstantCommand(() -> manipulator.openClaw()),
+                new InstantCommand(() -> manipulator.setTurretError()),
+                new ConditionalCommand(new FixTurret(manipulator), new WaitCommand(1), () -> (manipulator.getTurretError() > .1)
+                ),
                 new InstantCommand(() -> intake.setIntake(1)),
                 new WaitCommand(750)
 
