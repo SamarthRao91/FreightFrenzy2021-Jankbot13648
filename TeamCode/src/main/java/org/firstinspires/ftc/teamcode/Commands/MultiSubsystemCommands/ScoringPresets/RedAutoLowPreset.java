@@ -24,7 +24,7 @@ public class RedAutoLowPreset extends SequentialCommandGroup { //only to be used
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
                     new WaitCommand(375),
-                    new ElevatorToPosition(elevator, 825, 1)
+                    new ElevatorToPosition(elevator, 810, 1)
             );
 
         addRequirements(elevator, manipulator);

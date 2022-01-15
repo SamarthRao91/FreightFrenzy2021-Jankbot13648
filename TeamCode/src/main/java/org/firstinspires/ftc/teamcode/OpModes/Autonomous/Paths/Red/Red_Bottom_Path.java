@@ -22,7 +22,7 @@ import java.util.Arrays;
 public class Red_Bottom_Path {
 
     public static Trajectory RB_traj1 = BuildTrajectory(new Pose2d(0, 0, Math.toRadians(180)))
-            .lineTo(new Vector2d(12, 1))
+            .lineTo(new Vector2d(16, 2))
             .build();
 
     //brings the robot close to the duck wheel (TUNE THIS POSITION CAREFULLY)
@@ -70,7 +70,7 @@ public class Red_Bottom_Path {
 
     //align to goal for the second time
     public static Trajectory RB_traj8 = BuildTrajectory(RB_traj62.end())
-            .lineToSplineHeading(new Pose2d(15, 4, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(23, 4, Math.toRadians(180)))
             .build();
 
     //park
@@ -78,7 +78,7 @@ public class Red_Bottom_Path {
             .lineToSplineHeading(new Pose2d(-5, 18, Math.toRadians(0)))
             .build();
     public static Trajectory RB_traj10 = BuildTrajectory(RB_traj9.end())
-            .lineTo(new Vector2d(-20, 32))
+            .lineTo(new Vector2d(-20, 34))
             .build();
 
 

@@ -92,7 +92,8 @@ public class BlueBottomAutoCommand extends SequentialCommandGroup {
             case RIGHT:
                 addCommands(
                         new InstantCommand(() -> drive.setPoseEstimate(new Pose2d(0, 0, Math.toRadians(180)))),
-                        new BlueBottomHighPreset(elevator, manipulator).alongWith( new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1)),
+                        new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj1),
+                        new BlueBottomHighPreset(elevator, manipulator),
                         new PushGamepiece(manipulator),
                         new WaitCommand(100),
                         new FollowTrajectory(drive, Blue_Bottom_Path.BB_traj2).alongWith(new ResetMechanisms(elevator, manipulator)),

@@ -28,7 +28,7 @@ public class PushAndResetAndIntakeRed extends SequentialCommandGroup {
                 new WaitCommand(250),
                 new InstantCommand(() -> manipulator.openClaw()),
                 new InstantCommand(() -> manipulator.setTurretError()),
-                new ConditionalCommand(new FixTurret(manipulator), new WaitCommand(1), () -> (manipulator.getTurretError() > .03)
+                new ConditionalCommand(new FixTurret(manipulator), new WaitCommand(1), () -> (manipulator.getTurretError() > .1)
                 ),
                 new InstantCommand(() -> intake.setIntake(1)),
                 new WaitCommand(750)

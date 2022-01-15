@@ -16,18 +16,14 @@ public class FixTurret extends SequentialCommandGroup {
 
         this.manipulator = manipulator;
 
-
-
-
-
-
-            addCommands(
+        addCommands(
                     new ManualPickup(manipulator),
                     new WaitCommand(500),
                     new TurretResetWithPot(manipulator),
                     new InstantCommand(() -> manipulator.setSpeed(0)),
-                    new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND))
-                    // new WaitCommand(30000)
+                    new InstantCommand(() -> manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND)),
+                    new WaitCommand(1000),
+                    new InstantCommand(() -> manipulator.openClaw())
 
             );
 
