@@ -24,7 +24,7 @@ public class BlueLowPreset extends SequentialCommandGroup {
                     new SequentialCommandGroup(
                             new ElevatorToPosition(elevator, 150, 1),
                             new InstantCommand(() -> manipulator.setArm(0.25)),
-                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 125, 1)
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 100, 1)
                     )
             );
         }

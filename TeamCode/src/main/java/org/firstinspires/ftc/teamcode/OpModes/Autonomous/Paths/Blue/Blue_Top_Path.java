@@ -21,12 +21,12 @@ import java.util.Arrays;
 
 public class Blue_Top_Path {
 
-    static double step = 2.5; //slight offsets per cycle to counteract drift
+    static double step = 3; //slight offsets per cycle to counteract drift
     static double intakestep = 2.25 + step; //drives bot furhter in each time
     static double wallstep = .375;
 
     public static Trajectory BT_traj0 = BuildTrajectory(new Pose2d(16, .25, Math.toRadians(0))) //drive into warehouse
-            .lineTo(new Vector2d(2, 0), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(3, 0), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_SLOW_ACCEL))
             .build();
     public static Trajectory BT_traj1 = BuildTrajectory(BT_traj0.end()) //drive into warehouse

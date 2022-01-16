@@ -34,7 +34,7 @@ public class ManipulatorDefault extends CommandBase {
     @Override
     public void execute() {
         manipulator.moveArm(-leftStickY.getAsDouble()/100);
-        manipulator.setSpeed(speed.getAsDouble());
+        manipulator.setSpeed(speed.getAsDouble()/2);
         if (manipulator.readColorSensor() > 600)
         {
             manipulator.closeClaw();
