@@ -18,12 +18,12 @@ public class RedReverseAutoLowPreset extends SequentialCommandGroup { //only to 
             addCommands(
                     new ParallelCommandGroup(
                             new InstantCommand(() -> manipulator.setArm(0.18)),
-                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 150, 1),
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.LEFT_MAXIMUM_POSITION + 200, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
                     new WaitCommand(375),
-                    new ElevatorToPosition(elevator, 825, 1)
+                    new ElevatorToPosition(elevator, 837, 1)
             );
 
         addRequirements(elevator, manipulator);

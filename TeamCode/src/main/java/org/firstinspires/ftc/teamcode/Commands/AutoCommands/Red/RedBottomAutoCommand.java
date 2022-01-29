@@ -113,6 +113,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj4),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj5),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj6),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj601),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj61),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj62),
                         new WaitCommand(250),

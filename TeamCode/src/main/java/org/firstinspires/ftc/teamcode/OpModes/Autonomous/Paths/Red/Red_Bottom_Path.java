@@ -22,12 +22,12 @@ import java.util.Arrays;
 public class Red_Bottom_Path {
 
     public static Trajectory RB_traj1 = BuildTrajectory(new Pose2d(0, 0, Math.toRadians(180)))
-            .lineTo(new Vector2d(16, 2))
+            .lineTo(new Vector2d(13, 2))
             .build();
 
     //brings the robot close to the duck wheel (TUNE THIS POSITION CAREFULLY)
     public static Trajectory RB_traj2 = BuildTrajectory(RB_traj1.end())
-            .lineTo(new Vector2d(-12.5, 6), MecanumDrive.getVelocityConstraint(25, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-14, 6), MecanumDrive.getVelocityConstraint(25, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_SLOW_ACCEL))
             .build();
 
@@ -55,12 +55,16 @@ public class Red_Bottom_Path {
             .lineToSplineHeading(new Pose2d(-20.5, 9.5, Math.toRadians(-90)))
             .build();
 
-    public static Trajectory RB_traj61 = BuildTrajectory(RB_traj6.end())
-            .lineToSplineHeading(new Pose2d(-18, 6, Math.toRadians(-90)))
+    public static Trajectory RB_traj601 = BuildTrajectory(RB_traj6.end())
+            .lineToSplineHeading(new Pose2d(-15.5, 9.5, Math.toRadians(-90)))
+            .build();
+
+    public static Trajectory RB_traj61 = BuildTrajectory(RB_traj601.end())
+            .lineToSplineHeading(new Pose2d(-15, 6.5, Math.toRadians(-90)))
             .build();
 
     public static Trajectory RB_traj62 = BuildTrajectory(RB_traj61.end())
-            .lineToSplineHeading(new Pose2d(12, 6, Math.toRadians(-90)))
+            .lineToSplineHeading(new Pose2d(12, 6.5, Math.toRadians(-90)))
             .build();
 
     //strafes down for second intake pass
@@ -70,7 +74,7 @@ public class Red_Bottom_Path {
 
     //align to goal for the second time
     public static Trajectory RB_traj8 = BuildTrajectory(RB_traj62.end())
-            .lineToSplineHeading(new Pose2d(23, 4, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(18.5, 4, Math.toRadians(180)))
             .build();
 
     //park

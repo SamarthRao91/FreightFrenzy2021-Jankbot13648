@@ -44,8 +44,8 @@ public class Constants {
         public static double ELEVATOR_D_COEFF = 0.001;
         public static double ELEVATOR_F_COEFF = 0.001;
 
-        public static double ELEVATOR_I_COEFF_MIN = -30;
-        public static double ELEVATOR_I_COEFF_MAX = 30;
+        public static double ELEVATOR_I_COEFF_MIN = -20;
+        public static double ELEVATOR_I_COEFF_MAX = 20;
 
         public static double ELEVATOR_PID_TOLERANCE = 10;
     }
