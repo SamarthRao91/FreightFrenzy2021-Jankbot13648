@@ -23,11 +23,11 @@ public class RedHighPreset extends SequentialCommandGroup {
                     new WaitCommand(175),
                     new ParallelCommandGroup(
                             new InstantCommand(() -> manipulator.setArm(0.43)),
-                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 100, 1),
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 50, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
-                    new ElevatorToPosition(elevator, 1025, 1)
+                    new ElevatorToPosition(elevator, 1075, 1)
             );
         }
 
@@ -36,11 +36,11 @@ public class RedHighPreset extends SequentialCommandGroup {
             addCommands(
                     new ParallelCommandGroup(
                             new InstantCommand(() -> manipulator.setArm(0.43)),
-                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 100, 1),
+                            new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 50, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 240, 1)
                     ),
-                    new ElevatorToPosition(elevator, 1025, 1)
+                    new ElevatorToPosition(elevator, 1075, 1)
             );
         }
 

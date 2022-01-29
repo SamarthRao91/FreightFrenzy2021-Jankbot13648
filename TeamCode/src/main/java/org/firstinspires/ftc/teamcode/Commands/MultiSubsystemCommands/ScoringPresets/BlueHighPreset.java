@@ -27,7 +27,7 @@ public class BlueHighPreset extends SequentialCommandGroup {
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
-                new ElevatorToPosition(elevator, 1025, 1)
+                new ElevatorToPosition(elevator, 1075, 1)
             );
         }
 
@@ -39,7 +39,7 @@ public class BlueHighPreset extends SequentialCommandGroup {
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
-                    new ElevatorToPosition(elevator, 1025, 1)
+                    new ElevatorToPosition(elevator, 1075, 1)
             );
         }
 

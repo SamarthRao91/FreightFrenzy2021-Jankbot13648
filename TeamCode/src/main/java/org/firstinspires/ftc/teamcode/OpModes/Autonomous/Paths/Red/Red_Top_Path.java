@@ -21,7 +21,7 @@ import java.util.Arrays;
 
 public class Red_Top_Path {
 
-    static double step = 1.25; //slight offsets per cycle to counteract drift
+    static double step = 4; //slight offsets per cycle to counteract drift
     static double intakestep = 1.25 + step; //drives bot furhter in each time
     static double wallstep = -.375;
     public static Trajectory RT_traj0 = BuildTrajectory(new Pose2d(9, -.25, Math.toRadians(0))) //drive into warehouse

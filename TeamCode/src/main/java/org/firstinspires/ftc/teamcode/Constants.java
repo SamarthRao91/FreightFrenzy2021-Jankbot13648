@@ -65,14 +65,14 @@ public class Constants {
 
             public static double TURRET_P_COEFF = 0.02;
             public static double TURRET_I_COEFF = 0.005;
-            public static double TURRET_D_COEFF = 0.0002;
+            public static double TURRET_D_COEFF = 0.0003;
             public static double TURRET_F_COEFF = 0.0;
 
             public static double TURRET_I_COEFF_MIN = -25;
             public static double TURRET_I_COEFF_MAX = 25;
 
             public static double TURRET_PID_TOLERANCE = 10;
-            public static double POT_ZERO_VALUE = 1.14;
+            public static double POT_ZERO_VALUE = 1.11;
         }
 
         @Config
