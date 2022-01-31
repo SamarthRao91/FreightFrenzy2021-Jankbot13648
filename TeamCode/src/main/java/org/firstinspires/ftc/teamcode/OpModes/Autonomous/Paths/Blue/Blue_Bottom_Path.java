@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 public class Blue_Bottom_Path {
     public static Trajectory BB_traj1 = BuildTrajectory(new Pose2d(0,0, Math.toRadians(180)))
-            .lineTo(new Vector2d(13, -1))
+            .lineTo(new Vector2d(10, -9))
             .build();
 
     //brings the robot close to the duck wheel (TUNE THIS POSITION CAREFULLY)
@@ -60,7 +60,7 @@ public class Blue_Bottom_Path {
             .build();
     //align to goal for the second time
     public static Trajectory BB_traj9 = BuildTrajectory(BB_traj73.end())
-            .lineToSplineHeading(new Pose2d(16, -3, Math.toRadians(180)))
+            .lineToSplineHeading(new Pose2d(17, -14, Math.toRadians(180)))
             .build();
 
     //park

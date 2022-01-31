@@ -47,12 +47,14 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj4),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj5),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj6),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj601),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj61),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj62),
                         new WaitCommand(250),
                         new InstantCommand(() -> manipulator.closeClaw()),
                         new WaitCommand(100),
                         new ManualPickup(manipulator),
+                        new WaitCommand(250),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8),
                         new RedBottomHighPreset(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(0)),
@@ -60,8 +62,8 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new PushGamepiece(manipulator),
                         new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9).alongWith(new ResetMechanisms(elevator, manipulator)),
-                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj10)
-
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj10),
+                        new WaitCommand(12)
                 );
                 break;
             case CENTER:
@@ -80,12 +82,14 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj4),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj5),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj6),
+                        new FollowTrajectory(drive, Red_Bottom_Path.RB_traj601),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj61),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj62),
                         new WaitCommand(250),
                         new InstantCommand(() -> manipulator.closeClaw()),
                         new WaitCommand(100),
                         new ManualPickup(manipulator),
+                        new WaitCommand(250),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8),
                         new RedBottomHighPreset(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(0)),
@@ -94,7 +98,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new WaitCommand(100),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj9).alongWith(new ResetMechanisms(elevator, manipulator)),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj10),
-                        new WaitCommand(11)
+                        new WaitCommand(12)
                 );
                 break;
             case RIGHT:
@@ -120,6 +124,7 @@ public class RedBottomAutoCommand extends SequentialCommandGroup {
                         new InstantCommand(() -> manipulator.closeClaw()),
                         new WaitCommand(100),
                         new ManualPickup(manipulator),
+                        new WaitCommand(250),
                         new FollowTrajectory(drive, Red_Bottom_Path.RB_traj8),
                         new RedBottomHighPreset(elevator, manipulator),
                         new InstantCommand(() -> intake.setIntake(0)),

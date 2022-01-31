@@ -17,10 +17,10 @@ public class BlueBottomHighPreset extends SequentialCommandGroup { //for use in 
         addCommands(
                 new ParallelCommandGroup(
                         new InstantCommand(() -> manipulator.setArm(0.43)),
-                        new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION - 50, 1),
+                        new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION -175, 1),
                         new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
                 ),
-                new ElevatorToPosition(elevator, 1025, 1)
+                new ElevatorToPosition(elevator, 800, 1)
         );
 
         addRequirements(elevator, manipulator);
