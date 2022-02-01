@@ -24,8 +24,6 @@ public class PushAndReset extends SequentialCommandGroup{
                 new InstantCommand(() -> manipulator.openClaw())
         );
 
-        manipulator.manualPickUp = false;
-
         addRequirements(elevator, manipulator);
     }
 }

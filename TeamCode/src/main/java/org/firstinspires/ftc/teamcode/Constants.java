@@ -98,9 +98,9 @@ public class Constants {
         public static class Pusher {
             public static String PUSHER_NAME = "ps";
 
-            public static double PUSHER_UP_POS = 0.8;
-            public static double PUSHER_PREP_POS = 0.12;
-            public static double PUSHER_PUSH_POS = 0;
+            public static double PUSHER_UP_POS = .2;
+            public static double PUSHER_PREP_POS = 0.88;
+            public static double PUSHER_PUSH_POS = 1;
         }
     }
 

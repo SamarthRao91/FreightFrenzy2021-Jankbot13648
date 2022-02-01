@@ -32,8 +32,6 @@ public class Manipulator extends SubsystemBase {
     private double turretError = 0;
 
     private PIDFController turretController;
-
-    public boolean manualPickUp = false;
     private double speedConstraints = 1.0;
 
     public Manipulator(HardwareMap hardwareMap) {
@@ -76,8 +74,6 @@ public class Manipulator extends SubsystemBase {
     {
         if(amount != 0)
         {
-            manualPickUp = false;
-
             if(amount + getArm1Position() > Constants.Manipulator.Arm.ARM1_LOWER_BOUND)
             {
                 setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND);

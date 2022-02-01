@@ -16,32 +16,16 @@ public class DefenseHighPreset extends SequentialCommandGroup {
 
     public DefenseHighPreset(Elevator elevator, Manipulator manipulator) {
 
-        if(!manipulator.manualPickUp)
-        {
-            addCommands(
-                    new ManualPickup(manipulator),
-                    new WaitCommand(175),
-                    new ParallelCommandGroup(
-                            new ElevatorToPosition(elevator, 200, 1),
-                            new InstantCommand(() -> manipulator.setArm(0.50)),
-                            new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
-                    ),
-                    new TurretToPosition(manipulator, 0, 1)
-            );
-        }
+        addCommands(
+                new ParallelCommandGroup(
+                        new ElevatorToPosition(elevator, 300, 1),
+                        new InstantCommand(() -> manipulator.setArm(0.50)),
+                        new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
-        else {
-            addCommands(
-                    new ParallelCommandGroup(
-                            new ElevatorToPosition(elevator, 200, 1),
-                            new InstantCommand(() -> manipulator.setArm(0.50)),
-                            new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
+                ),
+                new TurretToPosition(manipulator, 0, 1)
 
-                    ),
-                    new TurretToPosition(manipulator, 0, 1)
-
-            );
-        }
+        );
 
         addRequirements(elevator, manipulator);
     }
