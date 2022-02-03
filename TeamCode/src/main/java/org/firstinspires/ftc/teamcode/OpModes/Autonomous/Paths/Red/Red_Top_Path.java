@@ -21,8 +21,8 @@ import java.util.Arrays;
 
 public class Red_Top_Path {
 
-    static double step = 4; //slight offsets per cycle to counteract drift
-    static double intakestep = 1.25 + step; //drives bot furhter in each time
+    static double step = 3.75; //slight offsets per cycle to counteract drift
+    static double intakestep = 2.25 + step; //drives bot furhter in each time
     static double wallstep = -.375;
     public static Trajectory RT_traj0 = BuildTrajectory(new Pose2d(9, -.25, Math.toRadians(0))) //drive into warehouse
             .lineTo(new Vector2d(-3, 0), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
@@ -34,7 +34,7 @@ public class Red_Top_Path {
             .build();
 
     public static Trajectory RT_traj2 = BuildTrajectory(RT_traj1.end()) //exit warehouse
-            .lineTo(new Vector2d(0, 2*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-4, 2*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
     public static Trajectory RT_traj3 = BuildTrajectory(RT_traj2.end()) //drive into warehouse
@@ -43,7 +43,7 @@ public class Red_Top_Path {
             .build();
 
     public static Trajectory RT_traj4 = BuildTrajectory(RT_traj3.end()) //exit warehouse
-            .lineTo(new Vector2d(step, 4*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-4 + step, 4*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
@@ -53,7 +53,7 @@ public class Red_Top_Path {
             .build();
 
     public static Trajectory RT_traj6 = BuildTrajectory(RT_traj5.end()) //exit warehouse
-            .lineTo(new Vector2d(2*step, 6*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-4 + 2*step, 6*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
     public static Trajectory RT_traj7 = BuildTrajectory(RT_traj6.end()) //drive into warehouse
@@ -62,7 +62,7 @@ public class Red_Top_Path {
             .build();
 
     public static Trajectory RT_traj8 = BuildTrajectory(RT_traj7.end()) //exit warehouse
-            .lineTo(new Vector2d(3*step, 8*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-4 + 3*step, 8*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
@@ -71,7 +71,7 @@ public class Red_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_SLOW_ACCEL))
             .build();
     public static Trajectory RT_traj10 = BuildTrajectory(RT_traj9.end()) //exit warehouse
-            .lineTo(new Vector2d(4*step, 10*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-4 + 4*step, 10*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 
@@ -80,7 +80,7 @@ public class Red_Top_Path {
                     MecanumDrive.getAccelerationConstraint(AUTO_SLOW_ACCEL))
             .build();
     public static Trajectory RT_traj12 = BuildTrajectory(RT_traj11.end()) //exit warehouse
-            .lineTo(new Vector2d(5*step, 12*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-4 + 5*step, 12*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_MAX_ACCEL))
             .build();
 

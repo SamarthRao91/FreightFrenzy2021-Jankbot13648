@@ -72,7 +72,7 @@ public class Constants {
             public static double TURRET_I_COEFF_MAX = 25;
 
             public static double TURRET_PID_TOLERANCE = 10;
-            public static double POT_ZERO_VALUE = 1.11;
+            public static double POT_ZERO_VALUE = 1.08;
         }
 
         @Config
@@ -91,7 +91,7 @@ public class Constants {
             public static String DISTANCE_SENSOR_NAME = "sdc";
 
             public static double OPEN_POSITION = 0.18;
-            public static double CLOSE_POSITION = 0.05;
+            public static double CLOSE_POSITION = 0.04;
             public static double CAPSTONE_OPEN_FULLY = 0.7;
         }
         @Config
@@ -99,7 +99,7 @@ public class Constants {
             public static String PUSHER_NAME = "ps";
 
             public static double PUSHER_UP_POS = .2;
-            public static double PUSHER_PREP_POS = 0.88;
+            public static double PUSHER_PREP_POS = 0.95;
             public static double PUSHER_PUSH_POS = 1;
         }
     }

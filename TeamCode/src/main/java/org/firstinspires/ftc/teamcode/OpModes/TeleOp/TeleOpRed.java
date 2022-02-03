@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManipulatorDe
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.ManualPickup;
 import org.firstinspires.ftc.teamcode.Commands.ManipulatorCommands.TurretResetWithPot;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.DefenseHighPreset;
+import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.DefenseMidPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.PushAndReset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedAutoLowPreset;
 import org.firstinspires.ftc.teamcode.Commands.MultiSubsystemCommands.ScoringPresets.RedAutoMidPreset;
@@ -96,6 +97,8 @@ public class TeleOpRed extends CommandOpMode {
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new DefenseHighPreset(elevator, manipulator));
         mechGamepad.getGamepadButton(GamepadKeys.Button.START).whenPressed(new TurretResetWithPot(manipulator));
+
+        driveGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new DefenseMidPreset(elevator, manipulator));
 
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinReverseSpinner()));

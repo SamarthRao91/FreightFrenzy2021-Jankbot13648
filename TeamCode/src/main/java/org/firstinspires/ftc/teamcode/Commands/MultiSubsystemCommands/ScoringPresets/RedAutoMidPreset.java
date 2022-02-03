@@ -17,13 +17,13 @@ public class RedAutoMidPreset extends SequentialCommandGroup { //only to be used
 
             addCommands(
                     new ParallelCommandGroup(
-                            new InstantCommand(() -> manipulator.setArm(0.33)),
+                            new InstantCommand(() -> manipulator.setArm(0.31)),
                             new TurretToPosition(manipulator, Constants.Manipulator.Turret.RIGHT_MAXIMUM_POSITION, 1),
                             new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS)),
                             new ElevatorToPosition(elevator, 150, 1)
                     ),
-                    new WaitCommand(375),
-                    new ElevatorToPosition(elevator, 890, 1)
+                    new WaitCommand(125),
+                    new ElevatorToPosition(elevator, 925, 1)
             );
 
         addRequirements(elevator, manipulator);

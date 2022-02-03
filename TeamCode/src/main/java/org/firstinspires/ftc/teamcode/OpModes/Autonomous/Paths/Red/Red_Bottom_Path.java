@@ -22,7 +22,7 @@ import java.util.Arrays;
 public class Red_Bottom_Path {
 
     public static Trajectory RB_traj1 = BuildTrajectory(new Pose2d(0, 0, Math.toRadians(180)))
-            .lineTo(new Vector2d(13, 2))
+            .lineTo(new Vector2d(15, 2))
             .build();
 
     //brings the robot close to the duck wheel (TUNE THIS POSITION CAREFULLY)
@@ -52,19 +52,19 @@ public class Red_Bottom_Path {
 
     //strafes down for second intake pass
     public static Trajectory RB_traj6 = BuildTrajectory(RB_traj5.end())
-            .lineToSplineHeading(new Pose2d(-20.5, 9.5, Math.toRadians(-90)))
+            .lineToSplineHeading(new Pose2d(-20.5, 8.5, Math.toRadians(-90)))
             .build();
 
     public static Trajectory RB_traj601 = BuildTrajectory(RB_traj6.end())
-            .lineToSplineHeading(new Pose2d(-15.5, 9.5, Math.toRadians(-90)))
+            .lineToSplineHeading(new Pose2d(-15.5, 8.5, Math.toRadians(-90)))
             .build();
 
     public static Trajectory RB_traj61 = BuildTrajectory(RB_traj601.end())
-            .lineToSplineHeading(new Pose2d(-15, 6.5, Math.toRadians(-90)))
+            .lineToSplineHeading(new Pose2d(-15, 5.5, Math.toRadians(-90)))
             .build();
 
     public static Trajectory RB_traj62 = BuildTrajectory(RB_traj61.end())
-            .lineToSplineHeading(new Pose2d(12, 6.5, Math.toRadians(-90)))
+            .lineToSplineHeading(new Pose2d(12, 5.5, Math.toRadians(-90)))
             .build();
 
     //strafes down for second intake pass

@@ -18,7 +18,7 @@ public class DefenseHighPreset extends SequentialCommandGroup {
 
         addCommands(
                 new ParallelCommandGroup(
-                        new ElevatorToPosition(elevator, 300, 1),
+                        new ElevatorToPosition(elevator, 370, 1),
                         new InstantCommand(() -> manipulator.setArm(0.50)),
                         new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
