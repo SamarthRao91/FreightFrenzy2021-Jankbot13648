@@ -55,12 +55,12 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
                         new ReLocalizeDriveBase(drive, false),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj9)),
-                        new ReLocalizeDriveBase(drive, false),
+                        new ReLocalizeDriveBase(drive, false)
                         //new WaitCommand(100),
 
-                        new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
+                      /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
                         new ReLocalizeDriveBase(drive, false),
-                        new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))
+                        new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))*/
                       /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj12)),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj13))*/
                 );
@@ -94,12 +94,12 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
                         new ReLocalizeDriveBase(drive, false),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj9)),
-                        new ReLocalizeDriveBase(drive, false),
+                        new ReLocalizeDriveBase(drive, false)
                         //new WaitCommand(100),
 
-                        new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
+                      /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
                         new ReLocalizeDriveBase(drive, false),
-                        new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))
+                        new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))*/
                       /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj12)),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj13))*/
                 );
@@ -133,12 +133,12 @@ public class BlueTopAutoCommand extends SequentialCommandGroup {
                         new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj8)),
                         new ReLocalizeDriveBase(drive, false),
                         new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj9)),
-                        new ReLocalizeDriveBase(drive, false),
+                        new ReLocalizeDriveBase(drive, false)
                         //new WaitCommand(100),
 
-                        new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
+                     /*   new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj10)),
                         new ReLocalizeDriveBase(drive, false),
-                        new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))
+                        new PushAndResetAndIntakeBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj11))*/
                       /*  new PickupAndHighPresetBlue(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj12)),
                         new PushAndResetAndIntakeRed(elevator, manipulator, intake).alongWith(new FollowTrajectory(drive, Blue_Top_Path.BT_traj13))*/
                 );
