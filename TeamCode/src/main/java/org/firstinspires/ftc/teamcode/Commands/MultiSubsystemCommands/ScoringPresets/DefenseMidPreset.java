@@ -17,7 +17,7 @@ public class DefenseMidPreset extends SequentialCommandGroup {
         addCommands(
                 new ParallelCommandGroup(
                         new ElevatorToPosition(elevator, 275, 1),
-                        new InstantCommand(() -> manipulator.setArm(0.30)),
+                        new InstantCommand(() -> manipulator.setArm(0.32)),
                         new InstantCommand(() -> manipulator.setPusher(Constants.Manipulator.Pusher.PUSHER_PREP_POS))
 
                 ),

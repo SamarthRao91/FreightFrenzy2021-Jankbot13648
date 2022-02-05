@@ -53,7 +53,7 @@ public class TeleOpBlue extends CommandOpMode {
 
         driveGamepad = new GamepadEx(gamepad1);
         mechGamepad = new GamepadEx(gamepad2);
-
+        //samarth was here
         register(drive, elevator, manipulator, intake, duckSpinner, capstoneGrabber);
 
         drive.setHeadingOffset(HeadingStorage.STORED_HEADING);
@@ -69,7 +69,7 @@ public class TeleOpBlue extends CommandOpMode {
         );
 
         intake.setDefaultCommand(new IntakeDefault(intake, () -> driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
-        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_y));
+        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> mechGamepad.gamepad.right_stick_x));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, () -> -mechGamepad.gamepad.left_stick_y, () -> -mechGamepad.gamepad.left_stick_x));
         capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
@@ -101,5 +101,8 @@ public class TeleOpBlue extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> duckSpinner.spinSlow()));
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new MoveCapstoneGrabber(capstoneGrabber));
+
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> manipulator.openClaw()));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> manipulator.closeClaw()));
     }
 }

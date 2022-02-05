@@ -33,7 +33,11 @@ public class ManipulatorDefault extends CommandBase {
 
     @Override
     public void execute() {
-        manipulator.moveArm(-leftStickY.getAsDouble()/100);
+        if(Math.abs(leftStickY.getAsDouble()) > 0.2)
+        {
+            manipulator.moveArm(-leftStickY.getAsDouble()/100);
+        }
+
         manipulator.setSpeed(speed.getAsDouble()/2);
         if (manipulator.readColorSensor() > 600)
         {
@@ -41,7 +45,7 @@ public class ManipulatorDefault extends CommandBase {
             new WaitCommand(250);
             manipulator.setArm(Constants.Manipulator.Arm.ARM1_LOWER_BOUND - 0.4);
         }
-        double update = manipulator.update();
+        //double update = manipulator.update();
 
        /* FtcDashboard.getInstance().getTelemetry().addData("Manipulator Target", manipulator.getTarget());
         FtcDashboard.getInstance().getTelemetry().addData("Current Manipulator Position", manipulator.getPosition());

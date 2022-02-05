@@ -72,7 +72,7 @@ public class TeleOpRed extends CommandOpMode {
         );
 
         intake.setDefaultCommand(new IntakeDefault(intake, () -> driveGamepad.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER), () -> driveGamepad.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER)));
-        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_y));
+        elevator.setDefaultCommand(new ElevatorDefault(elevator, () -> -mechGamepad.gamepad.right_stick_x));
         manipulator.setDefaultCommand(new ManipulatorDefault(manipulator, () -> -mechGamepad.gamepad.left_stick_y, () -> -mechGamepad.gamepad.left_stick_x));
         capstoneGrabber.setDefaultCommand(new CapstoneGrabberDefault(capstoneGrabber));
 
@@ -100,11 +100,13 @@ public class TeleOpRed extends CommandOpMode {
 
         driveGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new DefenseMidPreset(elevator, manipulator));
 
-
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinReverseSpinner()));
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new InstantCommand(() -> duckSpinner.spinReverseSlow()));
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new MoveCapstoneGrabber(capstoneGrabber));
+
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> manipulator.openClaw()));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(new InstantCommand(() -> manipulator.closeClaw()));
     }
 
 }
