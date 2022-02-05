@@ -22,8 +22,8 @@ import java.util.Arrays;
 
 public class Blue_Top_Path {
 
-    static double step = 3.75; //slight offsets per cycle to counteract drift
-    static double intakestep = 2.25 + step; //drives bot furhter in each time
+    static double step = 2.75; //slight offsets per cycle to counteract drift
+    static double intakestep = 1.25 + step; //drives bot furhter in each time
     static double wallstep = .375;
 
     public static Trajectory BT_traj0 = BuildTrajectory(new Pose2d(9, .25, Math.toRadians(0))) //drive into warehouse
@@ -36,7 +36,7 @@ public class Blue_Top_Path {
             .build();
 
     public static Trajectory BT_traj2 = BuildTrajectory(BT_traj1.end()) //exit warehouse
-            .lineTo(new Vector2d(-4, 2*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-1, 2*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_VERY_SLOW_ACCEL))
             .build();
     public static Trajectory BT_traj3 = BuildTrajectory(BT_traj2.end()) //drive into warehouse
@@ -45,7 +45,7 @@ public class Blue_Top_Path {
             .build();
 
     public static Trajectory BT_traj4 = BuildTrajectory(BT_traj3.end()) //exit warehouse
-            .lineTo(new Vector2d(-4 + step, 4*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-2 + step, 4*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_VERY_SLOW_ACCEL))
             .build();
 
@@ -55,7 +55,7 @@ public class Blue_Top_Path {
             .build();
 
     public static Trajectory BT_traj6 = BuildTrajectory(BT_traj5.end()) //exit warehouse
-            .lineTo(new Vector2d(-4 +2*step, 6*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
+            .lineTo(new Vector2d(-3 +2*step, 6*wallstep), MecanumDrive.getVelocityConstraint(AUTO_MAX_VEL, AUTO_MAX_ANG_VEL, TRACK_WIDTH),
                     MecanumDrive.getAccelerationConstraint(AUTO_VERY_SLOW_ACCEL))
             .build();
     public static Trajectory BT_traj7 = BuildTrajectory(BT_traj6.end()) //drive into warehouse
