@@ -104,8 +104,8 @@ public class TeleOpRed extends CommandOpMode {
         mechGamepad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(new InstantCommand(() -> duckSpinner.spinReverseSpinner()));
         mechGamepad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(new InstantCommand(() -> duckSpinner.spinReverseSlow()));
 
-        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new ElevatorToPosition(elevator, 225,1));
-        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new ElevatorToPosition(elevator, 100,1));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(new ElevatorToPosition(elevator, 275,1));
+        mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(new ElevatorToPosition(elevator, 0,1));
 
 
         mechGamepad.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(new InstantCommand(() -> manipulator.openClaw()));
